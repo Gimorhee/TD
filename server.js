@@ -5,12 +5,11 @@ const app = express();
 // Connect Database
 connectDB();
 
+// Init Middleware (BodyParser)
+app.use(express.json({ extended: false }));
+
 app.get("/", (req, res) => {
   res.send("API Running");
-});
-
-app.get("/test", (req, res) => {
-  res.send("TEST API Running");
 });
 
 // Defined Routes
