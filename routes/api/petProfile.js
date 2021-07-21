@@ -132,4 +132,40 @@ router.post(
   }
 );
 
+// @route DELETE api/petProfile
+// @desc Delete petProfile, user & posts
+// @access Private
+router.delete("/", auth, async (req, res) => {
+  try {
+    // @TODO: Remove User Posts
+
+    // Remove PetProfile
+    await PetProfile.findOneAndRemove({ user: req.user.id });
+
+    // Remove User
+    await User.findOneAndRemove({ _id: req.user.id });
+
+    res.json({ msg: "User Deleted!" });
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send("Server Error!");
+  }
+});
+
+// // @route DELETE api/petProfile/:petProfile_id
+// // @desc Delete a pet profile
+// // @access Private
+// router.delete("/:petProfile_id", auth, async (req, res) => {
+//   try {
+//     const petProfile = await PetProfile.findOne({ _id: req.params.petProfile_id });
+
+//     res.json(petProfile);
+//   } catch (err) {
+//     console.error(err.message);
+
+//     res.status(500).send("Server Error!");
+//   }
+// });
+
 module.exports = router;
