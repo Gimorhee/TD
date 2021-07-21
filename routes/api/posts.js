@@ -104,4 +104,54 @@ router.delete("/:post_id", auth, async (req, res) => {
   }
 });
 
+// @route PUT api/posts/like/:post_id
+// @desc Like a post
+// @access Private
+router.put("/like/:post_id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.post_id);
+
+    // Check if the post has been already liked
+    if (post.likes.filter((like) => like.user.toString() === req.user.id).length > 0) {
+      return res.status(400).json({ msg: "Post has been already liked" });
+    }
+
+    const newLike = {
+      user: req.user.id,
+    };
+
+    post.likes.unshift(newLike);
+
+    await post.save();
+
+    res.json(post.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Sever Error!");
+  }
+});
+
+// @route PUT api/posts/unlike/:post_id
+// @desc Unlike a post
+// @access Private
+router.put("/unlike/:post_id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.post_id);
+
+    // Check if the post has been already liked
+    if (post.likes.filter((like) => like.user.toString() === req.user.id).length === 0) {
+      return res.status(400).json({ msg: "You must like the post first!" });
+    }
+
+    post.likes = post.likes.filter((like) => like.user.toString() !== req.user.id);
+
+    await post.save();
+
+    res.json(post.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Sever Error!");
+  }
+});
+
 module.exports = router;
