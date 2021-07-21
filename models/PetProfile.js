@@ -35,28 +35,26 @@ const PetProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  lookingFor: [
-    {
-      location: {
-        type: String,
-      },
-      breed: {
-        type: String,
-      },
-      gender: {
-        type: String,
-      },
-      age: {
-        type: String,
-      },
-      for: {
-        type: String,
-      },
-      description: {
-        type: String,
-      },
+  lookingFor: {
+    location: {
+      type: String,
     },
-  ],
+    breed: {
+      type: String,
+    },
+    gender: {
+      type: String,
+    },
+    age: {
+      type: String,
+    },
+    for: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+  },
   social: {
     youtube: {
       type: String,
