@@ -4,29 +4,29 @@ const { check, validationResult } = require("express-validator");
 const PetProfile = require("../../models/PetProfile");
 const auth = require("../../middleware/auth");
 
-// @route   GET api/profile
-// @desc    Get all profiles
+// @route   GET api/petProfile
+// @desc    Get all pet profiles
 // @access  Public
 router.get("/", async (req, res) => {
   try {
-    let profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    let petProfiles = await PetProfile.find().populate("user", ["name", "avatar"]);
 
-    res.json(profiles);
+    res.json(petProfiles);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Sever Error!");
   }
 });
 
-// @route GET api/profile/me
-// @desc Get current users profile
+// @route GET api/petProfile/me
+// @desc Get current pet profile
 // @access Private
 router.get("/me", auth, async (req, res) => {
   try {
     const petProfile = await PetProfile.findOne({ user: req.user.id }).populate("user", ["name", "avatar"]);
 
     if (!petProfile) {
-      return res.status(400).json({ msg: "No profile found for this user" });
+      return res.status(400).json({ msg: "No pet profile found for this user" });
     }
 
     res.json(petProfile);
@@ -37,8 +37,31 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
-// @route POST api/profile
-// @desc Create or update a profile
+// @route GET api/petProfile/:user_id
+// @desc Get a pet profile by certain user id
+// @access Private
+router.get("/:user_id", auth, async (req, res) => {
+  try {
+    const petProfile = await PetProfile.findOne({ user: req.params.user_id });
+
+    if (!petProfile) {
+      return res.status(400).json({ msg: "No pet profile found for this user" });
+    }
+
+    res.json(petProfile);
+  } catch (err) {
+    console.error(err.message);
+
+    if (err.kind == "ObjectId") {
+      return res.status(400).json({ msg: "No pet profile found for this user" });
+    }
+
+    res.status(500).send("Server Error!");
+  }
+});
+
+// @route POST api/petProfile
+// @desc Create or update a pet profile
 // @access Private
 router.post(
   "/",
