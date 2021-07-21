@@ -45,11 +45,12 @@ const PetProfileSchema = new mongoose.Schema({
     age: {
       type: String,
     },
-    for: {
+    whatfor: {
       type: String,
     },
     description: {
       type: String,
+      required: true,
     },
   },
   social: {

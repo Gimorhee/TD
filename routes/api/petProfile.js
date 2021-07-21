@@ -153,6 +153,40 @@ router.delete("/", auth, async (req, res) => {
   }
 });
 
+// @route PUT api/petProfile/lookingFor
+// @desc Add pet profile 'lookingFor'
+// @access Private
+router.put("/lookingFor", auth, async (req, res) => {
+  const { location, breed, gender, age, whatfor, description } = req.body;
+
+  const lookingForObj = {
+    location,
+    breed,
+    gender,
+    age,
+    whatfor,
+    description,
+  };
+
+  try {
+    let petProfile = await PetProfile.findOne({ user: req.user.id });
+
+    if (!petProfile) {
+      return res.status(400).json({ msg: "Pet profile is not created yet" });
+    }
+
+    petProfile.lookingFor = lookingForObj;
+
+    await petProfile.save();
+
+    res.json(petProfile);
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send("Server Error!");
+  }
+});
+
 // // @route DELETE api/petProfile/:petProfile_id
 // // @desc Delete a pet profile
 // // @access Private
