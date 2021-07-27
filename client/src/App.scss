@@ -217,3 +217,67 @@ span {
     }
   }
 }
+
+// REGISTER
+.register {
+  height: calc(100vh - 90px);
+
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  position: relative;
+
+  button {
+    position: absolute;
+    z-index: 300;
+    left: 0;
+    top: 100px;
+  }
+
+  .left {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 200;
+    background: #fff;
+    // background: pink;
+    transition: 0.3s ease-in-out all;
+  }
+
+  .right {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 100;
+    left: 50%;
+    background: lightgrey;
+    transition: 0.3s ease-in-out all;
+  }
+
+  .overlay {
+    width: 50%;
+    background: black;
+    position: absolute;
+    height: 100%;
+    z-index: 200;
+
+    transition: 0.3s ease-in-out all;
+    color: #fff;
+  }
+
+  .stickRight {
+    left: 50%;
+  }
+
+  .stayBelow {
+    opacity: 0;
+    transition: 0.3s ease-in-out all;
+  }
+
+  .stickLeft {
+    left: 0;
+  }
+}
