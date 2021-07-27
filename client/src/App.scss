@@ -19,7 +19,7 @@ span {
 
 // NAVBAR
 .navbar {
-  background: #32afa9;
+  background: linear-gradient(to right, #15cda8, #12d3cf);
   color: #fff;
   height: 90px;
   width: 100%;
@@ -81,7 +81,7 @@ span {
 
   // HERO
   .hero {
-    background: #32afa9;
+    background: linear-gradient(to right, #15cda8, #12d3cf);
     height: calc(100vh - 90px);
     padding: 50px 150px;
     padding-bottom: 0;
@@ -156,7 +156,7 @@ span {
       align-items: center;
 
       i {
-        color: #32afa9;
+        color: #15cda8;
         margin-bottom: 1rem;
         font-size: 4.3rem;
       }
@@ -174,7 +174,7 @@ span {
 
   // TESTIMONIAL
   .testimonial {
-    background: #32afa9;
+    background: linear-gradient(to right, #15cda8, #12d3cf);
     padding: 100px 150px;
     text-align: center;
 
@@ -221,7 +221,6 @@ span {
 // REGISTER
 .register {
   height: calc(100vh - 90px);
-
   width: 100%;
 
   display: flex;
@@ -230,11 +229,81 @@ span {
 
   position: relative;
 
-  button {
-    position: absolute;
-    z-index: 300;
-    left: 0;
-    top: 100px;
+  .left,
+  .right {
+    h1 {
+      font-size: 3rem;
+    }
+
+    .sns {
+      display: flex;
+
+      i {
+        border: 2px solid grey;
+        padding: 10px;
+        border-radius: 50%;
+        margin: 5px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+
+    span {
+      margin: 10px;
+    }
+
+    .registerBtn,
+    .loginBtn {
+      background: linear-gradient(to right, #12d3cf, #15cda8);
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      font-family: "Montserrat";
+      margin-bottom: 20px;
+    }
+
+    .extraContent {
+      a {
+        color: #12d3cf;
+        font-weight: 500;
+      }
+    }
+
+    .form {
+      width: 100%;
+      max-width: 450px;
+      margin-top: 15px;
+
+      .form-group {
+        width: 100%;
+        margin-bottom: 10px;
+
+        input {
+          width: 100%;
+          height: 45px;
+          border: none;
+          background: #eee;
+          padding: 5px;
+          font-size: 15px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .form-text {
+          width: 100%;
+          display: block;
+          text-align: left;
+          font-size: 12px;
+          color: #15cda8;
+        }
+      }
+    }
   }
 
   .left {
@@ -242,9 +311,15 @@ span {
     width: 50%;
     height: 100%;
     z-index: 200;
-    background: #fff;
-    // background: pink;
+    // background: linear-gradient(to right, #12d3cf, #15cda8);
     transition: 0.3s ease-in-out all;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    align-items: center;
+    justify-content: center;
   }
 
   .right {
@@ -252,20 +327,41 @@ span {
     width: 50%;
     height: 100%;
     z-index: 100;
-    left: 50%;
-    background: lightgrey;
+    background: #fff;
     transition: 0.3s ease-in-out all;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    align-items: center;
+    justify-content: center;
   }
 
   .overlay {
     width: 50%;
-    background: black;
+    background: linear-gradient(to right, #15cda8, #12d3cf);
     position: absolute;
     height: 100%;
     z-index: 200;
 
     transition: 0.3s ease-in-out all;
     color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .overlayContent {
+      h1 {
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.7rem;
+      }
+    }
   }
 
   .stickRight {
@@ -274,6 +370,7 @@ span {
 
   .stayBelow {
     opacity: 0;
+    // background: pink;
     transition: 0.3s ease-in-out all;
   }
 
