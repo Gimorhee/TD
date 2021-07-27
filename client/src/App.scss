@@ -12,7 +12,8 @@ h4,
 h5,
 h6,
 p,
-a {
+a,
+span {
   font-family: "Montserrat";
 }
 
@@ -100,6 +101,7 @@ a {
         font-size: 5rem;
         line-height: 1.3;
         font-weight: 900;
+        margin-bottom: 50px;
       }
 
       margin-bottom: 100px;
@@ -137,8 +139,7 @@ a {
 
   //ABOUT
   .about {
-    height: 500px;
-    padding: 15px;
+    padding: 100px 150px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -167,6 +168,51 @@ a {
 
       p {
         font-size: 1.5rem;
+      }
+    }
+  }
+
+  // TESTIMONIAL
+  .testimonial {
+    background: #32afa9;
+    padding: 100px 150px;
+    text-align: center;
+
+    .slick-prev,
+    .slick-next {
+      &::before {
+        font-size: 30px;
+      }
+    }
+
+    div {
+      h3 {
+        font-family: "Montserrat";
+        font-size: 3.3rem;
+        font-weight: 900;
+        color: #fff;
+        max-width: 1140px;
+        margin: auto;
+        margin-bottom: 50px;
+      }
+
+      .image {
+        width: 250px;
+        height: 250px;
+        margin: auto;
+
+        img {
+          border-radius: 50%;
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      span {
+        color: #fff;
+        font-size: 1.3rem;
+        margin-top: 15px;
+        display: block;
       }
     }
   }
