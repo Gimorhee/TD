@@ -22,6 +22,7 @@ const Landing = () => {
 
   return (
     <div className="landing">
+      {/* HERO SECTION */}
       <section className="hero">
         <div className="left">
           <h1>Meet new, beautiful and interesting dogs nearby</h1>
@@ -38,6 +39,8 @@ const Landing = () => {
           <img src={iphoneImg} alt="" />
         </div>
       </section>
+
+      {/* ABOUT SECTION */}
       <section className="about">
         <div>
           <i class="icon fas fa-check-circle fa-4x"></i>
@@ -57,6 +60,8 @@ const Landing = () => {
           <p>Find the true love of your dog's life!</p>
         </div>
       </section>
+
+      {/* TESITMONIAL/CAROUSEL SECTION */}
       <section className="testimonial">
         <Slider {...settings} className="carousel">
           <div>

@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 
-const Register = () => {
+const Auth = () => {
   const [signinMethod, setSigninMethod] = useState("register");
   const [registerData, setRegisterData] = useState({
     name: "",
@@ -39,7 +39,7 @@ const Register = () => {
             </div>
             <div className="form-group">
               <input type="email" placeholder="Email Address" name="email" value={email} onChange={(e) => onChange(e)} required />
-              <small className="form-text">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
+              <small className="form-text">This site uses Gravatar so if you want a profile image, use a Gravatar email.</small>
             </div>
             <div className="form-group">
               <input type="password" placeholder="Password" name="password" value={password} onChange={(e) => onChange(e)} minLength="6" />
@@ -106,4 +106,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Auth;

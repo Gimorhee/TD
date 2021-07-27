@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button, Icon, Label } from "semantic-ui-react";
 
 const Navbar = () => {
   return (
@@ -13,13 +14,27 @@ const Navbar = () => {
       <div className="links">
         <ul>
           <li>
-            <Link to="/petProfile">Dogs</Link>
+            <Button as="div" labelPosition="right" className="link">
+              <Button color="black">
+                <i className="fas fa-dog" />
+              </Button>
+              <Label as="a" basic color="black" pointing="left">
+                OUR CUTIES
+              </Label>
+            </Button>
           </li>
+
           <li>
-            <Link to="/register">Register</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
+            <Link to="/auth">
+              <Button as="div" labelPosition="right" className="link">
+                <Button color="black">
+                  <i class="fas fa-paw"></i>
+                </Button>
+                <Label as="a" basic color="black" pointing="left">
+                  GET STARTED!
+                </Label>
+              </Button>
+            </Link>
           </li>
         </ul>
       </div>
