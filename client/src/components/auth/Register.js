@@ -24,8 +24,6 @@ const Register = () => {
   return (
     <div className="register">
       <div className={signinMethod === "register" ? "left stickLeft registerContainer" : "left stickRight stayBelow loginContainer"}>
-        <div className="bgoverlay"></div>
-
         <div className="innerContainer">
           <h1>Create Account</h1>
           <div className="sns">
@@ -55,27 +53,31 @@ const Register = () => {
             Already have an account? <Link to="/login">Sign In</Link>
           </p>
         </div>
+        <div className="bgOverlay"></div>
       </div>
       <div className={signinMethod === "register" ? "right stayBelow stickLeft" : "right stickRight"}>
-        <h1>Sign In</h1>
-        <div className="sns">
-          <i className="fab fa-facebook-f"></i>
-          <i className="fab fa-instagram"></i>
-          <i className="fab fa-google"></i>
+        <div className="innerContainer">
+          <h1>Sign In</h1>
+          <div className="sns">
+            <i className="fab fa-facebook-f"></i>
+            <i className="fab fa-instagram"></i>
+            <i className="fab fa-google"></i>
+          </div>
+          <span>Or Sign In with Your Account</span>
+          <form className="form" onSubmit={(e) => onSubmit(e)}>
+            <div className="form-group">
+              <input type="email" placeholder="Email Address" name="email" value={email} onChange={(e) => onChange(e)} required />
+            </div>
+            <div className="form-group">
+              <input type="password" placeholder="Password" name="password" value={password} onChange={(e) => onChange(e)} minLength="6" />
+            </div>
+            <input type="submit" className="btn btn-primary loginBtn" value="LOGIN" />
+          </form>
+          <p className="extraContent">
+            Don't have an account? <Link to="/register">Sign Up</Link>
+          </p>
         </div>
-        <span>Or Sign In with Your Account</span>
-        <form className="form" onSubmit={(e) => onSubmit(e)}>
-          <div className="form-group">
-            <input type="email" placeholder="Email Address" name="email" value={email} onChange={(e) => onChange(e)} required />
-          </div>
-          <div className="form-group">
-            <input type="password" placeholder="Password" name="password" value={password} onChange={(e) => onChange(e)} minLength="6" />
-          </div>
-          <input type="submit" className="btn btn-primary loginBtn" value="LOGIN" />
-        </form>
-        <p className="extraContent">
-          Don't have an account? <Link to="/register">Sign Up</Link>
-        </p>
+        <div className="bgOverlay"></div>
       </div>
       <div className={signinMethod === "register" ? "overlay stickRight" : "overlay stickLeft"}>
         {signinMethod === "register" ? (
