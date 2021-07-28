@@ -18,7 +18,7 @@ const Navbar = () => {
               <Button color="black">
                 <i className="fas fa-dog" />
               </Button>
-              <Label as="a" basic color="black" pointing="left">
+              <Label basic color="black" pointing="left">
                 OUR CUTIES
               </Label>
             </Button>
@@ -28,9 +28,9 @@ const Navbar = () => {
             <Link to="/auth">
               <Button as="div" labelPosition="right" className="link">
                 <Button color="black">
-                  <i class="fas fa-paw"></i>
+                  <i className="fas fa-paw"></i>
                 </Button>
-                <Label as="a" basic color="black" pointing="left">
+                <Label basic color="black" pointing="left">
                   GET STARTED!
                 </Label>
               </Button>

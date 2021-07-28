@@ -232,7 +232,7 @@ span {
 }
 
 // REGISTER
-.register {
+.auth {
   height: calc(100vh - 90px);
   width: 100%;
   background: linear-gradient(to right, #15cda8, #12d3cf);
@@ -244,8 +244,8 @@ span {
   position: relative;
 
   // SHARED
-  .left,
-  .right {
+  .registerContainer,
+  .loginContainer {
     position: absolute;
     width: 50%;
     height: 100%;
@@ -290,7 +290,7 @@ span {
         margin-bottom: 10px;
 
         i {
-          border: 2px solid #eee;
+          border: 3px solid #eee;
           padding: 10px;
           border-radius: 50%;
           margin: 5px;
@@ -323,6 +323,11 @@ span {
 
             &:focus {
               outline: none;
+              border: 3px solid #12d3cf;
+            }
+
+            &::placeholder {
+              font-family: "Montserrat";
             }
           }
 
@@ -361,16 +366,16 @@ span {
     }
   }
 
-  .left {
+  .registerContainer {
     z-index: 200;
   }
 
-  .right {
+  .loginContainer {
     z-index: 100;
 
-    .bgOverlay {
-      background-image: url("../src/assets/image/cutedog5.jpg");
-    }
+    // .bgOverlay {
+    //   background-image: url("../src/assets/image/cutedog.jpg");
+    // }
   }
 
   .overlay {
@@ -405,6 +410,7 @@ span {
 
   .stayBelow {
     opacity: 0;
+    z-index: 50;
     // background: pink;
     transition: 0.3s ease-in-out all;
   }
