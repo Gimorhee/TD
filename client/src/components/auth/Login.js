@@ -1,7 +1,8 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Login = ({ setSigninMethod }) => {
+const Login = ({ setSigninMethod, setAlert, login }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,7 +17,7 @@ const Login = ({ setSigninMethod }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log("SUCCESS!");
+    login({ email, password });
   };
 
   return (
@@ -30,10 +31,10 @@ const Login = ({ setSigninMethod }) => {
       <span>Or Sign In with Your Account</span>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email" value={email} onChange={(e) => onChange(e)} required />
+          <input type="email" placeholder="Email Address" name="email" value={email} onChange={(e) => onChange(e)} />
         </div>
         <div className="form-group">
-          <input type="password" placeholder="Password" name="password" value={password} onChange={(e) => onChange(e)} minLength="6" />
+          <input type="password" placeholder="Password" name="password" value={password} onChange={(e) => onChange(e)} />
         </div>
         <input type="submit" className="btn btn-primary loginBtn" value="LOGIN" />
       </form>
@@ -42,6 +43,11 @@ const Login = ({ setSigninMethod }) => {
       </p>
     </Fragment>
   );
+};
+
+Login.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 export default Login;

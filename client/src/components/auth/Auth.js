@@ -1,19 +1,26 @@
 import React, { useState, Fragment } from "react";
+import { Redirect } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import Register from "./Register";
 import Login from "./Login";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
+import { register, login } from "../../actions/auth";
+import PropTypes from "prop-types";
 
-const Auth = ({ setAlert }) => {
+const Auth = ({ setAlert, register, login, isAuthenticated }) => {
   const [signinMethod, setSigninMethod] = useState("register");
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <div className="auth">
       {/* REGISTER */}
       <div className={signinMethod === "register" ? "stickLeft registerContainer" : "stickRight stayBelow registerContainer"}>
         <div className="innerContainer">
-          <Register setSigninMethod={setSigninMethod} setAlert={setAlert} />
+          <Register setSigninMethod={setSigninMethod} setAlert={setAlert} register={register} />
         </div>
         <div className="bgOverlay"></div>
       </div>
@@ -21,7 +28,7 @@ const Auth = ({ setAlert }) => {
       {/* LOGIN */}
       <div className={signinMethod === "login" ? "loginContainer stickRight" : "loginContainer stayBelow stickLeft"}>
         <div className="innerContainer">
-          <Login setSigninMethod={setSigninMethod} />
+          <Login setSigninMethod={setSigninMethod} setAlert={setAlert} login={login} />
         </div>
         <div className="bgOverlay"></div>
       </div>
@@ -56,4 +63,15 @@ const Auth = ({ setAlert }) => {
   );
 };
 
-export default connect(null, { setAlert })(Auth);
+Auth.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register, login })(Auth);
