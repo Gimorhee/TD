@@ -21,7 +21,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </Button>
         </Link>
       </li>
-
       <li>
         <Link onClick={logout}>
           <Button as="div" labelPosition="right" className="link">
