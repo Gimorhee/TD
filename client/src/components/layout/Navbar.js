@@ -10,13 +10,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to="dashboard">
+        <Link to="/dashboard">
           <Button as="div" labelPosition="right" className="link">
             <Button color="black">
               <i className="fas fa-sign-out-alt" />{" "}
             </Button>
             <Label basic color="black" pointing="left">
-              OUR CUTIES
+              CUTIES
             </Label>
           </Button>
         </Link>
@@ -39,13 +39,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="dashboard">
+        <Link to="/dashboard">
           <Button as="div" labelPosition="right" className="link">
             <Button color="black">
               <i className="fas fa-dog" />
             </Button>
             <Label basic color="black" pointing="left">
-              OUR CUTIES
+              CUTIES
             </Label>
           </Button>
         </Link>

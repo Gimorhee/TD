@@ -64,21 +64,21 @@ const Landing = () => {
       {/* TESITMONIAL/CAROUSEL SECTION */}
       <section className="testimonial">
         <Slider {...settings} className="carousel">
-          <div>
+          <div className="carouselContainer">
             <h3>I no longer have to sniff other dogs for love. I've found the hottest Retriever on TinDog. Woof!</h3>
             <div className="image">
               <img src={dogImg1} alt="" />
             </div>
             <span>Benji, Vancouver</span>
           </div>
-          <div>
+          <div className="carouselContainer">
             <h3>As you can see from the picture below, I am living the life!</h3>
             <div className="image">
               <img src={dogImg3} alt="" />
             </div>
             <span>Timon, Vancouver</span>
           </div>
-          <div>
+          <div className="carouselContainer">
             <h3>Thanks to TinDog, I met true love of my life! Woof!</h3>
             <div className="image">
               <img src={dogImg2} alt="" />
