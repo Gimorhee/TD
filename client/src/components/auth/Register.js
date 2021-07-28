@@ -1,7 +1,8 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Register = ({ setSigninMethod }) => {
+const Register = ({ setSigninMethod, setAlert }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,7 +20,7 @@ const Register = ({ setSigninMethod }) => {
     e.preventDefault();
 
     if (password !== password2) {
-      console.log("Password do not match!");
+      setAlert("Password do not match!", "red");
     } else {
       //   const newUser = {
       //     name,
@@ -73,6 +74,10 @@ const Register = ({ setSigninMethod }) => {
       </p>
     </Fragment>
   );
+};
+
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
 };
 
 export default Register;

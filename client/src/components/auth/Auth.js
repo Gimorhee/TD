@@ -2,8 +2,10 @@ import React, { useState, Fragment } from "react";
 import { Button } from "semantic-ui-react";
 import Register from "./Register";
 import Login from "./Login";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
 
-const Auth = () => {
+const Auth = ({ setAlert }) => {
   const [signinMethod, setSigninMethod] = useState("register");
 
   return (
@@ -11,7 +13,7 @@ const Auth = () => {
       {/* REGISTER */}
       <div className={signinMethod === "register" ? "stickLeft registerContainer" : "stickRight stayBelow registerContainer"}>
         <div className="innerContainer">
-          <Register setSigninMethod={setSigninMethod} />
+          <Register setSigninMethod={setSigninMethod} setAlert={setAlert} />
         </div>
         <div className="bgOverlay"></div>
       </div>
@@ -54,4 +56,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default connect(null, { setAlert })(Auth);
