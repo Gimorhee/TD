@@ -615,11 +615,22 @@ span {
   .stayBelow {
     opacity: 0;
     z-index: 50;
-    // background: pink;
     transition: 0.3s ease-in-out all;
   }
 
   .stickLeft {
     left: 0;
   }
+}
+
+// SPINNER
+.spinner {
+  width: 100%;
+  height: calc(100vh - 90px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 50px;
+  position: absolute;
+  z-index: 500;
 }
