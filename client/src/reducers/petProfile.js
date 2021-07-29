@@ -1,4 +1,4 @@
-import { GET_PET_PROFILE, PET_PROFILE_ERROR } from "../actions/types";
+import { GET_PET_PROFILE, PET_PROFILE_ERROR, CLEAR_PET_PROFILE } from "../actions/types";
 
 const initialState = {
   profile: null,
@@ -21,6 +21,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         errors: payload,
+        loading: false,
+      };
+    case CLEAR_PET_PROFILE:
+      return {
+        ...state,
+        profile: null,
         loading: false,
       };
     default:

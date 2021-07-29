@@ -4,12 +4,24 @@ import { getCurrentPetProfile } from "../../actions/petProfile";
 import PropTypes from "prop-types";
 import Spinner from "../layout/Spinner";
 
-const Dashboard = ({ auth, petProfile: { profile, loading }, getCurrentPetProfile }) => {
+const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurrentPetProfile }) => {
   useEffect(() => {
     getCurrentPetProfile();
   }, []);
 
-  return <div>{loading && profile === null ? <Spinner /> : <Fragment>DASHBOARD</Fragment>}</div>;
+  return (
+    <div>
+      {loading && profile === null ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <h1>DASHBOARD</h1>
+          <p>WELCOME {user && user.name}!</p>
+          {profile !== null ? <Fragment>O</Fragment> : <Fragment>X</Fragment>}
+        </Fragment>
+      )}
+    </div>
+  );
 };
 
 Dashboard.propTypes = {

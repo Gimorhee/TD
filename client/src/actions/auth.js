@@ -1,4 +1,4 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOG_OUT } from "./types";
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOG_OUT, CLEAR_PET_PROFILE } from "./types";
 import { setAlert } from "./alert";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
@@ -90,6 +90,10 @@ export const login =
 
 //   Logout & Clear Profile
 export const logout = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_PET_PROFILE,
+  });
+
   dispatch({
     type: LOG_OUT,
   });

@@ -14,3 +14,4 @@ export const LOG_OUT = "LOG_OUT";
 // PROFILE
 export const GET_PET_PROFILE = "GET_PET_PROFILE";
 export const PET_PROFILE_ERROR = "PET_PROFILE_ERROR";
+export const CLEAR_PET_PROFILE = "CLEAR_PET_PROFILE";
