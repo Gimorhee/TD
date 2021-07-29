@@ -49,6 +49,7 @@ export const register =
       if (errors) {
         errors.forEach((error) => dispatch(setAlert(error.msg, "red")));
       }
+
       dispatch({
         type: REGISTER_FAIL,
       });

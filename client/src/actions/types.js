@@ -9,5 +9,8 @@ export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
-
 export const LOG_OUT = "LOG_OUT";
+
+// PROFILE
+export const GET_PET_PROFILE = "GET_PET_PROFILE";
+export const PET_PROFILE_ERROR = "PET_PROFILE_ERROR";

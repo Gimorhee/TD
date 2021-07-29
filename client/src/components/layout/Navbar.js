@@ -13,7 +13,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to="/dashboard">
           <Button as="div" labelPosition="right" className="link">
             <Button color="black">
-              <i className="fas fa-sign-out-alt" />{" "}
+              <i class="fas fa-address-card"></i>{" "}
             </Button>
             <Label basic color="black" pointing="left">
               DASHBOARD
