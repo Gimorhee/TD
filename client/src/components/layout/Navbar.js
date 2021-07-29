@@ -13,7 +13,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to="/dashboard">
           <Button as="div" labelPosition="right" className="link">
             <Button color="black">
-              <i class="fas fa-address-card"></i>{" "}
+              <i className="fas fa-address-card"></i>{" "}
             </Button>
             <Label basic color="black" pointing="left">
               DASHBOARD
@@ -22,7 +22,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li>
-        <Link onClick={logout}>
+        <Link onClick={logout} to="/">
           <Button as="div" labelPosition="right" className="link">
             <Button color="black">
               <i className="fas fa-sign-out-alt" />{" "}

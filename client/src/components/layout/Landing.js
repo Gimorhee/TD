@@ -72,14 +72,14 @@ const Landing = () => {
             <span>Benji, Vancouver</span>
           </div>
           <div className="carouselContainer">
-            <h3>As you can see from the picture below, I am living the life!</h3>
+            <h3>I am happy as woof!</h3>
             <div className="image">
               <img src={dogImg3} alt="" />
             </div>
             <span>Timon, Vancouver</span>
           </div>
           <div className="carouselContainer">
-            <h3>Thanks to TinDog, I met true love of my life! Woof!</h3>
+            <h3>Thanks to TinDog, I met true love of my life!</h3>
             <div className="image">
               <img src={dogImg2} alt="" />
             </div>

@@ -19,7 +19,7 @@ const Auth = ({ setAlert, register, login, isAuthenticated }) => {
     <div className="auth">
       {/* REGISTER */}
       <div className={signinMethod === "register" ? "stickLeft registerContainer" : "stickRight stayBelow registerContainer"}>
-        <div className="innerContainer">
+        <div className="formContainer">
           <Register setSigninMethod={setSigninMethod} setAlert={setAlert} register={register} />
         </div>
         <div className="bgOverlay"></div>
@@ -27,7 +27,7 @@ const Auth = ({ setAlert, register, login, isAuthenticated }) => {
 
       {/* LOGIN */}
       <div className={signinMethod === "login" ? "loginContainer stickRight" : "loginContainer stayBelow stickLeft"}>
-        <div className="innerContainer">
+        <div className="formContainer">
           <Login setSigninMethod={setSigninMethod} setAlert={setAlert} login={login} />
         </div>
         <div className="bgOverlay"></div>

@@ -435,7 +435,7 @@ span {
   }
 }
 
-// REGISTER
+// AUTH
 .auth {
   height: calc(100vh - 90px);
   width: 100%;
@@ -475,12 +475,11 @@ span {
       z-index: -1;
     }
 
-    .innerContainer {
+    .formContainer {
       background: rgba(255, 255, 255, 0.7);
-
       padding: 50px 25px;
       border-radius: 10px;
-
+      min-width: 400px;
       h1 {
         font-size: 3rem;
         color: black;
@@ -510,7 +509,7 @@ span {
 
       .form {
         width: 100%;
-        width: 400px;
+        max-width: 400px;
         margin-top: 15px;
 
         .form-group {
@@ -576,10 +575,6 @@ span {
 
   .loginContainer {
     z-index: 100;
-
-    // .bgOverlay {
-    //   background-image: url("../src/assets/image/cutedog.jpg");
-    // }
   }
 
   .overlay {
@@ -598,6 +593,8 @@ span {
     text-align: center;
 
     .overlayContent {
+      padding: 35px;
+
       h1 {
         font-size: 3rem;
       }
@@ -621,6 +618,55 @@ span {
   .stickLeft {
     left: 0;
   }
+
+  @media only screen and (max-width: 1040px) {
+    .registerContainer,
+    .loginContainer {
+      .formContainer {
+        max-width: 400px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    .registerContainer,
+    .loginContainer {
+      width: 100%;
+      left: 0;
+    }
+
+    .overlay {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .registerContainer,
+    .loginContainer {
+      .formContainer {
+        min-width: 350px;
+        max-width: 375px;
+
+        h1 {
+          font-size: 2.1rem;
+        }
+      }
+    }
+  }
+
+  //   .dashboard {
+  //     @media only screen and (max-width: 1540px) {
+
+  //     }
+
+  //     @media only screen and (max-width: 1140px) {
+
+  //     }
+
+  //     @media only screen and (max-width: 767px) {
+
+  //     }
+  //   }
 }
 
 // SPINNER
@@ -634,3 +680,36 @@ span {
   position: absolute;
   z-index: 500;
 }
+
+// DASHBOARD
+.dashboard {
+  padding: 35px 200px;
+
+  @media only screen and (max-width: 1540px) {
+    padding: 10px 90px;
+  }
+
+  @media only screen and (max-width: 1140px) {
+    padding: 10px 60px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    padding: 10px 35px;
+  }
+}
+
+// .component {
+//     padding: 10px 200px;
+
+//     @media only screen and (max-width: 1540px) {
+//       padding: 10px 90px;
+//     }
+
+//     @media only screen and (max-width: 1140px) {
+//       padding: 10px 60px;
+//     }
+
+//     @media only screen and (max-width: 767px) {
+//       padding: 10px 35px;
+//     }
+//   }

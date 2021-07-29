@@ -10,7 +10,7 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
   }, []);
 
   return (
-    <div>
+    <div className="dashboard">
       {loading && profile === null ? (
         <Spinner />
       ) : (

@@ -12,7 +12,7 @@ const PrivateRoute = ({ component: Component, auth: { isAuthenticated, loading }
         !isAuthenticated && !loading ? (
           <Fragment>
             {setAlert("Not Authorized. Please login first!", "red")}
-            <Redirect to="auth" />
+            <Redirect to="/auth" />
           </Fragment>
         ) : (
           <Component {...props} />
