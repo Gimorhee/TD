@@ -10,10 +10,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Landing = () => {
-  var settings = {
+  const settings = {
     dots: false,
     infinite: true,
-    speed: 2000,
+    speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,

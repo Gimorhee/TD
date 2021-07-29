@@ -16,7 +16,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               <i className="fas fa-sign-out-alt" />{" "}
             </Button>
             <Label basic color="black" pointing="left">
-              CUTIES
+              DASHBOARD
             </Label>
           </Button>
         </Link>
@@ -39,7 +39,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/dashboard">
+        <Link to="/petProfile">
           <Button as="div" labelPosition="right" className="link">
             <Button color="black">
               <i className="fas fa-dog" />

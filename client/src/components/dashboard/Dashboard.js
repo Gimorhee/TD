@@ -3,9 +3,8 @@ import React from "react";
 const Dashboard = () => {
   return (
     <div>
-      {" "}
       <div>
-        <button className="btnEffect">TEST</button>
+        <button className="btnEffect">DASHBOARD</button>
       </div>
     </div>
   );
