@@ -104,6 +104,20 @@ span {
   }
 }
 
+.blackNavBar {
+  background: #252525;
+
+  .links {
+    .link {
+      .button {
+        // background: #fff;
+
+        // color: #252525;
+      }
+    }
+  }
+}
+
 // CONTAINER
 // .container {
 //   position: relative;
@@ -653,20 +667,6 @@ span {
       }
     }
   }
-
-  //   .dashboard {
-  //     @media only screen and (max-width: 1540px) {
-
-  //     }
-
-  //     @media only screen and (max-width: 1140px) {
-
-  //     }
-
-  //     @media only screen and (max-width: 767px) {
-
-  //     }
-  //   }
 }
 
 // SPINNER
@@ -683,18 +683,28 @@ span {
 
 // DASHBOARD
 .dashboard {
-  padding: 35px 200px;
+  width: 100%;
+  height: calc(100vh - 90px);
+  display: flex;
+  justify-content: space-between;
 
-  @media only screen and (max-width: 1540px) {
-    padding: 10px 90px;
+  //   USER PET PROFILE
+  .userPetProfile {
+    width: 23%;
+    background: #eee;
   }
 
-  @media only screen and (max-width: 1140px) {
-    padding: 10px 60px;
+  //   ALL PET PROFILES
+  .petProfiles {
+    width: 52%;
+
+    background: #fff;
   }
 
-  @media only screen and (max-width: 767px) {
-    padding: 10px 35px;
+  //   POSTS
+  .posts {
+    width: 25%;
+    background: cornflowerblue;
   }
 }
 

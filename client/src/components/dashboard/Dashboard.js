@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { getCurrentPetProfile } from "../../actions/petProfile";
 import PropTypes from "prop-types";
 import Spinner from "../layout/Spinner";
+import UserPetProfile from "./UserPetProfile";
+import PetProfiles from "./PetProfiles";
+import Posts from "./Posts";
 
 const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurrentPetProfile }) => {
   useEffect(() => {
@@ -15,9 +18,12 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
         <Spinner />
       ) : (
         <Fragment>
-          <h1>DASHBOARD</h1>
+          <UserPetProfile user={user} profile={profile} />
+          <PetProfiles />
+          <Posts />
+          {/* <h1>DASHBOARD</h1>
           <p>WELCOME {user && user.name}!</p>
-          {profile !== null ? <Fragment>O</Fragment> : <Fragment>X</Fragment>}
+          {profile !== null ? <Fragment>O</Fragment> : <Fragment>X</Fragment>} */}
         </Fragment>
       )}
     </div>
