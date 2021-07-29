@@ -104,20 +104,6 @@ span {
   }
 }
 
-.blackNavBar {
-  background: #252525;
-
-  .links {
-    .link {
-      .button {
-        // background: #fff;
-
-        // color: #252525;
-      }
-    }
-  }
-}
-
 // CONTAINER
 // .container {
 //   position: relative;
@@ -704,7 +690,8 @@ span {
   //   POSTS
   .posts {
     width: 25%;
-    background: cornflowerblue;
+    // background: cornflowerblue;
+    border: 3px solid #eee;
   }
 }
 
