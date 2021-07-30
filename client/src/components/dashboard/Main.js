@@ -24,7 +24,7 @@ const Main = ({}) => {
 
   return (
     <section className="main">
-      <Tab menu={{ secondary: true, pointing: true }} panes={panes} />{" "}
+      <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
     </section>
   );
 };

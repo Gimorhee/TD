@@ -713,7 +713,7 @@ span {
     padding: 15px;
 
     background: #fff;
-    margin-top: 11px;
+    margin-top: 18px;
 
     .menu {
       height: 50px;
@@ -746,7 +746,8 @@ span {
     }
 
     .tab {
-      height: calc(100vh - 90px);
+      height: calc(100vh - 108px);
+      //   display: none;
       overflow-y: scroll;
     }
   }
@@ -808,7 +809,11 @@ span {
         padding: 5px 0;
 
         .header {
+          font-size: 18.2px;
+          text-transform: uppercase;
+          font-weight: 700;
           font-family: "Montserrat" !important;
+          margin-bottom: 7px;
         }
       }
 
@@ -817,6 +822,8 @@ span {
         padding: 0;
 
         .feed {
+          margin-top: 14px;
+
           .event {
             margin: 10px 0;
             padding: 35px;
