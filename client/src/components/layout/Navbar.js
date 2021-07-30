@@ -84,12 +84,14 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   return (
     <nav className={navStatus === true ? "navbar" : "navbar removeNav"}>
-      <div className="logo">
+      <Link to="/" className="logo">
         <i className="fas fa-dog" />
-        <Link to="/">
-          <h1>TinDog</h1>
-        </Link>
-      </div>
+        {/* <img src="https://img.icons8.com/ios-filled/80/000000/animal-shelter.png" /> */}
+        {/* <img src="https://img.icons8.com/dotty/80/000000/animal-shelter.png" /> */}
+        {/* <img src="https://img.icons8.com/ios/50/000000/animal-shelter.png" alt="logo-img" /> */}
+
+        <h1>TinDog</h1>
+      </Link>
       <div className="links">{!loading && <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>}</div>
     </nav>
   );

@@ -1,16 +1,33 @@
 import React from "react";
 import { Card, Feed } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import dogImg1 from "../../assets/image/cutedog.jpg";
 
 // import PropTypes from "prop-types";
 
-const Sidebar = (props) => {
+const Sidebar = ({ logout }) => {
   return (
     <section className="sidebar">
       <Card className="outerCard">
+        {/* GLOBAL BUTTONS */}
+        <div className="btnContainer">
+          <Link to="/" className="btn">
+            <i class="fas fa-home homeBtn"></i>
+          </Link>
+          <span className="btn" onClick={logout}>
+            <i class="fas fa-sign-out-alt logoutBtn"></i>
+          </span>
+          <span className="btn">
+            <i class="fas fa-envelope msgBtn"></i>
+          </span>
+        </div>
+
+        {/* HEADER  */}
         <Card.Content className="headerContainer">
           <Card.Header>Recent Posts</Card.Header>
         </Card.Content>
+
+        {/* CONTENT */}
         <Card.Content className="contentContainer">
           <Feed>
             <Feed.Event>

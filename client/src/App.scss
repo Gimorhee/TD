@@ -36,11 +36,16 @@ span {
     display: flex;
     align-items: center;
     height: 100%;
+    color: #fff;
 
     i {
       font-size: 2.5rem;
       margin-right: 5px;
     }
+
+    // img {
+    //   filter: invert(100%);
+    // }
 
     h1 {
       margin: 0;
@@ -688,22 +693,33 @@ span {
     .outerCard {
       background: #eee;
       box-shadow: 2px 2px 3px darkgrey;
+
+      .infoContainer {
+        h3 {
+          margin-bottom: 15px;
+
+          span {
+            text-transform: uppercase;
+            //   color: green !important;
+          }
+        }
+      }
     }
   }
 
-  //   ALL PET PROFILES
+  // ALL PET PROFILES
   .main {
     width: 55%;
     padding: 15px;
 
     background: #fff;
+    margin-top: 11px;
 
     .menu {
       height: 50px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      //   flex-direction: column;
 
       .item {
         width: 25%;
@@ -711,17 +727,16 @@ span {
         height: 100%;
         justify-content: center;
         align-items: center;
-        // font-family: "Montserrat" !important;
         padding: 15px;
 
         font-size: 1.3rem;
 
         border-bottom: 3px solid #eee !important;
 
-        &:hover {
-          //   color: #00af91 !important;
-          //   border-color: #00af91 !important;
-        }
+        // &:hover {
+        //     color: #00af91 !important;
+        //     border-color: #00af91 !important;
+        // }
       }
 
       .active.item {
@@ -740,14 +755,89 @@ span {
   .sidebar {
     width: 25%;
     height: 100%;
-    // background: cornflowerblue;
 
     .outerCard {
       overflow-y: scroll;
 
+      .btnContainer {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        .btn {
+          font-size: 15px;
+          color: #252525;
+          padding: 0 2px;
+          transition: 0.3s ease-in-out all;
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+
+          .fas {
+            padding: 7px;
+            // width: 25px;
+            // height: 25px;
+
+            color: #fff;
+            border-radius: 50%;
+            font-size: 15px;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+
+          .homeBtn {
+            background: #ffcc29;
+          }
+
+          .logoutBtn {
+            background: #ff4646;
+          }
+
+          .msgBtn {
+            background: #5aa469;
+          }
+        }
+      }
+
       .headerContainer {
+        border-top: none;
+        padding: 5px 0;
+
         .header {
           font-family: "Montserrat" !important;
+        }
+      }
+
+      .contentContainer {
+        border-top: 3px solid #eee;
+        padding: 0;
+
+        .feed {
+          .event {
+            margin: 10px 0;
+            padding: 35px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background: #eee;
+            box-shadow: 2px 2px 3px darkgrey;
+            cursor: pointer;
+
+            transition: 0.3s ease-in-out all;
+
+            &:hover {
+              //   transform: translateY(-3px);
+              transform: scale(1.03);
+            }
+          }
+
+          .summary {
+            font-family: "Montserrat" !important;
+            font-weight: 600;
+          }
         }
       }
     }
@@ -759,21 +849,6 @@ span {
     height: 100%;
     border-radius: 0 !important;
     padding: 15px;
-
-    .contentContainer {
-      border-top: 3px solid #eee;
-
-      .feed {
-        .event {
-          margin: 10px 0;
-          padding: 35px;
-          border: 1px solid #eee;
-          border-radius: 5px;
-          background: #eee;
-          box-shadow: 2px 2px 3px darkgrey;
-        }
-      }
-    }
   }
 }
 
