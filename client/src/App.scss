@@ -677,7 +677,11 @@ span {
   //   USER PET PROFILE
   .userPetProfile {
     width: 23%;
-    background: #eee;
+    height: 100%;
+
+    .outerCard {
+      background: #eee;
+    }
   }
 
   //   ALL PET PROFILES
@@ -690,8 +694,37 @@ span {
   //   POSTS
   .posts {
     width: 25%;
+    height: 100%;
     // background: cornflowerblue;
-    border: 3px solid #eee;
+
+    .outerCard {
+      overflow-y: scroll;
+    }
+  }
+
+  // SHARED
+  .outerCard {
+    width: 100%;
+    height: 100%;
+    border-radius: 0 !important;
+    padding: 15px;
+    // overflow-y: scroll;
+
+    .header {
+      max-height: 50px;
+    }
+
+    .content {
+      .feed {
+        .event {
+          margin: 10px 0;
+          padding: 35px;
+          border: 1px solid #eee;
+          border-radius: 5px;
+          background: #eee;
+        }
+      }
+    }
   }
 }
 

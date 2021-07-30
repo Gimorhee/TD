@@ -21,9 +21,6 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
           <UserPetProfile user={user} profile={profile} />
           <PetProfiles />
           <Posts />
-          {/* <h1>DASHBOARD</h1>
-          <p>WELCOME {user && user.name}!</p>
-          {profile !== null ? <Fragment>O</Fragment> : <Fragment>X</Fragment>} */}
         </Fragment>
       )}
     </div>
