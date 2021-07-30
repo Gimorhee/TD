@@ -4,8 +4,8 @@ import { getCurrentPetProfile } from "../../actions/petProfile";
 import PropTypes from "prop-types";
 import Spinner from "../layout/Spinner";
 import UserPetProfile from "./UserPetProfile";
-import PetProfiles from "./PetProfiles";
-import Posts from "./Posts";
+import Main from "./Main";
+import Sidebar from "./Sidebar";
 
 const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurrentPetProfile }) => {
   useEffect(() => {
@@ -19,8 +19,8 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
       ) : (
         <Fragment>
           <UserPetProfile user={user} profile={profile} />
-          <PetProfiles />
-          <Posts />
+          <Main />
+          <Sidebar />
         </Fragment>
       )}
     </div>

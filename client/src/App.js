@@ -31,8 +31,9 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
+          {/* <Navbar /> */}
           <section className="container">
+            <Route exact path="/" component={Navbar} />
             <Route exact path="/" component={Landing} />
             <Alert />
             <Switch>

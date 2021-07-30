@@ -1,20 +1,24 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Label } from "semantic-ui-react";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const [navStatus, setNavStatus] = useState(true);
+
   //   const history = useHistory();
 
   //   useEffect(() => {
   //     return history.listen((location) => {
   //       if (location.pathname === "/dashboard") {
-  //         setNavColor("black");
+  //         setNavStatus(false);
+  //         console.log("!");
   //       } else {
-  //         setNavColor("original");
+  //         setNavStatus(true);
+  //         console.log("?");
   //       }
   //     });
   //   }, [history]);
@@ -79,7 +83,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   return (
-    <nav className="navbar">
+    <nav className={navStatus === true ? "navbar" : "navbar removeNav"}>
       <div className="logo">
         <i className="fas fa-dog" />
         <Link to="/">

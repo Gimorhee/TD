@@ -4,14 +4,14 @@ import dogImg1 from "../../assets/image/cutedog.jpg";
 
 // import PropTypes from "prop-types";
 
-const Posts = (props) => {
+const Sidebar = (props) => {
   return (
-    <section className="posts">
+    <section className="sidebar">
       <Card className="outerCard">
-        <Card.Content className="header">
-          <Card.Header>Recent Activity</Card.Header>
+        <Card.Content className="headerContainer">
+          <Card.Header>Recent Posts</Card.Header>
         </Card.Content>
-        <Card.Content>
+        <Card.Content className="contentContainer">
           <Feed>
             <Feed.Event>
               <Feed.Label image={dogImg1} />
@@ -77,4 +77,4 @@ const Posts = (props) => {
 
 // Posts.propTypes = {};
 
-export default Posts;
+export default Sidebar;
