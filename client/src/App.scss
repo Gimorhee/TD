@@ -1010,10 +1010,9 @@ span {
   // ALL PET PROFILES
   .main {
     width: 55%;
-    padding: 15px;
+    padding: 4px 15px;
 
-    background: #fff;
-    margin-top: 18px;
+    background: #f9f9f9;
 
     .menu {
       height: 50px;
@@ -1046,7 +1045,7 @@ span {
     }
 
     .tab {
-      height: calc(100vh - 108px);
+      height: calc(100vh - 81px);
       //   display: none;
       overflow-y: scroll;
     }
@@ -1055,15 +1054,18 @@ span {
   //   SIDEBAR
   .sidebar {
     width: 25%;
-    height: 100%;
+    height: 100vh;
 
     .outerCard {
-      overflow-y: scroll;
+      background: #f9f9f9;
+      margin-bottom: 15px;
+      padding: 15px;
 
       .btnContainer {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
+        position: fixed;
+        top: 7px;
+        right: 5px;
+        z-index: 1000;
 
         .btn {
           font-size: 15px;
@@ -1089,15 +1091,15 @@ span {
           }
 
           .homeBtn {
-            background: #ffcc29;
+            background: rgb(255, 198, 12);
           }
 
           .logoutBtn {
-            background: #ff4646;
+            background: #f11f1f;
           }
 
           .msgBtn {
-            background: #5aa469;
+            background: rgb(19, 153, 46);
           }
         }
       }
@@ -1117,30 +1119,59 @@ span {
 
       .contentContainer {
         border-top: 3px solid #eee;
-        padding: 0;
+        height: 100vh;
+
+        padding: 0px 3px;
+        padding-right: 15px;
+        overflow-y: scroll;
 
         .feed {
           margin-top: 14px;
 
           .event {
-            margin: 10px 0;
-            padding: 35px;
+            margin: 15px 0;
+            padding: 20px;
             border: 1px solid #eee;
-            border-radius: 5px;
-            background: #eee;
+            border-radius: 20px;
             box-shadow: 2px 2px 3px darkgrey;
             cursor: pointer;
-
+            min-height: 160px;
             transition: 0.3s ease-in-out all;
 
-            &:hover {
-              transform: scale(1.03);
-            }
-          }
+            display: flex;
+            flex-wrap: wrap;
 
-          .summary {
-            font-family: "Montserrat" !important;
-            font-weight: 600;
+            .label {
+              width: 55px;
+            }
+
+            .summary {
+              font-family: "Montserrat" !important;
+              font-weight: 600;
+            }
+
+            .usersCommented {
+              width: 100%;
+
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: flex-end;
+
+              .avatar {
+                display: flex;
+                align-items: center;
+
+                img {
+                  width: 30px;
+                  height: 30px;
+                  margin: 2px;
+                }
+              }
+            }
+
+            &:hover {
+              transform: translateY(-3px);
+            }
           }
         }
       }
@@ -1152,7 +1183,6 @@ span {
     width: 100%;
     height: 100%;
     border-radius: 0 !important;
-    padding: 15px;
   }
 }
 

@@ -13,6 +13,8 @@ const UserPetProfile = ({ user, profile }) => {
     setting: "#fff",
   });
 
+  //  @POSSIBLECOLORS: #FEEFD0;#C0D3EE;#DDB8B9;#AFCFB6;#94A2B7;#82BEB7
+
   const bgColors = ["#4C4C6D", "#709FB0", "#686d76", "#252525", "linear-gradient(to right, #15cda8, #12d3cf)", "#FFCB74"];
 
   const btnColors = [
