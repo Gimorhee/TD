@@ -12,13 +12,13 @@ const Sidebar = ({ logout }) => {
         {/* GLOBAL BUTTONS */}
         <div className="btnContainer">
           <Link to="/" className="btn">
-            <i class="fas fa-home homeBtn"></i>
+            <i className="fas fa-home homeBtn"></i>
           </Link>
           <span className="btn" onClick={logout}>
-            <i class="fas fa-sign-out-alt logoutBtn"></i>
+            <i className="fas fa-sign-out-alt logoutBtn"></i>
           </span>
           <span className="btn">
-            <i class="fas fa-envelope msgBtn"></i>
+            <i className="fas fa-envelope msgBtn"></i>
           </span>
         </div>
 
