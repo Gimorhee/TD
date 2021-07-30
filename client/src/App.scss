@@ -689,18 +689,150 @@ span {
   .userPetProfile {
     width: 20%;
     height: 100%;
+    position: relative;
 
     .outerCard {
-      padding: 0;
-      //   background: linear-gradient(to right, #15cda8, #12d3cf);
-      background: #709fb0;
-      //   89BEB3
-      //   709FB0
-
       padding: 35px 15px 15px;
       box-shadow: 2px 2px 3px darkgrey;
       height: 100%;
       width: 100%;
+
+      .customizer {
+        //   border: 1px solid #eee;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 400;
+        width: 100%;
+        text-align: right;
+
+        i {
+          font-size: 22px;
+          cursor: pointer;
+          transition: 0.3s ease-in-out all;
+          padding: 5px;
+          // color: #eee;
+          //   border-radius: 50%;
+          position: absolute;
+          top: 0;
+          right: 0;
+
+          &:hover {
+            transform: scale(1.11);
+          }
+        }
+
+        .setting {
+          .gear {
+            height: 35px;
+            width: 35px;
+            z-index: 500;
+          }
+
+          .settingBtn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 35px;
+            width: 35px;
+            background: #eee;
+            z-index: 300;
+            opacity: 0;
+
+            overflow: hidden;
+
+            .chosenColors {
+              width: 0;
+              height: 0;
+              //   border-top: 35px solid red !important;
+              border-right: 35px solid transparent;
+            }
+          }
+
+          // SHARED
+          .bgColors,
+          .btnColors {
+            position: absolute;
+            background: #fff;
+            z-index: 300;
+            transition: 0.3s ease-in-out all;
+            opacity: 0;
+
+            div {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            .color {
+              transition: 0.3s ease-in-out all;
+              cursor: pointer;
+
+              .checkIcon {
+                color: #fff;
+                transition: 0.3s ease-in-out all;
+                font-size: 10px;
+                opacity: 0;
+                position: sticky;
+              }
+
+              &:hover {
+                .checkIcon {
+                  opacity: 1;
+                  font-size: 15px;
+                }
+              }
+            }
+          }
+
+          .bgColors {
+            top: 0;
+            right: 35px;
+            width: 0px;
+            height: 35px;
+
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+
+            .color {
+              width: 16.666667%;
+            }
+          }
+
+          .btnColors {
+            top: 35px;
+            right: 0;
+            width: 35px;
+            height: 0px;
+
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+
+            div {
+              height: 25%;
+            }
+
+            .color {
+              height: 16.666667%;
+            }
+          }
+
+          .showColors {
+            opacity: 1;
+            z-index: 200;
+          }
+
+          .openLeft {
+            width: 210px;
+          }
+
+          .openBelow {
+            height: 210px;
+          }
+        }
+      }
 
       .infoContainer {
         height: 100%;
@@ -755,7 +887,7 @@ span {
               color: #252525;
               cursor: pointer;
               transition: 0.3s ease-in-out all;
-              box-shadow: 3px 3px 5px darkgrey;
+
               text-shadow: 1px 1px 2px #eee;
 
               &:after {
@@ -782,7 +914,6 @@ span {
 
               &:hover {
                 transform: translateY(-2px);
-                box-shadow: 6px 6px 5px darkgrey;
               }
             }
           }
@@ -806,8 +937,6 @@ span {
             width: 100%;
             padding: 15px;
             cursor: pointer;
-            box-shadow: 3px 3px 5px darkgrey;
-            // height: 100vh;
             height: calc(100vh - 515px);
             overflow-y: scroll;
 
@@ -848,10 +977,8 @@ span {
 
               li {
                 list-style: none;
-                // background: linear-gradient(to right, #15cda8, #12d3cf);
-                background: #686d76;
-                padding: 11px 15px;
-                color: #eee;
+                border: 2px solid;
+                padding: 10px 13px;
                 font-weight: 600;
                 font-size: 15px;
                 font-family: "Montserrat";
@@ -862,10 +989,20 @@ span {
 
             &:hover {
               transform: translateY(-2px);
-              box-shadow: 6px 6px 5px darkgrey;
             }
           }
         }
+      }
+
+      .settingOverlay {
+        transition: 0.3s ease-in-out all;
+        position: absolute;
+        z-index: 200;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        left: 0;
+        top: 0;
       }
     }
   }
@@ -941,8 +1078,6 @@ span {
 
           .fas {
             padding: 7px;
-            // width: 25px;
-            // height: 25px;
 
             color: #fff;
             border-radius: 50%;
@@ -999,7 +1134,6 @@ span {
             transition: 0.3s ease-in-out all;
 
             &:hover {
-              //   transform: translateY(-3px);
               transform: scale(1.03);
             }
           }
