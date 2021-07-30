@@ -490,6 +490,7 @@ span {
       padding: 50px 25px;
       border-radius: 10px;
       min-width: 400px;
+
       h1 {
         font-size: 3rem;
         color: black;
@@ -681,7 +682,6 @@ span {
 .dashboard {
   width: 100%;
   height: 100vh;
-  //   height: calc(100vh - 90px);
   display: flex;
   justify-content: space-between;
 
@@ -691,16 +691,179 @@ span {
     height: 100%;
 
     .outerCard {
-      background: #eee;
+      padding: 0;
+      //   background: linear-gradient(to right, #15cda8, #12d3cf);
+      background: #709fb0;
+      //   89BEB3
+      //   709FB0
+
+      padding: 35px 15px 15px;
       box-shadow: 2px 2px 3px darkgrey;
+      height: 100%;
+      width: 100%;
 
       .infoContainer {
-        h3 {
-          margin-bottom: 15px;
+        height: 100%;
+        width: 100%;
 
-          span {
-            text-transform: uppercase;
-            //   color: green !important;
+        .info {
+          height: 100%;
+          width: 100%;
+
+          //   INTRO
+          .intro {
+            text-align: center;
+            width: 100%;
+            // background: linear-gradient(to right, #15cda8, #12d3cf);
+
+            h1 {
+              color: #fff;
+              text-transform: uppercase;
+              text-shadow: 3px 3px 6px #252525;
+              //   margin-top: 15px;
+              margin-bottom: 15px;
+
+              span {
+                text-transform: lowercase;
+              }
+            }
+
+            .avatar {
+              width: 100%;
+              height: 100vh;
+              max-width: 225px;
+              max-height: 225px;
+              margin: auto;
+              transition: 0.3 ease-in-out all;
+              cursor: pointer;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+
+            .bubblyBox {
+              margin-top: 25px;
+              position: relative;
+              background: #fff;
+              border-radius: 0.4em;
+              text-align: left;
+              font-size: 16px;
+              font-weight: 500;
+              font-family: "Montserrat";
+              color: #252525;
+              cursor: pointer;
+              transition: 0.3s ease-in-out all;
+              box-shadow: 3px 3px 5px darkgrey;
+              text-shadow: 1px 1px 2px #eee;
+
+              &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border: 13px solid transparent;
+                border-bottom-color: #fff;
+                border-top: 0;
+                border-left: 0;
+                margin-left: -10px;
+                margin-top: -13px;
+              }
+
+              .description {
+                padding: 15px;
+                height: 100vh;
+                max-height: 115px;
+                overflow-y: scroll;
+              }
+
+              &:hover {
+                transform: translateY(-2px);
+                box-shadow: 6px 6px 5px darkgrey;
+              }
+            }
+          }
+
+          .bigDivider {
+            height: 3px;
+            margin: 25px 0;
+            background: #eee;
+            border: none;
+          }
+
+          .smallDivider {
+            height: 3px;
+            margin: 5px 0;
+            border: none;
+            background: #eee;
+          }
+
+          //   ABOUT
+          .about {
+            width: 100%;
+            padding: 15px;
+            cursor: pointer;
+            box-shadow: 3px 3px 5px darkgrey;
+            // height: 100vh;
+            height: calc(100vh - 515px);
+            overflow-y: scroll;
+
+            .detail {
+              align-items: center;
+              padding: 10px 0;
+              display: flex;
+              flex-wrap: wrap;
+              width: 100%;
+
+              h3,
+              p {
+                text-shadow: 1px 1px 2px #eee;
+                margin: 0;
+              }
+
+              h3 {
+                width: 40%;
+              }
+
+              p {
+                width: 55%;
+                font-size: 16px;
+                color: #252525;
+                font-weight: 500;
+              }
+            }
+
+            .characteristics {
+              width: 100%;
+              margin-top: 10px;
+              display: flex;
+              flex-wrap: wrap;
+
+              h3 {
+                width: 100%;
+              }
+
+              li {
+                list-style: none;
+                // background: linear-gradient(to right, #15cda8, #12d3cf);
+                background: #686d76;
+                padding: 11px 15px;
+                color: #eee;
+                font-weight: 600;
+                font-size: 15px;
+                font-family: "Montserrat";
+                margin: 2px;
+                border-radius: 5px;
+              }
+            }
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 6px 6px 5px darkgrey;
+            }
           }
         }
       }
