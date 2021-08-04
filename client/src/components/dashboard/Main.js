@@ -1,12 +1,17 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
+import CreatePetProfile from "../profile-forms/CreatePetProfile";
 // import PropTypes from "prop-types";
 
 const Main = ({}) => {
   const panes = [
     {
       menuItem: "PROFILE",
-      render: () => <Tab.Pane attached={false}>PROFILE COMPONENT</Tab.Pane>,
+      render: () => (
+        <Tab.Pane attached={false}>
+          <CreatePetProfile />
+        </Tab.Pane>
+      ),
     },
     {
       menuItem: "CUTIES",
