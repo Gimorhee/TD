@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Tab } from "semantic-ui-react";
-import CreatePetProfile from "../profile-forms/CreatePetProfile";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
+
+// REDUX
+import { connect } from "react-redux";
 
 const Main = ({}) => {
   const panes = [
     {
       menuItem: "PROFILE",
-      render: () => (
-        <Tab.Pane attached={false}>
-          <CreatePetProfile />
-        </Tab.Pane>
-      ),
+      render: () => <Tab.Pane attached={false}>PROFILE COMPONENT</Tab.Pane>,
     },
     {
       menuItem: "CUTIES",
@@ -34,6 +32,7 @@ const Main = ({}) => {
   );
 };
 
-// Main.propTypes = {};
+// Main.propTypes = {
+// };
 
 export default Main;

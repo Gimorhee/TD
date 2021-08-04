@@ -697,8 +697,24 @@ span {
       height: 100%;
       width: 100%;
 
+      .editProfile {
+        position: absolute;
+        top: 0;
+        right: 26px;
+
+        i {
+          font-size: 22px;
+          cursor: pointer;
+          transition: 0.3s ease-in-out all;
+          padding: 5px;
+
+          &:hover {
+            transform: scale(1.11);
+          }
+        }
+      }
+
       .customizer {
-        //   border: 1px solid #eee;
         position: absolute;
         top: 0;
         right: 0;
@@ -1066,12 +1082,13 @@ span {
 
   // ALL PET PROFILES
   .main {
-    width: 55%;
+    width: 60%;
     padding: 4px 15px;
 
     background: #f9f9f9;
 
     .menu {
+      display: none;
       height: 50px;
       display: flex;
       flex-wrap: wrap;
@@ -1103,14 +1120,30 @@ span {
 
     .tab {
       height: calc(100vh - 81px);
-      //   display: none;
       overflow-y: scroll;
+      //   display: none;
+      background: #fff;
+
+      // CREATE PET PROFILE
+      .createPetProfile {
+        .imageContainer {
+          display: flex;
+
+          .mainImage {
+            img {
+              width: 150px;
+              border-radius: 50%;
+              padding: 5px;
+            }
+          }
+        }
+      }
     }
   }
 
   //   SIDEBAR
   .sidebar {
-    width: 25%;
+    width: 20%;
     height: 100vh;
 
     .outerCard {

@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Card, Divider } from "semantic-ui-react";
 // import PropTypes from "prop-types";
+import { Button, Header, Image, Modal } from "semantic-ui-react";
+import CreatePetProfile from "../profile-forms/CreatePetProfile";
 
 const UserPetProfile = ({ user, profile }) => {
   const [customTheme, customizeTheme] = useState({
@@ -47,6 +49,8 @@ const UserPetProfile = ({ user, profile }) => {
   const [openSetting, setSetting] = useState(false);
 
   const { background, btn, setting } = customTheme;
+
+  const [open, setOpen] = useState(false);
 
   return (
     <section className="userPetProfile">
@@ -212,6 +216,33 @@ const UserPetProfile = ({ user, profile }) => {
           )}
 
           {profile === null && <Fragment>NO PROFILES YET</Fragment>}
+
+          {/* EDIT PROFILE MODAL */}
+          <Modal
+            onClose={() => setOpen(false)}
+            onOpen={() => setOpen(true)}
+            open={open}
+            trigger={
+              <div className="editProfile">
+                <i className="fas fa-user-edit" style={{ color: setting }}></i>
+              </div>
+            }
+          >
+            <Modal.Header>Create/Update Profile</Modal.Header>
+            <Modal.Content image>
+              <Image size="medium" src={user && user.avatar} wrapped />
+              <Modal.Description>
+                <Header>Default Profile Image</Header>
+                <p>We've found the following gravatar image associated with your e-mail address.</p>
+                <p>Is it okay to use this photo?</p>
+              </Modal.Description>
+
+              <CreatePetProfile profile={profile} />
+            </Modal.Content>
+            <Modal.Actions>
+              <Button content="Yep, that's me" labelPosition="right" icon="checkmark" onClick={() => setOpen(false)} positive />
+            </Modal.Actions>
+          </Modal>
 
           <div className={openSetting && "settingOverlay"} style={{ background: btn.background }} onClick={() => setSetting(false)}></div>
         </div>
