@@ -54,7 +54,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const guestLinks = (
     <ul>
-      <li>
+      {/* <li>
         <Link to="/petProfile">
           <Button as="div" labelPosition="right" className="link">
             <Button color="black">
@@ -65,7 +65,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             </Label>
           </Button>
         </Link>
-      </li>
+      </li> */}
 
       <li>
         <Link to="/auth">

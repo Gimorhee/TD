@@ -55,7 +55,7 @@ const UserPetProfile = ({ user, profile }) => {
         <div className="customizer" onClick={() => setSetting(!openSetting)}>
           <div className="setting">
             <Fragment>
-              <i className="fas fa-cog gear" style={{ color: setting }}></i>
+              <i className="fas fa-palette" style={{ color: setting }}></i>
             </Fragment>
 
             <div className={openSetting ? "settingBtn showColors" : "settingBtn"} style={{ background: btn.border }}>
@@ -86,7 +86,7 @@ const UserPetProfile = ({ user, profile }) => {
 
         {/* INFO */}
         <div className="infoContainer">
-          {profile !== null && (
+          {user && profile !== null && (
             <Fragment>
               <div className="info">
                 <div className="intro">
@@ -99,10 +99,39 @@ const UserPetProfile = ({ user, profile }) => {
                     <img src={user && user.avatar} alt="dog-avatar-img" />
                   </div>
 
-                  <div className="sns"></div>
-
                   <div className="bubblyBox">
                     <p className="description">{profile && profile.description}</p>
+                  </div>
+
+                  <div className="sns">
+                    {profile.social ? (
+                      <Fragment>
+                        {profile.social.youtube && (
+                          <a href={`//${profile.social.youtube}`} target="_blank">
+                            <i class="fab fa-youtube-square"></i>
+                          </a>
+                        )}
+                        {profile.social.twitter && (
+                          <a href={`//${profile.social.twitter}`} target="_blank">
+                            <i class="fab fa-twitter-square"></i>
+                          </a>
+                        )}
+                        {profile.social.facebook && (
+                          <a href={`//${profile.social.facebook}`} target="_blank">
+                            <i class="fab fa-facebook-square"></i>
+                          </a>
+                        )}
+                        {profile.social.instagram && (
+                          <a href={`//${profile.social.instagram}`} target="_blank">
+                            <i class="fab fa-instagram-square"></i>
+                          </a>
+                        )}
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        <p>You currently have no SNS setup.</p>
+                      </Fragment>
+                    )}
                   </div>
                 </div>
 
@@ -143,6 +172,40 @@ const UserPetProfile = ({ user, profile }) => {
                         </li>
                       ))}
                   </ul>
+                  <Divider className="smallDivider" />
+
+                  {profile.lookingFor && (
+                    <div className="lookingFor">
+                      <h3>{profile.name} is looking for:</h3>
+
+                      <div>
+                        {profile.lookingFor.age && <span style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>age: {profile.lookingFor.age}</span>}
+                        {profile.lookingFor.breed && <span style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>breed: {profile.lookingFor.breed}</span>}
+                        {profile.lookingFor.gender && <span style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>gender: {profile.lookingFor.gender}</span>}
+                        {profile.lookingFor.location && <span style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>location: {profile.lookingFor.location}</span>}
+                      </div>
+
+                      {profile.lookingFor.whatfor && (
+                        <Fragment>
+                          <h3>{profile.name} is here for:</h3>
+                          <span style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>{profile.lookingFor.whatfor}</span>
+                        </Fragment>
+                      )}
+
+                      {profile.lookingFor.description && (
+                        <Fragment>
+                          <h3>From {profile.name}:</h3>
+                          <p style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>{profile.lookingFor.description}</p>
+                        </Fragment>
+                      )}
+
+                      {/* <ul>
+                        {profile.lookingFor.age && <li style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>{profile.lookingFor.age} age</li>}
+                        {profile.lookingFor.breed && <li style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>{profile.lookingFor.breed} breed</li>}
+                        {profile.lookingFor.gender && <li style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>{profile.lookingFor.gender} gender</li>}
+                      </ul> */}
+                    </div>
+                  )}
                 </Card>
               </div>
             </Fragment>

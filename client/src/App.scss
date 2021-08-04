@@ -692,7 +692,7 @@ span {
     position: relative;
 
     .outerCard {
-      padding: 35px 15px 15px;
+      padding: 15px;
       box-shadow: 2px 2px 3px darkgrey;
       height: 100%;
       width: 100%;
@@ -723,7 +723,7 @@ span {
         }
 
         .setting {
-          .gear {
+          .fa-palette {
             height: 35px;
             width: 35px;
             z-index: 500;
@@ -916,11 +916,38 @@ span {
                 transform: translateY(-2px);
               }
             }
+
+            .sns {
+              height: 30px;
+              margin: 1rem 0;
+
+              i {
+                color: #fff;
+                font-size: 30px;
+                margin: 0 5px;
+                cursor: pointer;
+                transition: 0.3s ease-in-out all;
+
+                &:hover {
+                  transform: scale(1.15);
+                  opacity: 0.8;
+                }
+              }
+
+              p {
+                color: #fff;
+                opacity: 0.8;
+                font-size: 13px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
           }
 
           .bigDivider {
             height: 3px;
-            margin: 25px 0;
             background: #eee;
             border: none;
           }
@@ -937,7 +964,7 @@ span {
             width: 100%;
             padding: 15px;
             cursor: pointer;
-            height: calc(100vh - 515px);
+            height: calc(100vh - 520px);
             overflow-y: scroll;
 
             .detail {
@@ -968,6 +995,7 @@ span {
             .characteristics {
               width: 100%;
               margin-top: 10px;
+              margin-bottom: 10px;
               display: flex;
               flex-wrap: wrap;
 
@@ -984,6 +1012,35 @@ span {
                 font-family: "Montserrat";
                 margin: 2px;
                 border-radius: 5px;
+              }
+            }
+
+            .lookingFor {
+              margin: 10px 0;
+
+              h3 {
+                text-transform: uppercase;
+              }
+
+              span {
+                display: inline-block;
+                list-style: none;
+                border: 2px solid;
+                padding: 10px 13px;
+                font-weight: 600;
+                font-size: 15px;
+                font-family: "Montserrat";
+                margin: 2px;
+                border-radius: 5px;
+                text-transform: uppercase;
+              }
+
+              p {
+                text-transform: uppercase;
+                font-weight: 600;
+                padding: 10px;
+                border-radius: 5px;
+                border: 2px solid;
               }
             }
 
