@@ -224,7 +224,9 @@ const UserPetProfile = ({ user, profile }) => {
             <div className="noUserProfile">
               <div>
                 <h3>YOUR PET HAS NO PROFILE YET</h3>
-                <p>Share the world how lovely your pet is!</p>
+                <p>
+                  Tell us how lovely your pet is <i className="fas fa-heart"></i>{" "}
+                </p>
                 <button>GET STARTED!</button>
               </div>
             </div>
