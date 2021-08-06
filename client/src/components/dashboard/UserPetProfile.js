@@ -212,13 +212,24 @@ const UserPetProfile = ({ user, profile }) => {
             </Fragment>
           )}
 
-          {profile === null && <Fragment>NO PROFILES YET</Fragment>}
-
           <div className={openSetting && "settingOverlay"} style={{ background: btn.background }} onClick={() => setSetting(false)}></div>
         </div>
 
         {/* EDIT PROFILE MODAL */}
-        <PetProfileModal user={user} setting={setting} profile={profile} />
+        <PetProfileModal
+          user={user}
+          setting={setting}
+          profile={profile}
+          noProfileTrigger={
+            <div className="noUserProfile">
+              <div>
+                <h3>YOUR PET HAS NO PROFILE YET</h3>
+                <p>Share the world how lovely your pet is!</p>
+                <button>GET STARTED!</button>
+              </div>
+            </div>
+          }
+        />
       </Card>
     </section>
   );
