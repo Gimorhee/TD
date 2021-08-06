@@ -968,13 +968,6 @@ span {
             border: none;
           }
 
-          .smallDivider {
-            height: 3px;
-            margin: 5px 0;
-            border: none;
-            background: #eee;
-          }
-
           //   ABOUT
           .about {
             width: 100%;
@@ -1327,6 +1320,7 @@ span {
   width: 100%;
   height: calc(100vh - 75px);
   margin: 15px;
+  position: relative;
 
   .content {
     width: 100%;
@@ -1427,6 +1421,12 @@ span {
             font-weight: 600;
             font-size: 16px;
             // background: pink;
+
+            span {
+              font-size: 25px;
+              color: red;
+              margin-left: 3px;
+            }
           }
 
           input {
@@ -1440,10 +1440,6 @@ span {
 
             &::placeholder {
               font-size: 14px;
-            }
-
-            &:focus {
-              outline: none;
             }
           }
         }
@@ -1464,6 +1460,43 @@ span {
             font-family: "Montserrat";
             font-size: 16px;
             margin-top: 5px;
+          }
+        }
+
+        .characteristics {
+          display: flex;
+          flex-wrap: wrap;
+
+          label {
+            width: 100%;
+          }
+
+          ul {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+              list-style: none;
+              background: #eee;
+              padding: 5px 10px;
+              border-radius: 5px;
+              margin: 5px;
+              font-size: 15px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: 0.3s ease-in-out all;
+
+              &:hover {
+                background: #252525;
+                color: #fff;
+              }
+            }
+
+            .selected {
+              background: #252525;
+              color: #fff;
+            }
           }
         }
 
@@ -1518,6 +1551,10 @@ span {
     height: 65px !important;
     padding: 0 !important;
     margin: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 
     button {
       width: 100%;

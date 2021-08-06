@@ -70,9 +70,9 @@ router.post(
     [
       check("name", "Name is required").not().isEmpty(),
       check("age", "Age is required").not().isEmpty(),
-      check("breed", "Breed is required").not().isEmpty(),
+      //   check("breed", "Breed is required").not().isEmpty(),
       check("gender", "Gender is required").not().isEmpty(),
-      check("characteristics", "Characteristics are required").not().isEmpty(),
+      check("characteristics", "Please choose 3 characteristics").not().isEmpty(),
       check("description", "Description is required").not().isEmpty(),
     ],
   ],

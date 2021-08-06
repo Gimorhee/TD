@@ -3,7 +3,7 @@ import { Card, Divider } from "semantic-ui-react";
 import PetProfileModal from "../modal/PetProfileModal";
 // import PropTypes from "prop-types";
 
-const UserPetProfile = ({ user, profile }) => {
+const UserPetProfile = ({ user, profile, openPetProfileModal }) => {
   const [customTheme, customizeTheme] = useState({
     // DEFAULT THEME COLORS
     background: "#4C4C6D",
@@ -52,6 +52,25 @@ const UserPetProfile = ({ user, profile }) => {
   return (
     <section className="userPetProfile">
       <Card className="outerCard" style={{ background }}>
+        {/* EDIT PROFILE MODAL */}
+        <PetProfileModal
+          user={user}
+          setting={setting}
+          profile={profile}
+          openPetProfileModal={openPetProfileModal}
+          noProfileTrigger={
+            <div className="noUserProfile">
+              <div>
+                <h3>YOUR PET HAS NO PROFILE YET</h3>
+                <p>
+                  Tell us how lovely your pet is <i className="fas fa-heart"></i>{" "}
+                </p>
+                <button onClick={() => openPetProfileModal()}>GET STARTED!</button>
+              </div>
+            </div>
+          }
+        />
+
         {/* CUSTOMIZER */}
         <div className="customizer" onClick={() => setSetting(!openSetting)}>
           <div className="setting">
@@ -144,25 +163,25 @@ const UserPetProfile = ({ user, profile }) => {
                     <h3>AGE:</h3>
                     <p>{profile && profile.age}</p>
                   </div>
-                  <Divider className="smallDivider" />
+                  <Divider />
 
                   <div className="detail">
                     <h3>BREED: </h3>
                     <p>{profile && profile.breed}</p>
                   </div>
-                  <Divider className="smallDivider" />
+                  <Divider />
 
                   <div className="detail">
                     <h3>GENDER:</h3>
                     <p>{profile && profile.gender}</p>
                   </div>
-                  <Divider className="smallDivider" />
+                  <Divider />
 
                   <div className="detail">
                     <h3>LOCATION:</h3>
                     <p>{profile && profile.location}</p>
                   </div>
-                  <Divider className="smallDivider" />
+                  <Divider />
 
                   <ul className="characteristics">
                     <h3>CHARACTERISTICS:</h3>
@@ -173,7 +192,7 @@ const UserPetProfile = ({ user, profile }) => {
                         </li>
                       ))}
                   </ul>
-                  <Divider className="smallDivider" />
+                  <Divider />
 
                   {profile.lookingFor && (
                     <div className="lookingFor">
@@ -214,24 +233,6 @@ const UserPetProfile = ({ user, profile }) => {
 
           <div className={openSetting && "settingOverlay"} style={{ background: btn.background }} onClick={() => setSetting(false)}></div>
         </div>
-
-        {/* EDIT PROFILE MODAL */}
-        <PetProfileModal
-          user={user}
-          setting={setting}
-          profile={profile}
-          noProfileTrigger={
-            <div className="noUserProfile">
-              <div>
-                <h3>YOUR PET HAS NO PROFILE YET</h3>
-                <p>
-                  Tell us how lovely your pet is <i className="fas fa-heart"></i>{" "}
-                </p>
-                <button>GET STARTED!</button>
-              </div>
-            </div>
-          }
-        />
       </Card>
     </section>
   );

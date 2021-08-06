@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
-import { Divider } from "semantic-ui-react";
+import { Divider, Modal, Button } from "semantic-ui-react";
+import { putPetProfile, openPetProfileModal } from "../../actions/petProfile";
+import { setAlert } from "../../actions/alert";
+import { connect } from "react-redux";
 
-const CreatePetProfile = ({ profile, user }) => {
+const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, modalStatus, openPetProfileModal }) => {
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -11,6 +14,10 @@ const CreatePetProfile = ({ profile, user }) => {
     characteristics: [],
     description: "",
     location: "",
+    youtube: "",
+    twitter: "",
+    instagram: "",
+    facebook: "",
     lookingFor: {
       location: "",
       breed: "",
@@ -19,15 +26,9 @@ const CreatePetProfile = ({ profile, user }) => {
       whatFor: "",
       description: "",
     },
-    social: {
-      youtube: "",
-      twitter: "",
-      instagram: "",
-      facebook: "",
-    },
   });
 
-  const { name, age, breed, gender, characteristics, description, location, lookingFor, social } = formData;
+  const { name, age, breed, gender, characteristics, description, location, lookingFor, youtube, twitter, instagram, facebook } = formData;
 
   useEffect(() => {
     if (profile) {
@@ -36,10 +37,13 @@ const CreatePetProfile = ({ profile, user }) => {
         breed: profile.breed,
         gender: profile.gender,
         characteristics: profile.characteristics,
-        description: profile.descrription,
+        description: profile.description,
         location: profile.location,
         lookingFor: profile.lookingFor,
-        social: profile.social,
+        youtube: profile && profile.social && profile.social.youtube,
+        twitter: profile && profile.social && profile.social.twitter,
+        instagram: profile && profile.social && profile.social.instagram,
+        facebook: profile && profile.social && profile.social.facebook,
         name: profile.name,
       });
     }
@@ -52,94 +56,203 @@ const CreatePetProfile = ({ profile, user }) => {
     });
   };
 
+  const onSubmit = () => {
+    const newFormData = {
+      name,
+      age,
+      breed,
+      gender,
+      characteristics,
+      description,
+      location,
+      lookingFor,
+      youtube,
+      twitter,
+      instagram,
+      facebook,
+    };
+    putPetProfile(newFormData);
+  };
+
+  const petCharacteristics = [
+    "Active",
+    "Adorable",
+    "Agile",
+    "Attractive",
+    "Aware",
+    "Caring",
+    "Companionable",
+    "Crazy",
+    "Cuddly",
+    "Cute",
+    "Energetic",
+    "Faituful",
+    "Fluffy",
+    "Friendly",
+    "Furious",
+    "Handsome",
+    "Honest",
+    "Hostile",
+    "Lazy",
+    "Loving",
+    "Loyal",
+    "Patient",
+    "Sensitive",
+    "Silly",
+    "Smart",
+    "Snoopy",
+    "Sporty",
+    "Strong",
+    "Quite",
+  ];
+
+  const selectCharacteristic = (characteristic) => {
+    if (!characteristics.includes(characteristic)) {
+      if (characteristics.length < 3) {
+        setFormData({
+          ...formData,
+          characteristics: [...characteristics, characteristic],
+        });
+      } else {
+        setAlert("You can only select 3 characterstics", "red");
+      }
+    } else {
+      const newCharacteristics = characteristics.filter((c) => c !== characteristic).sort();
+
+      setFormData({
+        ...formData,
+        characteristics: newCharacteristics,
+      });
+    }
+  };
+
+  const checkIfSelected = (characteristic) => {
+    if (characteristics.includes(characteristic)) {
+      return "selected";
+    }
+  };
+
+  useEffect(() => {
+    if (modalStatus) {
+      setOpen(false);
+    }
+  }, [modalStatus]);
+
   return (
-    <div className="createPetProfile">
-      {/* user, name, age, breed, gender, characteristics, description, location, lookingFor(location, breed, gender, age, whatfor, desription), social(youtube, twitter, facebook, instagram) */}
-      <div className="imageContainer">
-        <div className="mainImage">
-          <img src={user && user.avatar} alt="main-petfile-image" />
-        </div>
-        <div className="options">
-          <div className="optionContainer">
-            {/* <input type="checkbox" name="gravatar" id="" className="gravaterCheckBtn" /> */}
-            <button className="gravatarBtn">
-              <i className="fas fa-check"></i>
-              {/* <i class="fas fa-times"></i> */}
-            </button>
-            <label>Use Gravatar</label>
+    <Fragment>
+      <div className="createPetProfile">
+        <div className="imageContainer">
+          <div className="mainImage">
+            <img src={user && user.avatar} alt="main-petfile-image" />
           </div>
-          <div className="optionContainer">
-            <button className="selectFileBtn">Select File</button>
+          <div className="options">
+            <div className="optionContainer">
+              {/* <input type="checkbox" name="gravatar" id="" className="gravaterCheckBtn" /> */}
+              <button className="gravatarBtn">
+                <i className="fas fa-check"></i>
+                {/* <i class="fas fa-times"></i> */}
+              </button>
+              <label>Use Gravatar</label>
+            </div>
+            <div className="optionContainer">
+              <button className="selectFileBtn">Select File</button>
+            </div>
           </div>
         </div>
+
+        <form className="petProfileForm">
+          <div className="inputContainer">
+            <label>
+              NAME <span>*</span>
+            </label>
+            <input type="text" name="name" value={formData.name} onChange={(e) => onChange(e)} />
+          </div>
+          <Divider />
+          <div className="inputContainer">
+            <label>
+              AGE <span>*</span>
+            </label>
+            <input type="text" name="age" value={formData.age} onChange={(e) => onChange(e)} />
+          </div>
+          <Divider />
+          <div className="inputContainer">
+            <label>
+              GENDER <span>*</span>
+            </label>
+            <input type="text" name="gender" value={formData.gender} onChange={(e) => onChange(e)} />
+            <div></div>
+          </div>
+          <Divider />
+          <div className="inputContainer">
+            <label>LOCATION</label>
+            <input type="text" name="location" placeholder="Ex) Vancouver, BC" value={formData.location} onChange={(e) => onChange(e)} />
+          </div>
+          <Divider />
+          <div className="inputContainer">
+            <label>BREED</label>
+            <input type="text" name="breed" value={formData.breed} placeholder="(optional)" onChange={(e) => onChange(e)} />
+          </div>
+          <Divider />
+          <div className="inputContainer description">
+            <label>
+              DESCRIPTION <span>*</span>
+            </label>
+            <textarea type="text" name="description" placeholder="Tell us more about your lovely pet!" value={formData.description} onChange={(e) => onChange(e)} />
+          </div>
+          <Divider />
+          <div className="inputContainer characteristics">
+            <label>
+              CHARACTERISTICS <small style={{ marginLeft: "3px" }}> (Choose 3)</small>
+              <span>*</span>
+            </label>
+            <ul>
+              {petCharacteristics.map((characteristic, i) => (
+                <li key={`characteristic-${i}`} className={`${checkIfSelected(characteristic)}`} onClick={() => selectCharacteristic(characteristic)}>
+                  {characteristic}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <h3>
+            SOCIAL <small>(OPTIONAL)</small>
+          </h3>
+          <div className="inputContainer social">
+            <div>
+              <i class="fab fa-youtube"></i>
+              <input type="email" name="youtube" placeholder="https://www.youtube.com/" value={youtube && youtube} onChange={(e) => onChange(e)} />
+            </div>
+            <Divider />
+            <div>
+              <i class="fab fa-twitter"></i>
+              <input type="text" name="twitter" placeholder="https://www.twitter.com/" value={twitter && twitter} onChange={(e) => onChange(e)} />
+            </div>
+            <Divider />
+            <div>
+              <i class="fab fa-facebook-square"></i>
+              <input type="text" name="facebook" placeholder="https://www.facebook.com/" value={facebook && facebook} onChange={(e) => onChange(e)} />
+            </div>
+            <Divider />
+            <div>
+              <i class="fab fa-instagram"></i>
+              <input type="text" name="instagram" placeholder="https://www.instagram.com/" value={instagram && instagram} onChange={(e) => onChange(e)} />
+            </div>
+          </div>
+
+          <h3>YOUR PET'S TYPE</h3>
+        </form>
+        <Modal.Actions>
+          <Button content="CREATE/UPDATE" labelPosition="right" icon="checkmark" onClick={() => onSubmit()} positive />
+        </Modal.Actions>
       </div>
-
-      <form className="petProfileForm">
-        <div className="inputContainer">
-          <label>NAME</label>
-          <input type="text" name="name" value={formData.name} onChange={(e) => onChange(e)} />
-        </div>
-        <Divider />
-        <div className="inputContainer">
-          <label>AGE</label>
-          <input type="text" name="age" value={formData.age} onChange={(e) => onChange(e)} />
-        </div>
-        <Divider />
-        <div className="inputContainer">
-          <label>BREED</label>
-          <input type="text" name="breed" value={formData.breed} onChange={(e) => onChange(e)} />
-        </div>
-        <Divider />
-        <div className="inputContainer">
-          <label>GENDER</label>
-          <input type="text" name="gender" value={formData.gender} onChange={(e) => onChange(e)} />
-        </div>
-        <Divider />
-        <div className="inputContainer">
-          <label>LOCATION</label>
-          <input type="text" name="location" placeholder="Ex) Vancouver, BC" value={formData.location} onChange={(e) => onChange(e)} />
-        </div>
-        <Divider />
-        <div className="inputContainer description">
-          <label>DESCRIPTION</label>
-          <textarea type="text" name="description" placeholder="Tell us more about your lovely pet!" value={formData.description} onChange={(e) => onChange(e)} />
-        </div>
-        {/* <div className="inputContainer">
-          <label>CHARACTERISTICS</label>
-          <input type="text" name="characteristics" placeholder="Characteristics" value="" />
-        </div> */}
-
-        <h3>
-          SOCIAL <small>(OPTIONAL)</small>
-        </h3>
-        <div className="inputContainer social">
-          <div>
-            <i class="fab fa-youtube"></i>
-            <input type="text" name="yotube" placeholder="Youtube" value={formData.social.youtube} />
-          </div>
-          <Divider />
-          <div>
-            <i class="fab fa-twitter"></i>
-            <input type="text" name="twitter" placeholder="Twitter" value={formData.social.twitter} />
-          </div>
-          <Divider />
-          <div>
-            <i class="fab fa-facebook-square"></i>
-            <input type="text" name="facebook" placeholder="Facebook" value={formData.social.facebook} />
-          </div>
-          <Divider />
-          <div>
-            <i class="fab fa-instagram"></i>
-            <input type="text" name="instagram" placeholder="Instagram" value={formData.social.instagram} />
-          </div>
-        </div>
-
-        <h3>YOUR PET'S TYPE</h3>
-      </form>
-    </div>
+    </Fragment>
   );
 };
 
 CreatePetProfile.propTypes = {};
 
-export default CreatePetProfile;
+const mapStateToProps = (state) => ({
+  modalStatus: state.petProfile.closeModal,
+});
+
+export default connect(mapStateToProps, { putPetProfile, setAlert, openPetProfileModal })(CreatePetProfile);

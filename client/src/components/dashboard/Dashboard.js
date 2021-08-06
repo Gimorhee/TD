@@ -9,10 +9,10 @@ import Sidebar from "./Sidebar";
 import Spinner from "../layout/Spinner";
 
 // ACTIONS
-import { getCurrentPetProfile } from "../../actions/petProfile";
+import { getCurrentPetProfile, openPetProfileModal } from "../../actions/petProfile";
 import { logout } from "../../actions/auth";
 
-const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurrentPetProfile, logout }) => {
+const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurrentPetProfile, logout, openPetProfileModal }) => {
   useEffect(() => {
     getCurrentPetProfile();
   }, []);
@@ -23,7 +23,7 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
         <Spinner />
       ) : (
         <Fragment>
-          <UserPetProfile user={user} profile={profile} />
+          <UserPetProfile user={user} profile={profile} openPetProfileModal={openPetProfileModal} />
           <Main />
           <Sidebar logout={logout} />
         </Fragment>
@@ -44,4 +44,4 @@ const mapStateToProps = (state) => ({
   petProfile: state.petProfile,
 });
 
-export default connect(mapStateToProps, { getCurrentPetProfile, logout })(Dashboard);
+export default connect(mapStateToProps, { getCurrentPetProfile, logout, openPetProfileModal })(Dashboard);
