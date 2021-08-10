@@ -1,11 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Divider, Modal, Button } from "semantic-ui-react";
-import { putPetProfile, openPetProfileModal } from "../../actions/petProfile";
+import { putPetProfile, openPetProfileModal, putLookingFor, deleteAccount } from "../../actions/petProfile";
 import { setAlert } from "../../actions/alert";
 import { connect } from "react-redux";
 
-const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, modalStatus, openPetProfileModal }) => {
+const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor, deleteAccount, setAlert, modalStatus, openPetProfileModal }) => {
   // GENERAL FORM DATA
   const [formData, setFormData] = useState({
     name: "",
@@ -30,7 +30,7 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, mod
     location: "",
     description: "",
     gender: "",
-    whatFor: "",
+    whatfor: "",
   });
 
   useEffect(() => {
@@ -92,6 +92,16 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, mod
 
     if (characteristics.length === 3) {
       putPetProfile(newFormData);
+    }
+  };
+
+  const handleLookFor = () => {
+    const { age, breed, gender, location, description, whatfor } = lookingForData;
+
+    if (age === "" && breed === "" && gender === "" && location === "" && description === "" && whatfor === "") {
+      setAlert("Please fill out at least one of the optional forms", "red");
+    } else {
+      putLookingFor(lookingForData);
     }
   };
 
@@ -296,9 +306,9 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, mod
                 <input
                   style={{ width: "100%" }}
                   type="text"
-                  name="whatFor"
+                  name="whatfor"
                   placeholder="Ex) Friendship, True Love, Walk-buddy, ..."
-                  value={lookingForData && lookingForData.whatFor}
+                  value={lookingForData && lookingForData.whatfor}
                   onChange={(e) => lookingForChange(e)}
                 />
               </div>
@@ -307,13 +317,16 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, mod
                 <label>DESCRIPTION</label>
                 <textarea type="text" name="description" placeholder="Want to share more? Let us know!" value={lookingForData && lookingForData.description} onChange={(e) => lookingForChange(e)} />
               </div>
-              <button className="lookForBtn">UPDATE YOUR PET'S TYPE</button>
+              <div className="lookForBtn" onClick={() => handleLookFor()}>
+                UPDATE YOUR PET'S TYPE
+              </div>
               <Divider />
             </div>
           </Fragment>
         </form>
         <Modal.Actions>
-          <Button content="CREATE/UPDATE" labelPosition="right" icon="checkmark" onClick={() => onSubmit()} positive />
+          <Button className="deleteBtn" content="DELETE ACCOUNT" onClick={() => deleteAccount()}></Button>
+          <Button className="submitBtn" content="CREATE/UPDATE" labelPosition="right" icon="checkmark" onClick={() => onSubmit()} positive />
         </Modal.Actions>
       </div>
     </Fragment>
@@ -326,4 +339,4 @@ const mapStateToProps = (state) => ({
   modalStatus: state.petProfile.closeModal,
 });
 
-export default connect(mapStateToProps, { putPetProfile, setAlert, openPetProfileModal })(CreatePetProfile);
+export default connect(mapStateToProps, { putPetProfile, setAlert, openPetProfileModal, putLookingFor, deleteAccount })(CreatePetProfile);

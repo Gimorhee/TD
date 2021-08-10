@@ -1465,21 +1465,6 @@ button {
           }
         }
 
-        .lookForBtn {
-          background: #000;
-          color: #fff;
-          font-family: "Montserrat";
-          font-weight: 600;
-          width: 100%;
-          padding: 15px;
-          transition: 0.3s ease-in-out all;
-          cursor: pointer;
-
-          &:hover {
-            background: #252525;
-          }
-        }
-
         .characteristics {
           display: flex;
           flex-wrap: wrap;
@@ -1555,6 +1540,26 @@ button {
             }
           }
         }
+
+        .lookForBtn {
+          text-align: center;
+          background: #000;
+          color: #fff;
+          font-family: "Montserrat";
+          font-weight: 600;
+          width: 100%;
+          padding: 15px;
+          transition: 0.3s ease-in-out all;
+          cursor: pointer;
+
+          &:hover {
+            background: #252525;
+          }
+        }
+
+        // TODO: TOGGLE OPTIONAL DATA
+        // .opener {
+        // }
       }
     }
   }
@@ -1573,13 +1578,23 @@ button {
     bottom: 0;
     width: 100%;
 
-    button {
-      width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .deleteBtn {
+      width: 30%;
+      margin: 0 !important;
+      background: rgb(206, 8, 8);
+      border-radius: 0 !important;
+      color: #fff;
+    }
+
+    .submitBtn {
+      width: 70%;
       height: 100%;
       margin: 0 !important;
       border-radius: 0 !important;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
       font-family: "Montserrat";
       font-size: 20px;
       background: #000 !important;
