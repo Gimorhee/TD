@@ -6,6 +6,7 @@ import { setAlert } from "../../actions/alert";
 import { connect } from "react-redux";
 
 const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, modalStatus, openPetProfileModal }) => {
+  // GENERAL FORM DATA
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -18,17 +19,19 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, mod
     twitter: "",
     instagram: "",
     facebook: "",
-    lookingFor: {
-      location: "",
-      breed: "",
-      gender: "",
-      age: "",
-      whatFor: "",
-      description: "",
-    },
   });
 
   const { name, age, breed, gender, characteristics, description, location, lookingFor, youtube, twitter, instagram, facebook } = formData;
+
+  // LOOKINGFOR FORM DATA
+  const [lookingForData, setLookingForData] = useState({
+    age: "",
+    breed: "",
+    location: "",
+    description: "",
+    gender: "",
+    whatFor: "",
+  });
 
   useEffect(() => {
     if (profile) {
@@ -39,19 +42,30 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, mod
         characteristics: profile.characteristics,
         description: profile.description,
         location: profile.location,
-        lookingFor: profile.lookingFor,
+        // lookingFor: profile.lookingFor,
         youtube: profile && profile.social && profile.social.youtube,
         twitter: profile && profile.social && profile.social.twitter,
         instagram: profile && profile.social && profile.social.instagram,
         facebook: profile && profile.social && profile.social.facebook,
         name: profile.name,
       });
+
+      setLookingForData(profile.lookingFor);
     }
   }, []);
 
+  //   FOR NORMAL
   const onChange = (e) => {
     setFormData({
       ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // FOR LOOKING FOR
+  const lookingForChange = (e) => {
+    setLookingForData({
+      ...lookingForData,
       [e.target.name]: e.target.value,
     });
   };
@@ -71,7 +85,14 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, mod
       instagram,
       facebook,
     };
-    putPetProfile(newFormData);
+
+    if (characteristics.length < 3) {
+      setAlert("Please select 3 characteristics of your pet", "red");
+    }
+
+    if (characteristics.length === 3) {
+      putPetProfile(newFormData);
+    }
   };
 
   const petCharacteristics = [
@@ -214,32 +235,82 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, setAlert, mod
             </ul>
           </div>
 
-          <h3>
-            SOCIAL <small>(OPTIONAL)</small>
-          </h3>
-          <div className="inputContainer social">
-            <div>
-              <i class="fab fa-youtube"></i>
-              <input type="email" name="youtube" placeholder="https://www.youtube.com/" value={youtube && youtube} onChange={(e) => onChange(e)} />
+          {/* SNS SECTION */}
+          <Fragment>
+            <h3>
+              SNS <small>(OPTIONAL)</small>
+            </h3>
+            <div className="opener">
+              <div className="inputContainer social">
+                <div>
+                  <i class="fab fa-youtube"></i>
+                  <input type="email" name="youtube" placeholder="https://www.youtube.com/" value={youtube && youtube} onChange={(e) => onChange(e)} />
+                </div>
+                <Divider />
+                <div>
+                  <i class="fab fa-twitter"></i>
+                  <input type="text" name="twitter" placeholder="https://www.twitter.com/" value={twitter && twitter} onChange={(e) => onChange(e)} />
+                </div>
+                <Divider />
+                <div>
+                  <i class="fab fa-facebook-square"></i>
+                  <input type="text" name="facebook" placeholder="https://www.facebook.com/" value={facebook && facebook} onChange={(e) => onChange(e)} />
+                </div>
+                <Divider />
+                <div>
+                  <i class="fab fa-instagram"></i>
+                  <input type="text" name="instagram" placeholder="https://www.instagram.com/" value={instagram && instagram} onChange={(e) => onChange(e)} />
+                </div>
+              </div>
             </div>
-            <Divider />
-            <div>
-              <i class="fab fa-twitter"></i>
-              <input type="text" name="twitter" placeholder="https://www.twitter.com/" value={twitter && twitter} onChange={(e) => onChange(e)} />
-            </div>
-            <Divider />
-            <div>
-              <i class="fab fa-facebook-square"></i>
-              <input type="text" name="facebook" placeholder="https://www.facebook.com/" value={facebook && facebook} onChange={(e) => onChange(e)} />
-            </div>
-            <Divider />
-            <div>
-              <i class="fab fa-instagram"></i>
-              <input type="text" name="instagram" placeholder="https://www.instagram.com/" value={instagram && instagram} onChange={(e) => onChange(e)} />
-            </div>
-          </div>
+          </Fragment>
 
-          <h3>YOUR PET'S TYPE</h3>
+          {/* LOOKING FOR SECTION */}
+          <Fragment>
+            <h3>
+              YOUR PET'S TYPE <small>(OPTIONAL)</small>
+            </h3>
+            <div className="opener">
+              <div className="inputContainer">
+                <label>AGE</label>
+                <input type="text" name="age" placeholder="Ex) Any, ..." value={lookingForData && lookingForData.age} onChange={(e) => lookingForChange(e)} />
+              </div>
+              <Divider />
+              <div className="inputContainer">
+                <label>BREED</label>
+                <input type="text" name="breed" placeholder="Ex) Any, ..." value={lookingForData && lookingForData.breed} onChange={(e) => lookingForChange(e)} />
+              </div>
+              <Divider />
+              <div className="inputContainer">
+                <label>GENDER</label>
+                <input type="text" name="gender" placeholder="Ex) Any, ..." value={lookingForData && lookingForData.gender} onChange={(e) => lookingForChange(e)} />
+              </div>
+              <Divider />
+              <div className="inputContainer">
+                <label>LOCATION</label>
+                <input type="text" name="location" placeholder="Ex) Any, Vancouver, ..." value={lookingForData && lookingForData.location} onChange={(e) => lookingForChange(e)} />
+              </div>
+              <Divider />
+              <div className="inputContainer description">
+                <label>WHAT IS YOUR PET LOOKING FOR?</label>
+                <input
+                  style={{ width: "100%" }}
+                  type="text"
+                  name="whatFor"
+                  placeholder="Ex) Friendship, True Love, Walk-buddy, ..."
+                  value={lookingForData && lookingForData.whatFor}
+                  onChange={(e) => lookingForChange(e)}
+                />
+              </div>
+              <Divider />
+              <div className="inputContainer description">
+                <label>DESCRIPTION</label>
+                <textarea type="text" name="description" placeholder="Want to share more? Let us know!" value={lookingForData && lookingForData.description} onChange={(e) => lookingForChange(e)} />
+              </div>
+              <button className="lookForBtn">UPDATE YOUR PET'S TYPE</button>
+              <Divider />
+            </div>
+          </Fragment>
         </form>
         <Modal.Actions>
           <Button content="CREATE/UPDATE" labelPosition="right" icon="checkmark" onClick={() => onSubmit()} positive />

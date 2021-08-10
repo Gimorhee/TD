@@ -13,7 +13,8 @@ h5,
 h6,
 p,
 a,
-span {
+span,
+button {
   font-family: "Montserrat";
 }
 
@@ -1460,6 +1461,22 @@ span {
             font-family: "Montserrat";
             font-size: 16px;
             margin-top: 5px;
+            line-height: 1.5;
+          }
+        }
+
+        .lookForBtn {
+          background: #000;
+          color: #fff;
+          font-family: "Montserrat";
+          font-weight: 600;
+          width: 100%;
+          padding: 15px;
+          transition: 0.3s ease-in-out all;
+          cursor: pointer;
+
+          &:hover {
+            background: #252525;
           }
         }
 
