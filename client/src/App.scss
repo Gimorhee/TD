@@ -1160,8 +1160,9 @@ button {
     .tab {
       height: calc(100vh - 81px);
       overflow-y: scroll;
-      //   display: none;
-      background: #fff;
+      padding: 0;
+      background: #eee;
+      //   background: #fff;
 
       // CREATE PET PROFILE
       .createPetProfile {
@@ -1173,6 +1174,182 @@ button {
               width: 150px;
               border-radius: 50%;
               padding: 5px;
+            }
+          }
+        }
+      }
+
+      // MAIN: ALL PET PROFILES
+      .allProfiles {
+        // display: none;
+        height: 100%;
+
+        .carousel {
+          padding: 100px 75px;
+          height: 100%;
+
+          .slick-slider {
+            height: 100%;
+
+            .slick-list {
+              height: 100%;
+
+              .slick-track {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: space-between;
+                height: 100%;
+
+                .slick-slide {
+                  padding: 5px 10px;
+                  //   border: 1px solid black;
+                  height: calc(100%);
+
+                  //   div {
+                  //     height: 100%;
+                  //   }
+
+                  .singleProfile {
+                    // width: 35.33333%;
+                    // background: #f9f9f9;
+                    background: #fff;
+                    height: 100%;
+                    padding: 15px;
+                    border-radius: 5px;
+                    text-align: center;
+
+                    height: calc(100vh - 290px);
+                    overflow-y: scroll;
+
+                    h4 {
+                      text-align: left;
+
+                      //   text-transform: uppercase;
+                    }
+
+                    p {
+                      font-weight: 600;
+                      opacity: 0.6;
+                      margin: 5px;
+                    }
+
+                    .avatar {
+                      max-width: 175px;
+                      margin: auto;
+
+                      img {
+                        border-radius: 50%;
+                        width: 100%;
+                      }
+                    }
+
+                    .info {
+                      margin: 15px 0;
+                    }
+
+                    .characteristics {
+                      display: flex;
+                      flex-wrap: wrap;
+                      justify-content: space-evenly;
+                      width: 100%;
+                      background: #585858;
+                      color: #fff;
+                      border-radius: 5px;
+
+                      span {
+                        display: block;
+                        // width: 33.3333%;
+                        // border: 2px solid lightblue;
+                        // border-radius: 5px;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        text-align: center;
+                        font-size: 12px;
+                        // background: lightblue;
+                        padding: 10px;
+                      }
+                    }
+
+                    .sns {
+                      height: 35px;
+                      display: flex;
+                      flex-wrap: wrap;
+                      justify-content: space-evenly;
+                      align-items: center;
+
+                      i {
+                        font-size: 25px;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out all;
+
+                        &:hover {
+                          opacity: 0.7;
+                          transform: scale(1.1);
+                        }
+                      }
+
+                      .fa-youtube {
+                        color: red;
+                      }
+
+                      .fa-twitter {
+                        color: #1da1f2;
+                      }
+
+                      .fa-facebook {
+                        color: #4267b2;
+                      }
+
+                      .fa-instagram {
+                        color: #8a3ab9;
+                      }
+                    }
+
+                    .bubblyBox {
+                      margin-top: 25px;
+                      position: relative;
+                      background: #eee;
+                      border-radius: 0.4em;
+                      text-align: left;
+                      font-size: 16px;
+                      font-weight: 500;
+                      font-family: "Montserrat";
+                      color: #000;
+                      cursor: pointer;
+                      transition: 0.3s ease-in-out all;
+
+                      text-shadow: 1px 1px 2px #eee;
+
+                      &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        width: 0;
+                        height: 0;
+                        border: 13px solid transparent;
+                        border-bottom-color: #eee;
+                        border-top: 0;
+                        border-left: 0;
+                        margin-left: -10px;
+                        margin-top: -13px;
+                      }
+
+                      .description {
+                        padding: 15px;
+                        height: 100vh;
+                        max-height: 115px;
+                        overflow-y: scroll;
+                      }
+
+                      &:hover {
+                        transform: translateY(-2px);
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
