@@ -1,4 +1,13 @@
-import { GET_PET_PROFILE, PET_PROFILE_ERROR, CLEAR_PET_PROFILE, PUT_PET_PROFILE, CLOSE_PET_PROFILE_MODAL, OPEN_PET_PROFILE_MODAL, PUT_LOOKFOR_PROFILE_INFO } from "../actions/types";
+import {
+  GET_PET_PROFILE,
+  PET_PROFILE_ERROR,
+  CLEAR_PET_PROFILE,
+  PUT_PET_PROFILE,
+  CLOSE_PET_PROFILE_MODAL,
+  OPEN_PET_PROFILE_MODAL,
+  PUT_LOOKFOR_PROFILE_INFO,
+  GET_ALL_PET_PROFILES,
+} from "../actions/types";
 
 const initialState = {
   profile: null,
@@ -17,6 +26,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profile: payload,
+        loading: false,
+      };
+    case GET_ALL_PET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
         loading: false,
       };
     case PET_PROFILE_ERROR:

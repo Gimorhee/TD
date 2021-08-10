@@ -1,4 +1,14 @@
-import { CLOSE_PET_PROFILE_MODAL, GET_PET_PROFILE, OPEN_PET_PROFILE_MODAL, PET_PROFILE_ERROR, PUT_PET_PROFILE, PUT_LOOKFOR_PROFILE_INFO, DELETE_ACCOUNT, CLEAR_PET_PROFILE } from "../actions/types";
+import {
+  CLOSE_PET_PROFILE_MODAL,
+  GET_PET_PROFILE,
+  OPEN_PET_PROFILE_MODAL,
+  PET_PROFILE_ERROR,
+  PUT_PET_PROFILE,
+  PUT_LOOKFOR_PROFILE_INFO,
+  DELETE_ACCOUNT,
+  CLEAR_PET_PROFILE,
+  GET_ALL_PET_PROFILES,
+} from "../actions/types";
 import axios from "axios";
 import { setAlert } from "./alert";
 
@@ -58,6 +68,7 @@ export const putPetProfile =
     }
   };
 
+// CREATE OR UPDATE 'LOOKINGFOR' INFORMATION
 export const putLookingFor = (formData) => async (dispatch) => {
   const config = {
     headers: {
@@ -90,12 +101,31 @@ export const putLookingFor = (formData) => async (dispatch) => {
   }
 };
 
+// GET ALL PET PROFILES
+export const getAllPetProfiles = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/petProfile");
+
+    dispatch({
+      type: GET_ALL_PET_PROFILES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PET_PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// HANDLE PETPROFILE FORM MODAL STATUS
 export const openPetProfileModal = () => (dispatch) => {
   dispatch({
     type: OPEN_PET_PROFILE_MODAL,
   });
 };
 
+// DELETE ACCOUNT COMPLETELY
 export const deleteAccount = () => async (dispatch) => {
   if (window.confirm("Are you sure? This CANNOT be undone!")) {
     try {

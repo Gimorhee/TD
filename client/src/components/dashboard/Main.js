@@ -1,20 +1,27 @@
 import React, { useEffect } from "react";
 import { Tab } from "semantic-ui-react";
+import AllPetProfiles from "./Main/AllPetProfiles";
 import PropTypes from "prop-types";
+
+import { getAllPetProfiles } from "../../actions/petProfile";
 
 // REDUX
 import { connect } from "react-redux";
 
-const Main = ({}) => {
+const Main = ({ petProfile, getAllPetProfiles }) => {
   const panes = [
     {
-      menuItem: "PROFILE",
-      render: () => <Tab.Pane attached={false}>PROFILE COMPONENT</Tab.Pane>,
+      menuItem: "PROFILES",
+      render: () => (
+        <Tab.Pane attached={false}>
+          <AllPetProfiles getAllPetProfiles={getAllPetProfiles} petProfile={petProfile} />
+        </Tab.Pane>
+      ),
     },
-    {
-      menuItem: "CUTIES",
-      render: () => <Tab.Pane attached={false}>ALL PROFILES COMPONENT</Tab.Pane>,
-    },
+    // {
+    //   menuItem: "CUTIES",
+    //   render: () => <Tab.Pane attached={false}>ALL PROFILES COMPONENT</Tab.Pane>,
+    // },
     {
       menuItem: "POSTS",
       render: () => <Tab.Pane attached={false}>ALL POSTS COMPONENT</Tab.Pane>,
@@ -32,7 +39,12 @@ const Main = ({}) => {
   );
 };
 
-// Main.propTypes = {
-// };
+Main.propTypes = {
+  getAllPetProfiles: PropTypes.func.isRequired,
+};
 
-export default Main;
+const mapStateToProps = (state) => ({
+  petProfile: state.petProfile,
+});
+
+export default connect(mapStateToProps, { getAllPetProfiles })(Main);
