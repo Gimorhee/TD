@@ -1203,16 +1203,9 @@ button {
 
                 .slick-slide {
                   padding: 5px 10px;
-                  //   border: 1px solid black;
                   height: calc(100%);
 
-                  //   div {
-                  //     height: 100%;
-                  //   }
-
                   .singleProfile {
-                    // width: 35.33333%;
-                    // background: #f9f9f9;
                     background: #fff;
                     height: 100%;
                     padding: 15px;
@@ -1221,6 +1214,13 @@ button {
 
                     height: calc(100vh - 290px);
                     overflow-y: scroll;
+
+                    cursor: pointer;
+                    transition: 0.3s ease-in-out all;
+
+                    &:hover {
+                      transform: translateY(-5px);
+                    }
 
                     h4 {
                       text-align: left;
