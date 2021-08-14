@@ -6,6 +6,7 @@ import Landing from "./components/layout/Landing";
 import Auth from "./components/auth/Auth";
 import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
+import Profile from "./components/dashboard/Main/Profile";
 // ACTIONS
 import { loadUser } from "./actions/auth";
 // UTILS
@@ -39,6 +40,7 @@ const App = () => {
             <Switch>
               <Route exact path="/auth" component={Auth} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/profile/:id" component={Profile} />
             </Switch>
           </section>
         </Fragment>
