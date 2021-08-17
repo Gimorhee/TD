@@ -41,6 +41,7 @@ export default function (state = initialState, action) {
         ...state,
         errors: payload,
         loading: false,
+        profile: null,
       };
     case CLEAR_PET_PROFILE:
       return {
