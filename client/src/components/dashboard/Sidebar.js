@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import dogImg1 from "../../assets/image/cutedog.jpg";
 import dogImg2 from "../../assets/image/dog-img.jpg";
 
+import { withRouter } from "react-router-dom";
+
 // import PropTypes from "prop-types";
 
-const Sidebar = ({ logout }) => {
+const Sidebar = ({ logout, history }) => {
   return (
     <section className="sidebar">
       <Card className="outerCard">
@@ -15,7 +17,7 @@ const Sidebar = ({ logout }) => {
           <Link to="/" className="btn">
             <i className="fas fa-home homeBtn"></i>
           </Link>
-          <span className="btn" onClick={logout}>
+          <span className="btn" onClick={() => logout(history)}>
             <i className="fas fa-sign-out-alt logoutBtn"></i>
           </span>
           <span className="btn">
@@ -205,4 +207,4 @@ const Sidebar = ({ logout }) => {
 
 // Posts.propTypes = {};
 
-export default Sidebar;
+export default withRouter(Sidebar);

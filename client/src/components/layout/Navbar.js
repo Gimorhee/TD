@@ -1,27 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Label } from "semantic-ui-react";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const [navStatus, setNavStatus] = useState(true);
-
-  //   const history = useHistory();
-
-  //   useEffect(() => {
-  //     return history.listen((location) => {
-  //       if (location.pathname === "/dashboard") {
-  //         setNavStatus(false);
-  //         console.log("!");
-  //       } else {
-  //         setNavStatus(true);
-  //         console.log("?");
-  //       }
-  //     });
-  //   }, [history]);
 
   const authLinks = (
     <ul>

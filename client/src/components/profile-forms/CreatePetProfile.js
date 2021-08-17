@@ -52,7 +52,7 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
 
       setLookingForData(profile.lookingFor);
     }
-  }, []);
+  }, [profile.loading]);
 
   //   FOR NORMAL
   const onChange = (e) => {
