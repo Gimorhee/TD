@@ -4,252 +4,13 @@ import Slider from "react-slick";
 import dummyImg from "../../../assets/image/cutedog.jpg";
 import { Divider, Progress } from "semantic-ui-react";
 
-const AllPetProfiles = ({ getAllPetProfiles, petProfile }) => {
-  const dummyData = [
-    {
-      user: "Danny",
-      name: "Bori",
-      age: "13",
-      breed: "Maltese",
-      gender: "Male",
-      characteristics: ["Adorable", "Cute", "Quite"],
-      description: "Bori is the cutest dog in the world!",
-      location: "Surrey, BC",
-      lookingFor: {
-        location: "Surrey",
-        breed: "Any",
-        gender: "Any",
-        age: "Any",
-        whatfor: "Friendship",
-        description: "Hi Guys! Lets be friends!",
-      },
-      social: {
-        youtube: "www.youtube.com",
-        twitter: "www.twitter.com",
-        facebook: "www.facebook.com",
-        instagram: "www.instagram.com",
-      },
-      date: "3 days ago",
-      matchRatio: 60,
-    },
-    {
-      user: "Ezreal",
-      name: "Blitzcrank",
-      age: "7",
-      breed: "Husky",
-      gender: "Male",
-      characteristics: ["Fast", "Furious", "Smart"],
-      description: "Hi guys! we are Ezreal and Blitzcrank!",
-      location: "Coquitlam, BC",
-      lookingFor: {
-        location: "Coquitlam",
-        breed: "Husky",
-        gender: "Female",
-        age: "Any",
-        whatfor: "Love",
-        description: "I will grab you with my q!",
-      },
-      social: {
-        youtube: "www.youtube.com",
-        twitter: "www.twitter.com",
-        facebook: "www.facebook.com",
-        instagram: "www.instagram.com",
-      },
-      date: "4 days ago",
-      matchRatio: 20,
-    },
-    {
-      user: "Xayah",
-      name: "Rakan",
-      age: "9",
-      breed: "Sheperd",
-      gender: "Male",
-      characteristics: ["Adorable", "Cute", "Quite"],
-      description: "Here comes Rakan!",
-      location: "Vancouver, BC",
-      lookingFor: {
-        location: "Vancouver",
-        breed: "Any",
-        gender: "Any",
-        age: "Any",
-        whatfor: "Walk-buddy",
-        description: "Hi Guys! Lets be friends!",
-      },
-      social: {
-        youtube: "www.youtube.com",
-        twitter: "www.twitter.com",
-        facebook: "www.facebook.com",
-        instagram: "www.instagram.com",
-      },
-      date: "2 days ago",
-      matchRatio: 0,
-    },
-    {
-      user: "Danny",
-      name: "Bori",
-      age: "13",
-      breed: "Maltese",
-      gender: "Male",
-      characteristics: ["Adorable", "Cute", "Quite"],
-      description: "Bori is the cutest dog in the world!",
-      location: "Surrey, BC",
-      lookingFor: {
-        location: "Surrey",
-        breed: "Any",
-        gender: "Any",
-        age: "Any",
-        whatfor: "Friendship",
-        description: "Hi Guys! Lets be friends!",
-      },
-      social: {
-        youtube: "www.youtube.com",
-        twitter: "www.twitter.com",
-        facebook: "www.facebook.com",
-        instagram: "www.instagram.com",
-      },
-      date: "3 days ago",
-      matchRatio: 80,
-    },
-    {
-      user: "Ezreal",
-      name: "Blitzcrank",
-      age: "7",
-      breed: "Husky",
-      gender: "Male",
-      characteristics: ["Fast", "Furious", "Smart"],
-      description: "Hi guys! we are Ezreal and Blitzcrank!",
-      location: "Coquitlam, BC",
-      lookingFor: {
-        location: "Coquitlam",
-        breed: "Husky",
-        gender: "Female",
-        age: "Any",
-        whatfor: "Love",
-        description: "I will grab you with my q!",
-      },
-      social: {
-        youtube: "www.youtube.com",
-        twitter: "www.twitter.com",
-        facebook: "www.facebook.com",
-        instagram: "www.instagram.com",
-      },
-      date: "4 days ago",
-      matchRatio: 100,
-    },
-    {
-      user: "Xayah",
-      name: "Rakan",
-      age: "9",
-      breed: "Sheperd",
-      gender: "Male",
-      characteristics: ["Adorable", "Cute", "Quite"],
-      description: "Here comes Rakan!",
-      location: "Vancouver, BC",
-      lookingFor: {
-        location: "Vancouver",
-        breed: "Any",
-        gender: "Any",
-        age: "Any",
-        whatfor: "Walk-buddy",
-        description: "Hi Guys! Lets be friends!",
-      },
-      social: {
-        youtube: "www.youtube.com",
-        twitter: "www.twitter.com",
-        facebook: "www.facebook.com",
-        instagram: "www.instagram.com",
-      },
-      date: "2 days ago",
-      matchRatio: 40,
-    },
-    {
-      user: "Danny",
-      name: "Bori",
-      age: "13",
-      breed: "Maltese",
-      gender: "Male",
-      characteristics: ["Adorable", "Cute", "Quite"],
-      description: "Bori is the cutest dog in the world!",
-      location: "Surrey, BC",
-      lookingFor: {
-        location: "Surrey",
-        breed: "Any",
-        gender: "Any",
-        age: "Any",
-        whatfor: "Friendship",
-        description: "Hi Guys! Lets be friends!",
-      },
-      social: {
-        youtube: "www.youtube.com",
-        twitter: "www.twitter.com",
-        facebook: "www.facebook.com",
-        instagram: "www.instagram.com",
-      },
-      date: "3 days ago",
-      matchRatio: 20,
-    },
-    {
-      user: "Ezreal",
-      name: "Blitzcrank",
-      age: "7",
-      breed: "Husky",
-      gender: "Male",
-      characteristics: ["Fast", "Furious", "Smart"],
-      description: "Hi guys! we are Ezreal and Blitzcrank!",
-      location: "Coquitlam, BC",
-      lookingFor: {
-        location: "Coquitlam",
-        breed: "Husky",
-        gender: "Female",
-        age: "Any",
-        whatfor: "Love",
-        description: "I will grab you with my q!",
-      },
-      social: {
-        youtube: "www.youtube.com",
-        twitter: "www.twitter.com",
-        facebook: "www.facebook.com",
-        instagram: "www.instagram.com",
-      },
-      date: "4 days ago",
-      matchRatio: 40,
-    },
-    {
-      user: "Xayah",
-      name: "Rakan",
-      age: "9",
-      breed: "Sheperd",
-      gender: "Male",
-      characteristics: ["Adorable", "Cute", "Quite"],
-      description: "Here comes Rakan!",
-      location: "Vancouver, BC",
-      lookingFor: {
-        location: "Vancouver",
-        breed: "Any",
-        gender: "Any",
-        age: "Any",
-        whatfor: "Walk-buddy",
-        description: "Hi Guys! Lets be friends!",
-      },
-      social: {
-        youtube: "www.youtube.com",
-        twitter: "www.twitter.com",
-        facebook: "www.facebook.com",
-        instagram: "www.instagram.com",
-      },
-      date: "2 days ago",
-      matchRatio: 80,
-    },
-  ];
+const AllPetProfiles = ({ petProfile: { profile, profiles } }) => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 3,
-
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />
 
     // responsive: [
     //   {
@@ -279,46 +40,14 @@ const AllPetProfiles = ({ getAllPetProfiles, petProfile }) => {
     // ],
   };
 
-  useEffect(() => {
-    getAllPetProfiles();
-  }, []);
-
-  //   {
-  //     user: "Danny",
-  //     name: "Bori",
-  //     age: "13",
-  //     breed: "Maltese",
-  //     gender: "Male",
-  //     characteristics: ["Adorable", "Cute", "Quite"],
-  //     description: "Bori is the cutest dog in the world!",
-  //     location: "Surrey, BC",
-  //     lookingFor: {
-  //       location: "Surrey",
-  //       breed: "Any",
-  //       gender: "Any",
-  //       age: "Any",
-  //       whatfor: "Friendship",
-  //       description: "Hi Guys! Lets be friends!",
-  //     },
-  //     social: {
-  //       youtube: "www.youtube.com",
-  //       twitter: "www.twitter.com",
-  //       facebook: "www.facebook.com",
-  //       instagram: "www.instagram.com",
-  //     },
-  //     date: "3 days ago",
-  //   },
-
   const progressColor = (value) => {
     switch (value) {
-      case 20:
+      case 25:
         return "red";
-      case 40:
+      case 50:
         return "orange";
-      case 60:
+      case 75:
         return "yellow";
-      case 80:
-        return "olive";
       case 100:
         return "green";
       default:
@@ -326,53 +55,120 @@ const AllPetProfiles = ({ getAllPetProfiles, petProfile }) => {
     }
   };
 
+  //   useEffect(() => {
+  //     if (!profile.lookingFor) {
+  //       alert("X");
+  //     } else {
+  //       alert("O");
+  //     }
+  //   }, []);
+  //   {
+  //     age: "Any";
+  //     breed: "Any";
+  //     description: "Hi guys! lets be friends!";
+  //     gender: "Any";
+  //     location: "Surrey";
+  //     whatfor: "Friendship";
+  //   }
+  const checkMatchRatio = (data1, data2) => {
+    let mr = 0;
+
+    if (data1.age === data2.age || data1.age === "Any") {
+      mr += 0.25;
+    }
+    if (data1.breed === data2.breed || data1.breed === "Any") {
+      mr += 0.25;
+    }
+    if (data1.gender === data2.gender || data1.gender === "Any") {
+      mr += 0.25;
+    }
+    if (data1.location === data2.location || data1.location === "Any") {
+      mr += 0.25;
+    }
+
+    return mr;
+  };
+
   return (
     <div className="allProfiles">
       <div className="carousel">
         <Slider {...settings}>
-          {dummyData &&
-            dummyData.map((dummy, i) => (
-              <div className="singleProfile" key={i}>
+          {profiles &&
+            profiles.map((p, i) => (
+              <div className="singleProfile" key={`petProfile-${i}`}>
                 <h4>
-                  <i className="fas fa-user-circle"></i> {dummy.user}
+                  <i className="fas fa-user-circle"></i> {p.user.name}
                 </h4>
+
                 <div className="avatar">
-                  <img src={dummyImg} alt="" />
+                  <img src={p.user.avatar} alt="" />
                 </div>
+
                 <div className="info">
                   <h3>
-                    <i className="fas fa-paw"></i> {dummy.name}
+                    <i className="fas fa-paw"></i> {p.name}
                   </h3>
                   <p>
-                    {dummy.breed} | {dummy.gender} | {dummy.location}
+                    {p.breed} | {p.gender} | {p.location}
                   </p>
                 </div>
 
                 <div className="characteristics">
-                  {dummy.characteristics.map((characteristic, i) => (
-                    <span key={i}>{characteristic}</span>
+                  {p.characteristics.map((characteristic, i) => (
+                    <span key={`characteristic-${i}`}>{characteristic}</span>
                   ))}
                 </div>
 
                 <Divider />
 
-                <div className="matchRatio">
-                  <p>Match Ratio: {dummy.matchRatio}%</p>
-                  <Progress percent={dummy.matchRatio} color={progressColor(dummy.matchRatio)} />
-                </div>
+                {profile.lookingFor ? (
+                  <div className="matchRatio">
+                    <p>Match Ratio: {checkMatchRatio(profile.lookingFor, p) * 100}%</p>
+                    <Progress percent={checkMatchRatio(profile.lookingFor, p) * 100} color={progressColor(checkMatchRatio(profile.lookingFor, p) * 100)} />
+                  </div>
+                ) : (
+                  <div className="matchRatio">
+                    <p>Match Ratio: Unknown</p>
+                    <p style={{ fontSize: 11.5, margin: 0 }}>
+                      <i>(Update your pet's type to see match ratio)</i>
+                    </p>
+                  </div>
+                )}
 
                 <div className="bubblyBox">
-                  <p className="description">{dummy.description}</p>
+                  <p className="description">{p.description}</p>
                 </div>
 
                 <Divider />
 
-                <div className="sns">
-                  <i class="fab fa-youtube"></i>
-                  <i class="fab fa-twitter"></i>
-                  <i class="fab fa-facebook"></i>
-                  <i class="fab fa-instagram"></i>
-                </div>
+                {p.social ? (
+                  <div className="sns">
+                    {p.social.youtube && (
+                      <a href={`https://${p.social.youtube}`}>
+                        <i className="fab fa-youtube"></i>
+                      </a>
+                    )}
+                    {p.social.twitter && (
+                      <a href={`https://${p.social.twitter}`}>
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                    )}
+                    {p.social.facebook && (
+                      <a href={`https://${p.social.facebook}`}>
+                        <i className="fab fa-facebook"></i>
+                      </a>
+                    )}
+                    {p.social.instagram && (
+                      <a href={`https://${p.social.instagram}`}>
+                        <i className="fab fa-instagram"></i>
+                      </a>
+                    )}
+                  </div>
+                ) : (
+                  <div className="noSNS">
+                    <i>No Social Network Info for this user yet.</i>
+                  </div>
+                )}
               </div>
             ))}
         </Slider>

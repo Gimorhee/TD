@@ -120,7 +120,7 @@ const UserPetProfile = ({ user, profile, openPetProfileModal }) => {
                   </div>
 
                   <div className="bubblyBox">
-                    <p className="description">{profile && profile.description}</p>
+                    <p className="description">"{profile && profile.description}"</p>
                   </div>
 
                   <div className="sns">
@@ -215,7 +215,7 @@ const UserPetProfile = ({ user, profile, openPetProfileModal }) => {
                       {profile.lookingFor.description && (
                         <Fragment>
                           <h3>From {profile.name}:</h3>
-                          <p style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>{profile.lookingFor.description}</p>
+                          <p style={{ borderColor: btn.border, background: btn.background, color: btn.border }}>"{profile.lookingFor.description}"</p>
                         </Fragment>
                       )}
 

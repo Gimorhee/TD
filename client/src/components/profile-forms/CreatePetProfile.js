@@ -216,7 +216,7 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
           <Divider />
           <div className="inputContainer">
             <label>LOCATION</label>
-            <input type="text" name="location" placeholder="Ex) Vancouver, BC" value={formData.location} onChange={(e) => onChange(e)} />
+            <input type="text" name="location" placeholder="Ex) Vancouver" value={formData.location} onChange={(e) => onChange(e)} />
           </div>
           <Divider />
           <div className="inputContainer">

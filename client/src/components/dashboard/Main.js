@@ -9,12 +9,16 @@ import { getAllPetProfiles } from "../../actions/petProfile";
 import { connect } from "react-redux";
 
 const Main = ({ petProfile, getAllPetProfiles }) => {
+  useEffect(() => {
+    getAllPetProfiles();
+  }, []);
+
   const panes = [
     {
       menuItem: "PROFILES",
       render: () => (
         <Tab.Pane attached={false}>
-          <AllPetProfiles getAllPetProfiles={getAllPetProfiles} petProfile={petProfile} />
+          <AllPetProfiles petProfile={petProfile} />
         </Tab.Pane>
       ),
     },
