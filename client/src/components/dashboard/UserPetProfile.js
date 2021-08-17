@@ -6,10 +6,10 @@ import PetProfileModal from "../modal/PetProfileModal";
 const UserPetProfile = ({ user, profile, openPetProfileModal, editable }) => {
   const [customTheme, customizeTheme] = useState({
     // DEFAULT THEME COLORS
-    background: "#4C4C6D",
+    background: "#686d76",
     btn: {
-      border: "#4C4C6D",
-      background: "rgba(190, 174, 226, 0.6)",
+      border: "#686d76",
+      background: "rgba(221, 221,221 , 0.5)",
     },
     setting: "#fff",
   });

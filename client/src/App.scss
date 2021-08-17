@@ -561,6 +561,8 @@ button {
 
     .registerBtn,
     .loginBtn {
+      background: #12d3cf;
+      background: #252525;
       background: linear-gradient(to right, #12d3cf, #15cda8);
       width: 100%;
       padding: 15px;
@@ -571,12 +573,26 @@ button {
       color: #fff;
       font-family: "Montserrat";
       margin-bottom: 20px;
+      text-shadow: 1px 1px lightgray;
+
+      transition: 0.3s ease-in-out all;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     .extraContent {
       a {
-        color: #12d3cf;
+        color: #252525;
+        text-decoration: underline;
         font-weight: 500;
+        transition: 0.3s ease-in-out all;
+
+        &:hover {
+          color: #12d3cf;
+        }
       }
     }
   }
