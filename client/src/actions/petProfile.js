@@ -8,6 +8,7 @@ import {
   DELETE_ACCOUNT,
   CLEAR_PET_PROFILE,
   GET_ALL_PET_PROFILES,
+  GET_PET_PROFILE_BY_ID,
 } from "../actions/types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -22,6 +23,29 @@ export const getCurrentPetProfile = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
+    dispatch({
+      type: PET_PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Get pet profile by ID
+export const getPetProfileById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/petProfile/${userId}`);
+
+    dispatch({
+      type: GET_PET_PROFILE_BY_ID,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
     dispatch({
       type: PET_PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },

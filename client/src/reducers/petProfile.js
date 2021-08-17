@@ -1,5 +1,6 @@
 import {
   GET_PET_PROFILE,
+  GET_PET_PROFILE_BY_ID,
   PET_PROFILE_ERROR,
   CLEAR_PET_PROFILE,
   PUT_PET_PROFILE,
@@ -22,6 +23,7 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case GET_PET_PROFILE:
+    case GET_PET_PROFILE_BY_ID:
     case PUT_LOOKFOR_PROFILE_INFO:
       return {
         ...state,

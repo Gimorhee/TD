@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 const Main = ({ petProfile, getAllPetProfiles }) => {
   useEffect(() => {
     getAllPetProfiles();
-  }, []);
+  }, [getAllPetProfiles]);
 
   const panes = [
     {

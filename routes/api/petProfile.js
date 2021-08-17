@@ -42,7 +42,7 @@ router.get("/me", auth, async (req, res) => {
 // @access Private
 router.get("/:user_id", auth, async (req, res) => {
   try {
-    const petProfile = await PetProfile.findOne({ user: req.params.user_id });
+    const petProfile = await PetProfile.findOne({ user: req.params.user_id }).populate("user", ["name", "avatar"]);
 
     if (!petProfile) {
       return res.status(400).json({ msg: "No pet profile found for this user" });

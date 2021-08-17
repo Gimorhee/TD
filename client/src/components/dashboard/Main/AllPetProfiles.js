@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
-import dummyImg from "../../../assets/image/cutedog.jpg";
 import { Divider, Progress } from "semantic-ui-react";
+import Spinner from "../../layout/Spinner";
+import { Link } from "react-router-dom";
 
 const AllPetProfiles = ({ petProfile: { profile, profiles } }) => {
   const settings = {
@@ -55,21 +56,6 @@ const AllPetProfiles = ({ petProfile: { profile, profiles } }) => {
     }
   };
 
-  //   useEffect(() => {
-  //     if (!profile.lookingFor) {
-  //       alert("X");
-  //     } else {
-  //       alert("O");
-  //     }
-  //   }, []);
-  //   {
-  //     age: "Any";
-  //     breed: "Any";
-  //     description: "Hi guys! lets be friends!";
-  //     gender: "Any";
-  //     location: "Surrey";
-  //     whatfor: "Friendship";
-  //   }
   const checkMatchRatio = (data1, data2) => {
     let mr = 0;
 
@@ -90,90 +76,96 @@ const AllPetProfiles = ({ petProfile: { profile, profiles } }) => {
   };
 
   return (
-    <div className="allProfiles">
-      <div className="carousel">
-        <Slider {...settings}>
-          {profiles &&
-            profiles.map((p, i) => (
-              <div className="singleProfile" key={`petProfile-${i}`}>
-                <h4>
-                  <i className="fas fa-user-circle"></i> {p.user.name}
-                </h4>
+    <Fragment>
+      {profiles.loading ? (
+        <Spinner />
+      ) : (
+        <div className="allProfiles">
+          <div className="carousel">
+            <Slider {...settings}>
+              {profiles &&
+                profiles.map((p, i) => (
+                  <Link to={`/petProfile/${p.user._id}`} className="singleProfile" key={`petProfile-${i}`}>
+                    <h4>
+                      <i className="fas fa-user-circle"></i> {p.user.name}
+                    </h4>
 
-                <div className="avatar">
-                  <img src={p.user.avatar} alt="" />
-                </div>
+                    <div className="avatar">
+                      <img src={p.user.avatar} alt="" />
+                    </div>
 
-                <div className="info">
-                  <h3>
-                    <i className="fas fa-paw"></i> {p.name}
-                  </h3>
-                  <p>
-                    {p.breed} | {p.gender} | {p.location}
-                  </p>
-                </div>
+                    <div className="info">
+                      <h3>
+                        <i className="fas fa-paw"></i> {p.name}
+                      </h3>
+                      <p>
+                        {p.breed} | {p.gender} | {p.location}
+                      </p>
+                    </div>
 
-                <div className="characteristics">
-                  {p.characteristics.map((characteristic, i) => (
-                    <span key={`characteristic-${i}`}>{characteristic}</span>
-                  ))}
-                </div>
+                    <div className="characteristics">
+                      {p.characteristics.map((characteristic, i) => (
+                        <span key={`characteristic-${i}`}>{characteristic}</span>
+                      ))}
+                    </div>
 
-                <Divider />
+                    <Divider />
 
-                {profile.lookingFor ? (
-                  <div className="matchRatio">
-                    <p>Match Ratio: {checkMatchRatio(profile.lookingFor, p) * 100}%</p>
-                    <Progress percent={checkMatchRatio(profile.lookingFor, p) * 100} color={progressColor(checkMatchRatio(profile.lookingFor, p) * 100)} />
-                  </div>
-                ) : (
-                  <div className="matchRatio">
-                    <p>Match Ratio: Unknown</p>
-                    <p style={{ fontSize: 11.5, margin: 0 }}>
-                      <i>(Update your pet's type to see match ratio)</i>
-                    </p>
-                  </div>
-                )}
-
-                <div className="bubblyBox">
-                  <p className="description">{p.description}</p>
-                </div>
-
-                <Divider />
-
-                {p.social ? (
-                  <div className="sns">
-                    {p.social.youtube && (
-                      <a href={`https://${p.social.youtube}`}>
-                        <i className="fab fa-youtube"></i>
-                      </a>
+                    {profile.lookingFor ? (
+                      <div className="matchRatio">
+                        <p>Match Ratio: {checkMatchRatio(profile.lookingFor, p) * 100}%</p>
+                        <Progress percent={checkMatchRatio(profile.lookingFor, p) * 100} color={progressColor(checkMatchRatio(profile.lookingFor, p) * 100)} />
+                      </div>
+                    ) : (
+                      <div className="matchRatio">
+                        <p>Match Ratio: Unknown</p>
+                        <p style={{ fontSize: 11.5, margin: 0 }}>
+                          <i>(Update your pet's type to see match ratio)</i>
+                        </p>
+                      </div>
                     )}
-                    {p.social.twitter && (
-                      <a href={`https://${p.social.twitter}`}>
-                        <i className="fab fa-twitter"></i>
-                      </a>
+
+                    <div className="bubblyBox">
+                      <p className="description">{p.description}</p>
+                    </div>
+
+                    <Divider />
+
+                    {p.social ? (
+                      <div className="sns">
+                        {p.social.youtube && (
+                          <a href={`https://${p.social.youtube}`}>
+                            <i className="fab fa-youtube"></i>
+                          </a>
+                        )}
+                        {p.social.twitter && (
+                          <a href={`https://${p.social.twitter}`}>
+                            <i className="fab fa-twitter"></i>
+                          </a>
+                        )}
+                        {p.social.facebook && (
+                          <a href={`https://${p.social.facebook}`}>
+                            <i className="fab fa-facebook"></i>
+                          </a>
+                        )}
+                        {p.social.instagram && (
+                          <a href={`https://${p.social.instagram}`}>
+                            <i className="fab fa-instagram"></i>
+                          </a>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="noSNS">
+                        <i>No Social Network Info for this user yet.</i>
+                      </div>
                     )}
-                    {p.social.facebook && (
-                      <a href={`https://${p.social.facebook}`}>
-                        <i className="fab fa-facebook"></i>
-                      </a>
-                    )}
-                    {p.social.instagram && (
-                      <a href={`https://${p.social.instagram}`}>
-                        <i className="fab fa-instagram"></i>
-                      </a>
-                    )}
-                  </div>
-                ) : (
-                  <div className="noSNS">
-                    <i>No Social Network Info for this user yet.</i>
-                  </div>
-                )}
-              </div>
-            ))}
-        </Slider>
-      </div>
-    </div>
+                  </Link>
+                ))}
+            </Slider>
+          </div>
+        </div>
+      )}
+    </Fragment>
   );
 };
 

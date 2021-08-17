@@ -3,7 +3,7 @@ import { Card, Divider } from "semantic-ui-react";
 import PetProfileModal from "../modal/PetProfileModal";
 // import PropTypes from "prop-types";
 
-const UserPetProfile = ({ user, profile, openPetProfileModal }) => {
+const UserPetProfile = ({ user, profile, openPetProfileModal, editable }) => {
   const [customTheme, customizeTheme] = useState({
     // DEFAULT THEME COLORS
     background: "#4C4C6D",
@@ -53,56 +53,60 @@ const UserPetProfile = ({ user, profile, openPetProfileModal }) => {
     <section className="userPetProfile">
       <Card className="outerCard" style={{ background }}>
         {/* EDIT PROFILE MODAL */}
-        <PetProfileModal
-          user={user}
-          setting={setting}
-          profile={profile}
-          openPetProfileModal={openPetProfileModal}
-          noProfileTrigger={
-            <div className="noUserProfile">
-              <div>
-                <h3>YOUR PET HAS NO PROFILE YET</h3>
-                <p>
-                  Tell us how lovely your pet is <i className="fas fa-heart"></i>{" "}
-                </p>
-                <button onClick={() => openPetProfileModal()}>GET STARTED!</button>
+        {editable && (
+          <PetProfileModal
+            user={user}
+            setting={setting}
+            profile={profile}
+            openPetProfileModal={openPetProfileModal}
+            noProfileTrigger={
+              <div className="noUserProfile">
+                <div>
+                  <h3>YOUR PET HAS NO PROFILE YET</h3>
+                  <p>
+                    Tell us how lovely your pet is <i className="fas fa-heart"></i>{" "}
+                  </p>
+                  <button onClick={() => openPetProfileModal()}>GET STARTED!</button>
+                </div>
               </div>
-            </div>
-          }
-        />
+            }
+          />
+        )}
 
         {/* CUSTOMIZER */}
-        <div className="customizer" onClick={() => setSetting(!openSetting)}>
-          <div className="setting">
-            <Fragment>
-              <i className="fas fa-palette" style={{ color: setting }}></i>
-            </Fragment>
+        {editable && (
+          <div className="customizer" onClick={() => setSetting(!openSetting)}>
+            <div className="setting">
+              <Fragment>
+                <i className="fas fa-palette" style={{ color: setting }}></i>
+              </Fragment>
 
-            <div className={openSetting ? "settingBtn showColors" : "settingBtn"} style={{ background: btn.border }}>
-              <div className="chosenColors" style={{ borderTop: `35px solid ${background}` }}></div>
-            </div>
+              <div className={openSetting ? "settingBtn showColors" : "settingBtn"} style={{ background: btn.border }}>
+                <div className="chosenColors" style={{ borderTop: `35px solid ${background}` }}></div>
+              </div>
 
-            <div className={openSetting ? "bgColors showColors openLeft" : "bgColors"}>
-              {bgColors.map((bgColor, i) => (
-                <div className={`color color${i + 1}`} style={{ background: bgColor }} key={`bgColor${i}`} onClick={() => customizeTheme({ ...customTheme, background: bgColor })}>
-                  <i class="fas fa-check checkIcon"></i>
-                </div>
-              ))}
-            </div>
+              <div className={openSetting ? "bgColors showColors openLeft" : "bgColors"}>
+                {bgColors.map((bgColor, i) => (
+                  <div className={`color color${i + 1}`} style={{ background: bgColor }} key={`bgColor${i}`} onClick={() => customizeTheme({ ...customTheme, background: bgColor })}>
+                    <i class="fas fa-check checkIcon"></i>
+                  </div>
+                ))}
+              </div>
 
-            <div className={openSetting ? "btnColors showColors openBelow" : "btnColors"}>
-              {btnColors.map((btnColor, i) => (
-                <div
-                  className={`color btnColor${i + 1}`}
-                  style={{ background: btnColor.border }}
-                  onClick={() => customizeTheme({ ...customTheme, btn: { border: btnColor.border, background: btnColor.background } })}
-                >
-                  <i class="fas fa-check checkIcon"></i>
-                </div>
-              ))}
+              <div className={openSetting ? "btnColors showColors openBelow" : "btnColors"}>
+                {btnColors.map((btnColor, i) => (
+                  <div
+                    className={`color btnColor${i + 1}`}
+                    style={{ background: btnColor.border }}
+                    onClick={() => customizeTheme({ ...customTheme, btn: { border: btnColor.border, background: btnColor.background } })}
+                  >
+                    <i class="fas fa-check checkIcon"></i>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* INFO */}
         <div className="infoContainer">

@@ -15,7 +15,7 @@ import { logout } from "../../actions/auth";
 const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurrentPetProfile, logout, openPetProfileModal }) => {
   useEffect(() => {
     getCurrentPetProfile();
-  }, []);
+  }, [getCurrentPetProfile]);
 
   return (
     <div className="dashboard">
@@ -23,7 +23,7 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
         <Spinner />
       ) : (
         <Fragment>
-          <UserPetProfile user={user} profile={profile} openPetProfileModal={openPetProfileModal} />
+          <UserPetProfile user={user} profile={profile} openPetProfileModal={openPetProfileModal} editable={true} />
           <Main />
           <Sidebar logout={logout} />
         </Fragment>

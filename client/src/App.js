@@ -40,7 +40,7 @@ const App = () => {
               <Route exact path="/" component={Landing} />
               <Route exact path="/auth" component={Auth} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              {/* <Route exact path="/profile/:id" component={Profile} /> */}
+              <Route exact path="/petProfile/:id" component={Profile} />
             </Switch>
           </section>
         </Fragment>
