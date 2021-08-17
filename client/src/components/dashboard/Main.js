@@ -33,9 +33,9 @@ const Main = ({ petProfile, getAllPetProfiles }) => {
   ];
 
   return (
-    <section className="main">
+    <main className="main">
       <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-    </section>
+    </main>
   );
 };
 

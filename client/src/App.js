@@ -35,12 +35,12 @@ const App = () => {
           {/* <Navbar /> */}
           <section className="container">
             <Route exact path="/" component={Navbar} />
-            <Route exact path="/" component={Landing} />
             <Alert />
             <Switch>
+              <Route exact path="/" component={Landing} />
               <Route exact path="/auth" component={Auth} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/profile/:id" component={Profile} />
+              {/* <Route exact path="/profile/:id" component={Profile} /> */}
             </Switch>
           </section>
         </Fragment>

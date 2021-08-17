@@ -1,7 +1,6 @@
 import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // COMPONENTS
 import Main from "./Main";
@@ -19,19 +18,17 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
   }, []);
 
   return (
-    <Router>
-      <div className="dashboard">
-        {loading && profile === null ? (
-          <Spinner />
-        ) : (
-          <Fragment>
-            <UserPetProfile user={user} profile={profile} openPetProfileModal={openPetProfileModal} />
-            <Main />
-            <Sidebar logout={logout} />
-          </Fragment>
-        )}
-      </div>
-    </Router>
+    <div className="dashboard">
+      {loading && profile === null ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <UserPetProfile user={user} profile={profile} openPetProfileModal={openPetProfileModal} />
+          <Main />
+          <Sidebar logout={logout} />
+        </Fragment>
+      )}
+    </div>
   );
 };
 
