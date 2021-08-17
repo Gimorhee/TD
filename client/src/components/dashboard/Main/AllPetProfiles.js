@@ -111,7 +111,7 @@ const AllPetProfiles = ({ petProfile: { profile, profiles } }) => {
 
                     <Divider />
 
-                    {profile.lookingFor ? (
+                    {profile && profile.lookingFor ? (
                       <div className="matchRatio">
                         <p>Match Ratio: {checkMatchRatio(profile.lookingFor, p) * 100}%</p>
                         <Progress percent={checkMatchRatio(profile.lookingFor, p) * 100} color={progressColor(checkMatchRatio(profile.lookingFor, p) * 100)} />

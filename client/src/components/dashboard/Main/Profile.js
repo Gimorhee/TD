@@ -16,7 +16,7 @@ const Profile = ({ match, getPetProfileById, petProfile: { profile, loading }, a
         <Spinner />
       ) : (
         <div className="userProfile">
-          <UserPetProfile user={profile.user} profile={profile} editable={false} />
+          <UserPetProfile user={profile && profile.user} profile={profile} editable={false} />
         </div>
       )}
     </Fragment>
