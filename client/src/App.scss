@@ -114,11 +114,6 @@ button {
   display: none !important;
 }
 
-// CONTAINER
-// .container {
-//   position: relative;
-// }
-
 // ALERT
 .alertContainer {
   z-index: 1230912301239;
@@ -706,6 +701,7 @@ button {
   //   USER PET PROFILE
   .userPetProfile {
     width: 20%;
+    // width: 400px;
     height: 100%;
     position: relative;
 
@@ -1161,11 +1157,6 @@ button {
         font-size: 1.3rem;
 
         border-bottom: 3px solid #eee !important;
-
-        // &:hover {
-        //     color: #00af91 !important;
-        //     border-color: #00af91 !important;
-        // }
       }
 
       .active.item {
@@ -1176,7 +1167,7 @@ button {
 
     .tab {
       height: calc(100vh - 81px);
-      overflow-y: scroll;
+      //   overflow-y: scroll;
       padding: 0;
       background: #eee;
       //   background: #fff;
@@ -1196,7 +1187,8 @@ button {
         }
       }
 
-      // MAIN: ALL PET PROFILES
+      // MAIN
+      // ALL PET PROFILES
       .allProfiles {
         // display: none;
         height: 100%;
@@ -1395,6 +1387,212 @@ button {
           }
         }
       }
+
+      // POSTS
+      .Posts {
+        height: 100%;
+        padding: 15px;
+        // background: #f0f2f5;
+        background: #eee;
+        overflow-y: scroll;
+
+        .togglers {
+          display: flex;
+          justify-content: flex-end;
+          height: 40px;
+
+          .toggler {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #817e7e;
+            color: #fff;
+            border-radius: 5px;
+            margin: 0 2px;
+            font-family: "Montserrat";
+            transition: 0.3s ease-in-out all;
+            cursor: pointer;
+
+            i {
+              margin-right: 5px;
+              font-size: 20px;
+            }
+
+            &:hover {
+              background: #252525;
+            }
+          }
+
+          .selected {
+            background: #252525;
+          }
+        }
+
+        .posts {
+          height: calc(100% - 60px);
+          //   overflow-y: scroll;
+          //   margin-top: 140px;
+          margin-top: 0;
+
+          display: flex;
+          flex-wrap: wrap;
+
+          .post {
+            margin: 15px 0;
+            padding: 10px 20px;
+            padding-bottom: 0;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            box-shadow: 2px 2px 3px darkgrey;
+            cursor: pointer;
+            min-height: 160px;
+            transition: 0.3s ease-in-out all;
+            min-height: 200px;
+            max-height: 250px;
+            width: calc(50% - 10px);
+            margin: 5px;
+
+            display: flex;
+            flex-wrap: wrap;
+
+            .summary {
+              background: rgba(255, 255, 255, 0.4);
+              padding: 10px;
+              margin-top: 5px;
+              border-radius: 5px;
+            }
+
+            .label {
+              width: 65px;
+              padding-top: 10px;
+
+              img {
+                transition: 0.3s ease-in-out all;
+
+                &:hover {
+                  transform: scale(1.05);
+                }
+              }
+            }
+
+            .content {
+              p {
+                margin: 0;
+                text-transform: uppercase;
+                font-weight: 600;
+              }
+
+              .summary {
+                font-family: "Montserrat" !important;
+                font-weight: 600;
+                height: 80px;
+              }
+
+              .date {
+                text-align: right;
+                margin-top: 5px;
+              }
+            }
+
+            .usersLiked {
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: flex-end;
+              padding-top: 15px;
+              padding-bottom: 5px;
+
+              p {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                text-align: end;
+                padding: 0;
+                font-weight: 400;
+                font-size: 1em;
+                font-style: normal;
+                color: rgba(0, 0, 0, 0.4);
+                font-size: 14px;
+                font-weight: 600;
+              }
+
+              .avatar {
+                display: flex;
+                align-items: center;
+
+                img {
+                  width: 40px;
+                  height: 40px;
+                  margin: 2px;
+                  border-radius: 50%;
+                }
+              }
+            }
+
+            &:hover {
+              transform: translateY(-3px);
+            }
+          }
+        }
+
+        // .postForm {
+        //   display: flex;
+        //   flex-wrap: wrap;
+        //   background: #fff;
+        //   padding: 15px;
+        //   border-radius: 15px;
+        //   max-width: 650px;
+        //   .profile {
+        //     display: flex;
+        //     flex-direction: column;
+        //     justify-content: center;
+        //     align-items: center;
+        //     width: 150px;
+
+        //     .avatar {
+        //       width: 110px;
+        //       height: 110px;
+
+        //       img {
+        //         border-radius: 50%;
+        //         width: 100%;
+        //         height: 100%;
+        //       }
+        //     }
+
+        //     .info {
+        //       margin-top: 10px;
+        //       font-weight: 600;
+        //       text-transform: uppercase;
+        //       font-size: 15px;
+        //     }
+        //   }
+
+        //   .form {
+        //     width: calc(100% - 150px);
+
+        //     textarea {
+        //       border: none;
+        //       background: #f0f2f5;
+        //       width: calc(100% - 20px);
+        //       height: calc(100% - 30px);
+        //       margin: 10px;
+        //       padding: 10px;
+        //       resize: none;
+        //       border-radius: 15px;
+
+        //       &:focus {
+        //         outline: none;
+        //       }
+        //     }
+
+        //     .postBtn {
+        //       margin: 0;
+        //       padding: 0;
+        //     }
+        //   }
+        // }
+      }
     }
   }
 
@@ -1478,6 +1676,7 @@ button {
           .event {
             margin: 15px 0;
             padding: 20px;
+            padding-bottom: 0;
             border: 1px solid #eee;
             border-radius: 20px;
             box-shadow: 2px 2px 3px darkgrey;
@@ -1487,6 +1686,13 @@ button {
 
             display: flex;
             flex-wrap: wrap;
+
+            .summary {
+              background: rgba(255, 255, 255, 0.6);
+              padding: 10px;
+              margin-top: 5px;
+              border-radius: 5px;
+            }
 
             .label {
               width: 55px;

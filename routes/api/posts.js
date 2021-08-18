@@ -11,7 +11,7 @@ const Post = require("../../models/Post");
 // @access Private
 router.get("/", auth, async (req, res) => {
   try {
-    const posts = await Post.find().sort({ date: -1 });
+    const posts = await Post.find().sort({ date: -1 }).populate("user", ["name", "avatar"]);
 
     res.json(posts);
   } catch (err) {
@@ -74,12 +74,14 @@ router.post("/", [auth, [check("text", "Text is required").not().isEmpty()]], as
 
   try {
     const user = await User.findById(req.user.id).select("-password");
+    const petProfile = await PetProfile.findOne({ user: req.user.id });
 
     let postObj = {
       user: req.user.id,
       text: req.body.text,
       name: user.name,
       avatar: user.avatar,
+      pet: petProfile.name,
     };
 
     let post = await new Post(postObj);
@@ -129,6 +131,7 @@ router.delete("/:post_id", auth, async (req, res) => {
 router.put("/like/:post_id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.post_id);
+    const user = await User.findById(req.user.id);
 
     // Check if the post has been already liked
     if (post.likes.filter((like) => like.user.toString() === req.user.id).length > 0) {
@@ -137,6 +140,7 @@ router.put("/like/:post_id", auth, async (req, res) => {
 
     const newLike = {
       user: req.user.id,
+      avatar: user.avatar,
     };
 
     post.likes.unshift(newLike);

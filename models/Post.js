@@ -16,11 +16,17 @@ const PostSchema = new Schema({
   avatar: {
     type: String,
   },
+  pet: {
+    type: String,
+  },
   likes: [
     {
       user: {
         type: Schema.Types.ObjectId,
         ref: "user",
+      },
+      avatar: {
+        type: String,
       },
     },
   ],

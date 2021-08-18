@@ -88,7 +88,7 @@ const UserPetProfile = ({ user, profile, openPetProfileModal, editable }) => {
               <div className={openSetting ? "bgColors showColors openLeft" : "bgColors"}>
                 {bgColors.map((bgColor, i) => (
                   <div className={`color color${i + 1}`} style={{ background: bgColor }} key={`bgColor${i}`} onClick={() => customizeTheme({ ...customTheme, background: bgColor })}>
-                    <i class="fas fa-check checkIcon"></i>
+                    <i className="fas fa-check checkIcon"></i>
                   </div>
                 ))}
               </div>
@@ -99,8 +99,9 @@ const UserPetProfile = ({ user, profile, openPetProfileModal, editable }) => {
                     className={`color btnColor${i + 1}`}
                     style={{ background: btnColor.border }}
                     onClick={() => customizeTheme({ ...customTheme, btn: { border: btnColor.border, background: btnColor.background } })}
+                    key={`btnColor${i + 1}`}
                   >
-                    <i class="fas fa-check checkIcon"></i>
+                    <i className="fas fa-check checkIcon"></i>
                   </div>
                 ))}
               </div>
@@ -132,22 +133,22 @@ const UserPetProfile = ({ user, profile, openPetProfileModal, editable }) => {
                       <Fragment>
                         {profile.social.youtube && (
                           <a href={`//${profile.social.youtube}`} target="_blank">
-                            <i class="fab fa-youtube-square"></i>
+                            <i className="fab fa-youtube-square"></i>
                           </a>
                         )}
                         {profile.social.twitter && (
                           <a href={`//${profile.social.twitter}`} target="_blank">
-                            <i class="fab fa-twitter-square"></i>
+                            <i className="fab fa-twitter-square"></i>
                           </a>
                         )}
                         {profile.social.facebook && (
                           <a href={`//${profile.social.facebook}`} target="_blank">
-                            <i class="fab fa-facebook-square"></i>
+                            <i className="fab fa-facebook-square"></i>
                           </a>
                         )}
                         {profile.social.instagram && (
                           <a href={`//${profile.social.instagram}`} target="_blank">
-                            <i class="fab fa-instagram-square"></i>
+                            <i className="fab fa-instagram-square"></i>
                           </a>
                         )}
                       </Fragment>

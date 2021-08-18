@@ -181,7 +181,7 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
               {/* <input type="checkbox" name="gravatar" id="" className="gravaterCheckBtn" /> */}
               <button className="gravatarBtn">
                 <i className="fas fa-check"></i>
-                {/* <i class="fas fa-times"></i> */}
+                {/* <i className="fas fa-times"></i> */}
               </button>
               <label>Use Gravatar</label>
             </div>
@@ -253,22 +253,22 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
             <div className="opener">
               <div className="inputContainer social">
                 <div>
-                  <i class="fab fa-youtube"></i>
+                  <i className="fab fa-youtube"></i>
                   <input type="email" name="youtube" placeholder="https://www.youtube.com/" value={youtube && youtube} onChange={(e) => onChange(e)} />
                 </div>
                 <Divider />
                 <div>
-                  <i class="fab fa-twitter"></i>
+                  <i className="fab fa-twitter"></i>
                   <input type="text" name="twitter" placeholder="https://www.twitter.com/" value={twitter && twitter} onChange={(e) => onChange(e)} />
                 </div>
                 <Divider />
                 <div>
-                  <i class="fab fa-facebook-square"></i>
+                  <i className="fab fa-facebook-square"></i>
                   <input type="text" name="facebook" placeholder="https://www.facebook.com/" value={facebook && facebook} onChange={(e) => onChange(e)} />
                 </div>
                 <Divider />
                 <div>
-                  <i class="fab fa-instagram"></i>
+                  <i className="fab fa-instagram"></i>
                   <input type="text" name="instagram" placeholder="https://www.instagram.com/" value={instagram && instagram} onChange={(e) => onChange(e)} />
                 </div>
               </div>
