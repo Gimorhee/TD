@@ -77,6 +77,32 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
                     <Link to={`/petProfile/${post.user._id}`}>
                       <img src={post.avatar} alt="user-avatar" />
                     </Link>
+                    <div className="likeBtns">
+                      <div className="like">
+                        {post.likes.length === 0 ? (
+                          <i className="far fa-thumbs-up" onClick={() => alert("!@#")}></i>
+                        ) : (
+                          post.likes.map((like) =>
+                            like.user === auth.user._id ? (
+                              <Fragment>
+                                <i className="fas fa-thumbs-up"></i>
+                                <span>{post.likes.length}</span>
+                              </Fragment>
+                            ) : (
+                              <Fragment>
+                                <i className="far fa-thumbs-up"></i>
+                                <span>{post.likes.length}</span>
+                              </Fragment>
+                            )
+                          )
+                        )}
+                      </div>
+                      <span className="divider">|</span>
+                      <div className="unlike">
+                        <i class="far fa-thumbs-down"></i>
+                      </div>
+                      {/* <i className="fas fa-heart"></i> */}
+                    </div>
                   </Feed.Label>
                   <Feed.Content>
                     <p>
@@ -107,16 +133,7 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
                       </div>
                     )}
                   </div>
-                  {!auth.loading && auth.user._id === post.user._id && (
-                    <div className="postBtns">
-                      <i className="fas fa-times"></i>
-                      <i class="far fa-thumbs-up"></i>
-                      {/* <i class="fas fa-thumbs-up"></i> */}
-                      {/* <i class="fas fa-thumbs-down"></i> */}
-                      <i class="far fa-thumbs-down"></i>
-                      {/* <i className="fas fa-heart"></i> */}
-                    </div>
-                  )}
+                  <div className="postBtns">{!auth.loading && auth.user._id === post.user._id && <i className="fas fa-times"></i>}</div>
                 </Feed.Event>
               ))}
           </Feed>
