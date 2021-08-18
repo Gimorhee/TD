@@ -39,7 +39,13 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
               <i className="fas fa-comments"></i>
               <span>ALL</span>
             </div>
-            <div className={postType === "Yours" ? "toggler selected" : "toggler"} onClick={() => setPostType("Yours")}>
+            <div
+              className={postType === "Yours" ? "toggler selected" : "toggler"}
+              onClick={() => {
+                setPostType("Yours");
+                handlePostModal(profile);
+              }}
+            >
               <i className="fas fa-comment"></i>
               <span>YOURS</span>
             </div>
