@@ -5,7 +5,7 @@ import { Card, Feed } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 
-const Posts = ({ post: { post, posts, userPosts, postsById, loading }, getPosts, petProfile: { profile, profiles } }) => {
+const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, getPosts, petProfile: { profile, profiles }, setAlert }) => {
   const [open, setOpen] = useState(false);
   const [postType, setPostType] = useState("All");
 
@@ -18,6 +18,14 @@ const Posts = ({ post: { post, posts, userPosts, postsById, loading }, getPosts,
     let randomIndex = Math.floor(Math.random() * postColors.length);
 
     return postColors[randomIndex];
+  };
+
+  const handlePostModal = (profile) => {
+    if (profile === null) {
+      setAlert("Please create your profile first", "red");
+    } else {
+      setOpen(true);
+    }
   };
   return (
     <Fragment>
@@ -34,49 +42,29 @@ const Posts = ({ post: { post, posts, userPosts, postsById, loading }, getPosts,
               <i className="fas fa-comment"></i>
               <span>YOURS</span>
             </div>
+            <div className="toggler" onClick={() => handlePostModal(profile)}>
+              <i className="fas fa-comment-medical"></i>
+              <span>ADD</span>
+            </div>
 
-            <Modal
-              onClose={() => setOpen(false)}
-              onOpen={() => setOpen(true)}
-              open={open}
-              trigger={
-                <div className="toggler">
-                  <i className="fas fa-comment-medical"></i>
-                  <span>ADD</span>
+            <Modal closeIcon onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open} id="createPostModal">
+              <Modal.Header>CREATE POST</Modal.Header>
+              <Modal.Content>
+                <div className="avatar">
+                  <img src={profile && profile.user.avatar} alt="user-avatar" />
                 </div>
-              }
-            >
-              <Modal.Header>Select a Photo</Modal.Header>
-              <Modal.Content image>
-                <Image size="medium" src="/images/avatar/large/rachel.png" wrapped />
-                <Modal.Description>
-                  <Header>Default Profile Image</Header>
-                  <p>We've found the following gravatar image associated with your e-mail address.</p>
-                  <p>Is it okay to use this photo?</p>
-                </Modal.Description>
+                <div className="textInput">
+                  <p>
+                    {profile && profile.user.name} & {profile && profile.name}
+                  </p>
+                  <textarea name="postText" placeholder={`What is on your mind ${profile && profile.user.name} & ${profile && profile.name}?`}></textarea>
+                </div>
               </Modal.Content>
               <Modal.Actions>
                 <Button color="black" onClick={() => setOpen(false)}>
-                  Nope
+                  CREATE
                 </Button>
-                <Button content="Yep, that's me" labelPosition="right" icon="checkmark" onClick={() => setOpen(false)} positive />
               </Modal.Actions>
-              {/* <div className="postForm">
-            <div className="profile">
-              <div className="avatar">
-                <img src={profile.user.avatar} alt="user-avatar" />
-              </div>
-              <div className="info">
-                <p>
-                  {profile.user.name} & {profile.name}
-                </p>
-              </div>
-            </div>
-            <form className="form" onSubmit={(e) => onSubmit(e)}>
-              <textarea name="text" placeholder="Create a post" required></textarea>
-              <input type="submit" className="postBtn" value="Submit" />
-            </form>
-          </div> */}
             </Modal>
           </div>
           <Feed className="posts">
@@ -96,14 +84,36 @@ const Posts = ({ post: { post, posts, userPosts, postsById, loading }, getPosts,
                     <Feed.Summary>{post.text}</Feed.Summary>
                     <Feed.Date content={<Moment fromNow>{post.date}</Moment>} />
                   </Feed.Content>
-                  {post.likes.length > 0 && (
-                    <div className="usersLiked">
-                      <p>Liked by..</p>
-                      {post.likes.map((like, i) => (
-                        <div className="avatar" key={`avatar-${i}`}>
-                          <img src={like.avatar} alt="user-avatar" />
-                        </div>
-                      ))}
+                  <div className="usersAvatar">
+                    {post.likes.length > 0 && (
+                      <div className="usersLiked">
+                        <p>Liked by..</p>
+                        {post.likes.map((like, i) => (
+                          <div className="avatar" key={`avatar-${i}`}>
+                            <img src={like.avatar} alt="user-avatar" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {post.comments.length > 0 && (
+                      <div className="usersCommented">
+                        <p>Commented by..</p>
+                        {post.comments.map((comment, i) => (
+                          <div className="avatar" key={`avatar-${i}`}>
+                            <img src={comment.avatar} alt="user-avatar" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  {!auth.loading && auth.user._id === post.user._id && (
+                    <div className="postBtns">
+                      <i className="fas fa-times"></i>
+                      <i class="far fa-thumbs-up"></i>
+                      {/* <i class="fas fa-thumbs-up"></i> */}
+                      {/* <i class="fas fa-thumbs-down"></i> */}
+                      <i class="far fa-thumbs-down"></i>
+                      {/* <i className="fas fa-heart"></i> */}
                     </div>
                   )}
                 </Feed.Event>

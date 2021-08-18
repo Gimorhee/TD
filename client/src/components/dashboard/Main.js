@@ -7,11 +7,12 @@ import PropTypes from "prop-types";
 // ACTIONS
 import { getAllPetProfiles } from "../../actions/petProfile";
 import { getPosts } from "../../actions/post";
+import { setAlert } from "../../actions/alert";
 
 // REDUX
 import { connect } from "react-redux";
 
-const Main = ({ petProfile, getAllPetProfiles, post, getPosts }) => {
+const Main = ({ auth, petProfile, getAllPetProfiles, post, getPosts, setAlert }) => {
   useEffect(() => {
     getAllPetProfiles();
   }, [getAllPetProfiles]);
@@ -29,7 +30,7 @@ const Main = ({ petProfile, getAllPetProfiles, post, getPosts }) => {
       menuItem: "POSTS",
       render: () => (
         <Tab.Pane attached={false}>
-          <Posts post={post} getPosts={getPosts} petProfile={petProfile} />
+          <Posts post={post} getPosts={getPosts} petProfile={petProfile} auth={auth} setAlert={setAlert} />
         </Tab.Pane>
       ),
     },
@@ -50,11 +51,13 @@ Main.propTypes = {
   getAllPetProfiles: PropTypes.func.isRequired,
   petProfile: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
+  setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   petProfile: state.petProfile,
   post: state.post,
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getAllPetProfiles, getPosts })(Main);
+export default connect(mapStateToProps, { getAllPetProfiles, getPosts, setAlert })(Main);
