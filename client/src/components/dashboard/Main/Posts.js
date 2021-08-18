@@ -15,6 +15,7 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
 
   const generateRandomColor = () => {
     const postColors = ["#FEEFD0", "#C0D3EE", "#DDB8B9", "#AFCFB6", "#94A2B7", "#82BEB7", "#FEEFD0"];
+
     let randomIndex = Math.floor(Math.random() * postColors.length);
 
     return postColors[randomIndex];
@@ -88,21 +89,21 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
                     {post.likes.length > 0 && (
                       <div className="usersLiked">
                         <p>Liked by..</p>
-                        {post.likes.map((like, i) => (
-                          <div className="avatar" key={`avatar-${i}`}>
-                            <img src={like.avatar} alt="user-avatar" />
-                          </div>
-                        ))}
+                        <div className="avatar">
+                          {post.likes.map((like, i) => (
+                            <img src={like.avatar} key={`avatar-${i}`} alt="user-avatar" />
+                          ))}
+                        </div>
                       </div>
                     )}
                     {post.comments.length > 0 && (
                       <div className="usersCommented">
                         <p>Commented by..</p>
-                        {post.comments.map((comment, i) => (
-                          <div className="avatar" key={`avatar-${i}`}>
-                            <img src={comment.avatar} alt="user-avatar" />
-                          </div>
-                        ))}
+                        <div className="avatar">
+                          {post.comments.map((comment, i) => (
+                            <img src={comment.avatar} key={`avatar-${i}`} alt="user-avatar" />
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
