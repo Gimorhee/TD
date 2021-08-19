@@ -5,7 +5,7 @@ import { Card, Feed } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 
-const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, getPosts, petProfile: { profile, profiles }, setAlert }) => {
+const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, getPosts, petProfile: { profile, profiles }, setAlert, likePost, unlikePost }) => {
   const [open, setOpen] = useState(false);
   const [postType, setPostType] = useState("All");
 
@@ -85,27 +85,12 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
                     </Link>
                     <div className="likeBtns">
                       <div className="like">
-                        {post.likes.length === 0 ? (
-                          <i className="far fa-thumbs-up" onClick={() => alert("!@#")}></i>
-                        ) : (
-                          post.likes.map((like) =>
-                            like.user === auth.user._id ? (
-                              <Fragment>
-                                <i className="fas fa-thumbs-up"></i>
-                                <span>{post.likes.length}</span>
-                              </Fragment>
-                            ) : (
-                              <Fragment>
-                                <i className="far fa-thumbs-up"></i>
-                                <span>{post.likes.length}</span>
-                              </Fragment>
-                            )
-                          )
-                        )}
+                        <i className="fas fa-thumbs-up" onClick={() => likePost(post._id)}></i>
+                        {post.likes.length > 0 && <span>{post.likes.length}</span>}
                       </div>
                       <span className="divider">|</span>
                       <div className="unlike">
-                        <i class="far fa-thumbs-down"></i>
+                        <i className="fas fa-thumbs-down" onClick={() => unlikePost(post._id)}></i>
                       </div>
                       {/* <i className="fas fa-heart"></i> */}
                     </div>
