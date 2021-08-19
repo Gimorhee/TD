@@ -123,7 +123,7 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
                       </div>
                     )}
                   </div>
-                  <div className="postBtns">{!auth.loading && auth.user._id === post.user._id && <i className="fas fa-times" onClick={() => deletePost(post._id)}></i>}</div>
+                  <div className="postBtns">{!auth.loading && auth.user._id === post.user._id && <i className="far fa-trash-alt" onClick={() => deletePost(post._id)}></i>}</div>
                 </Feed.Event>
               ))}
           </Feed>
