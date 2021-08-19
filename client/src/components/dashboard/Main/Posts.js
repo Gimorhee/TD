@@ -5,7 +5,7 @@ import { Card, Feed } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 
-const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, getPosts, petProfile: { profile, profiles }, setAlert, likePost, unlikePost }) => {
+const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, getPosts, petProfile: { profile, profiles }, setAlert, likePost, unlikePost, deletePost }) => {
   const [open, setOpen] = useState(false);
   const [postType, setPostType] = useState("All");
 
@@ -92,7 +92,6 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
                       <div className="unlike">
                         <i className="fas fa-thumbs-down" onClick={() => unlikePost(post._id)}></i>
                       </div>
-                      {/* <i className="fas fa-heart"></i> */}
                     </div>
                   </Feed.Label>
                   <Feed.Content>
@@ -124,7 +123,7 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
                       </div>
                     )}
                   </div>
-                  <div className="postBtns">{!auth.loading && auth.user._id === post.user._id && <i className="fas fa-times"></i>}</div>
+                  <div className="postBtns">{!auth.loading && auth.user._id === post.user._id && <i className="fas fa-times" onClick={() => deletePost(post._id)}></i>}</div>
                 </Feed.Event>
               ))}
           </Feed>
