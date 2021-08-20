@@ -1422,8 +1422,6 @@ button {
 
         .posts {
           height: calc(100% - 60px);
-          //   overflow-y: scroll;
-          //   margin-top: 140px;
           margin-top: 5px;
 
           display: flex;
@@ -1475,6 +1473,7 @@ button {
             }
 
             .content {
+              width: calc(100% - 95px);
               p {
                 margin: 0;
                 text-transform: uppercase;

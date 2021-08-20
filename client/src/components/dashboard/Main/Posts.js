@@ -4,8 +4,9 @@ import { Button, Header, Image, Modal } from "semantic-ui-react";
 import { Card, Feed } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
+import PostModal from "../../modal/PostModal";
 
-const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, getPosts, petProfile: { profile, profiles }, setAlert, likePost, unlikePost, deletePost }) => {
+const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, getPosts, petProfile: { profile, profiles }, setAlert, likePost, unlikePost, deletePost, addPost }) => {
   const [open, setOpen] = useState(false);
   const [postType, setPostType] = useState("All");
 
@@ -43,7 +44,6 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
               className={postType === "Yours" ? "toggler selected" : "toggler"}
               onClick={() => {
                 setPostType("Yours");
-                handlePostModal(profile);
               }}
             >
               <i className="fas fa-comment"></i>
@@ -54,25 +54,7 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
               <span>ADD</span>
             </div>
 
-            <Modal closeIcon onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open} id="createPostModal">
-              <Modal.Header>CREATE POST</Modal.Header>
-              <Modal.Content>
-                <div className="avatar">
-                  <img src={profile && profile.user.avatar} alt="user-avatar" />
-                </div>
-                <div className="textInput">
-                  <p>
-                    {profile && profile.user.name} & {profile && profile.name}
-                  </p>
-                  <textarea name="postText" placeholder={`What is on your mind ${profile && profile.user.name} & ${profile && profile.name}?`}></textarea>
-                </div>
-              </Modal.Content>
-              <Modal.Actions>
-                <Button color="black" onClick={() => setOpen(false)}>
-                  CREATE
-                </Button>
-              </Modal.Actions>
-            </Modal>
+            <PostModal profile={profile} addPost={addPost} open={open} setOpen={setOpen} />
           </div>
           <Feed className="posts">
             {posts &&

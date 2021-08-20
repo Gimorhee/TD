@@ -1,4 +1,4 @@
-import { GET_POST, GET_POSTS, GET_USER_POSTS, GET_POSTS_BY_ID, POST_ERROR, UPDATE_POST_LIKES, DELETE_POST } from "../actions/types";
+import { GET_POST, GET_POSTS, GET_USER_POSTS, GET_POSTS_BY_ID, POST_ERROR, UPDATE_POST_LIKES, DELETE_POST, ADD_POST } from "../actions/types";
 import axios from "axios";
 import { setAlert } from "./alert";
 
@@ -15,6 +15,35 @@ export const getPosts = () => async (dispatch) => {
 
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// ADD POST
+export const addPost = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const res = await axios.post("/api/posts", formData, config);
+
+    dispatch({
+      type: ADD_POST,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err && err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "red")));
     }
 
     dispatch({
