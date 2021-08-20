@@ -1,7 +1,8 @@
-import { GET_POST, GET_POSTS, GET_USER_POSTS, GET_POSTS_BY_ID, POST_ERROR, UPDATE_POST_LIKES, DELETE_POST, ADD_POST } from "../actions/types";
+import { GET_POST, GET_POSTS, POST_ERROR, UPDATE_POST_LIKES, DELETE_POST, ADD_POST } from "../actions/types";
 import axios from "axios";
 import { setAlert } from "./alert";
 
+// GET ALL POSTS
 export const getPosts = () => async (dispatch) => {
   try {
     const res = await axios.get("/api/posts");
@@ -23,6 +24,8 @@ export const getPosts = () => async (dispatch) => {
     });
   }
 };
+
+// GET LOGGED IN USERS POSTS
 
 // ADD POST
 export const addPost = (formData) => async (dispatch) => {

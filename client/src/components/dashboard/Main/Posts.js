@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import PostModal from "../../modal/PostModal";
 
-const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, getPosts, petProfile: { profile, profiles }, setAlert, likePost, unlikePost, deletePost, addPost }) => {
+const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { profile, profiles }, setAlert, likePost, unlikePost, deletePost, addPost }) => {
   const [open, setOpen] = useState(false);
   const [postType, setPostType] = useState("All");
 
@@ -29,6 +29,22 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
       setOpen(true);
     }
   };
+
+  let postToShow = [...posts];
+
+  //   const postsToShow = (id, auth) => {
+  //     let postArr = [];
+
+  //     if (postType === "All") {
+  //       postArr = [...posts];
+  //     }
+
+  //     return postArr;
+  //   };
+
+  if (postType !== "All") {
+    postToShow = [...posts].filter((post) => post.user._id === auth.user._id);
+  }
   return (
     <Fragment>
       {loading ? (
@@ -57,9 +73,9 @@ const Posts = ({ auth, post: { post, posts, userPosts, postsById, loading }, get
             <PostModal profile={profile} addPost={addPost} open={open} setOpen={setOpen} />
           </div>
           <Feed className="posts">
-            {posts &&
-              posts.length > 0 &&
-              posts.map((post) => (
+            {postToShow &&
+              postToShow.length > 0 &&
+              postToShow.map((post) => (
                 <Feed.Event className="post" key={post._id} style={{ background: generateRandomColor() }}>
                   <Feed.Label>
                     <Link to={`/petProfile/${post.user._id}`}>

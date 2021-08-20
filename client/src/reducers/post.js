@@ -3,8 +3,6 @@ import { GET_POST, GET_POSTS, GET_USER_POSTS, GET_POSTS_BY_ID, POST_ERROR, UPDAT
 const initialState = {
   post: null,
   posts: [],
-  userPosts: [],
-  postsById: [],
   loading: true,
   errors: {},
 };
@@ -23,18 +21,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         posts: payload,
-        loading: false,
-      };
-    case GET_USER_POSTS:
-      return {
-        ...state,
-        userPosts: payload,
-        loading: false,
-      };
-    case GET_POSTS_BY_ID:
-      return {
-        ...state,
-        postsById: payload,
         loading: false,
       };
     case UPDATE_POST_LIKES:
