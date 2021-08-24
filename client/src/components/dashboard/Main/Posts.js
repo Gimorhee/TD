@@ -49,6 +49,16 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
     postToShow = [...posts].filter((post) => post.user._id === auth.user._id);
   }
 
+  const handleYoursPosts = () => {
+    postToShow = [...posts].filter((post) => post.user._id === auth.user._id);
+
+    if (postToShow.length < 1) {
+      setAlert("You have not created any posts yet :(", "red");
+    } else {
+      setPostType("Yours");
+    }
+  };
+
   return (
     <Fragment>
       {loading ? (
@@ -60,12 +70,7 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
               <i className="fas fa-comments"></i>
               <span>ALL</span>
             </div>
-            <div
-              className={postType === "Yours" ? "toggler selected" : "toggler"}
-              onClick={() => {
-                setPostType("Yours");
-              }}
-            >
+            <div className={postType === "Yours" ? "toggler selected" : "toggler"} onClick={handleYoursPosts}>
               <i className="fas fa-comment"></i>
               <span>YOURS</span>
             </div>
