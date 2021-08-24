@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Button, Modal } from "semantic-ui-react";
 
-const PostModal = ({ profile, addPost, open, setOpen }) => {
+const PostModal = ({ profile, addPost, open, setOpen, setAlert }) => {
   const [text, setText] = useState("");
 
   const onSubmit = (text) => {
-    addPost({ text });
-    setText("");
-    setOpen(false);
+    if (!text) {
+      setAlert(`What is on your mind ${profile && profile.user.name} & ${profile && profile.name}?`, "teal");
+    } else {
+      addPost({ text });
+      setText("");
+      setOpen(false);
+    }
   };
 
   return (

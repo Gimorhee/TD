@@ -12,14 +12,27 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
 
   useEffect(() => {
     getPosts();
-  }, [getPosts]);
+  }, [getPosts, posts]);
 
-  const generateRandomColor = () => {
-    const postColors = ["#FEEFD0", "#C0D3EE", "#DDB8B9", "#AFCFB6", "#94A2B7", "#82BEB7", "#FEEFD0"];
+  const generateRandomColor = (i) => {
+    const postColors = ["#FEEFD0", "#C0D3EE", "#DDB8B9", "#AFCFB6", "#94A2B7", "#82BEB7"];
 
-    let randomIndex = Math.floor(Math.random() * postColors.length);
-
-    return postColors[randomIndex];
+    switch (i % postColors.length) {
+      case 0:
+        return postColors[0];
+      case 1:
+        return postColors[1];
+      case 2:
+        return postColors[2];
+      case 3:
+        return postColors[3];
+      case 4:
+        return postColors[4];
+      case 5:
+        return postColors[5];
+      default:
+        break;
+    }
   };
 
   const handlePostModal = (profile) => {
@@ -32,19 +45,10 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
 
   let postToShow = [...posts];
 
-  //   const postsToShow = (id, auth) => {
-  //     let postArr = [];
-
-  //     if (postType === "All") {
-  //       postArr = [...posts];
-  //     }
-
-  //     return postArr;
-  //   };
-
   if (postType !== "All") {
     postToShow = [...posts].filter((post) => post.user._id === auth.user._id);
   }
+
   return (
     <Fragment>
       {loading ? (
@@ -70,13 +74,13 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
               <span>ADD</span>
             </div>
 
-            <PostModal profile={profile} addPost={addPost} open={open} setOpen={setOpen} />
+            <PostModal profile={profile} addPost={addPost} open={open} setOpen={setOpen} setAlert={setAlert} />
           </div>
           <Feed className="posts">
             {postToShow &&
               postToShow.length > 0 &&
-              postToShow.map((post) => (
-                <Feed.Event className="post" key={post._id} style={{ background: generateRandomColor() }}>
+              postToShow.map((post, i) => (
+                <Feed.Event className="post" key={post._id} style={{ background: generateRandomColor(i) }}>
                   <Feed.Label>
                     <Link to={`/petProfile/${post.user._id}`}>
                       <img src={post.avatar} alt="user-avatar" />
