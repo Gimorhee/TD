@@ -1,10 +1,10 @@
 import React, { useEffect, useState, Fragment } from "react";
 import Spinner from "../../layout/Spinner";
-import { Button, Header, Image, Modal } from "semantic-ui-react";
-import { Card, Feed } from "semantic-ui-react";
+import { Feed } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import PostModal from "../../modal/PostModal";
+import { generatePostColor } from "../../../utils/functions";
 
 const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { profile, profiles }, setAlert, likePost, unlikePost, deletePost, addPost }) => {
   const [open, setOpen] = useState(false);
@@ -13,27 +13,6 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
   useEffect(() => {
     getPosts();
   }, [getPosts, posts]);
-
-  const generateRandomColor = (i) => {
-    const postColors = ["#FEEFD0", "#C0D3EE", "#DDB8B9", "#AFCFB6", "#94A2B7", "#82BEB7"];
-
-    switch (i % postColors.length) {
-      case 0:
-        return postColors[0];
-      case 1:
-        return postColors[1];
-      case 2:
-        return postColors[2];
-      case 3:
-        return postColors[3];
-      case 4:
-        return postColors[4];
-      case 5:
-        return postColors[5];
-      default:
-        break;
-    }
-  };
 
   const handlePostModal = (profile) => {
     if (profile === null) {
@@ -85,7 +64,7 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
             {postToShow &&
               postToShow.length > 0 &&
               postToShow.map((post, i) => (
-                <Feed.Event className="post" key={post._id} style={{ background: generateRandomColor(i) }}>
+                <Feed.Event className="post" key={post._id} style={{ background: generatePostColor(i) }}>
                   <Feed.Label>
                     <Link to={`/petProfile/${post.user._id}`}>
                       <img src={post.avatar} alt="user-avatar" />

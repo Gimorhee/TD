@@ -6,10 +6,12 @@ import UserPosts from "../Profile/UserPosts";
 import Sidebar from "../Sidebar";
 import { logout } from "../../../actions/auth";
 import { getPetProfileById } from "../../../actions/petProfile";
-import { getPosts } from "../../../actions/post";
+import { getPosts, likePost, unlikePost, deletePost, addPost } from "../../../actions/post";
 import { connect } from "react-redux";
 
-const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loading }, auth, logout, getPosts }) => {
+// import { setAlert } from "../../../actions/alert";
+
+const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loading }, auth, logout, getPosts, likePost, unlikePost, deletePost, addPost }) => {
   useEffect(() => {
     getPetProfileById(match.params.id);
     getPosts();
@@ -22,7 +24,7 @@ const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loadin
       ) : (
         <div className="userProfile">
           <UserPetProfile user={profile && profile.user} profile={profile} editable={false} />
-          <UserPosts post={post} match={match} />
+          <UserPosts profile={profile} auth={auth} post={post} match={match} likePost={likePost} unlikePost={unlikePost} deletePost={deletePost} />
           <Sidebar logout={logout} />
         </div>
       )}
@@ -37,6 +39,10 @@ Profile.propTypes = {
   logout: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
+  likePost: PropTypes.func.isRequired,
+  unlikePost: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  addPost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -45,4 +51,4 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPetProfileById, logout, getPosts })(Profile);
+export default connect(mapStateToProps, { getPetProfileById, logout, getPosts, likePost, unlikePost, deletePost, addPost })(Profile);

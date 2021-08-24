@@ -1599,24 +1599,270 @@ button {
   }
 
   // USER POSTS
-  .userPosts {
+  .userPostsTab {
     width: 60%;
-    height: 100vh;
-    overflow-y: scroll;
     padding: 15px;
+    height: 100vh;
+    background: #f9f9f9;
+    position: relative;
+
+    .menu {
+      border-bottom: 0 !important;
+
+      .item {
+        background: #eee !important;
+
+        font-size: 22px;
+
+        i {
+          margin-right: 5px;
+          font-size: 25px;
+        }
+      }
+    }
+
+    .tab {
+      height: calc(100% - 65px);
+      background: #eee;
+      border-top-right-radius: 5px !important;
+      overflow-y: scroll;
+
+      .userPosts {
+        width: 100%;
+        // background: #f5f5f5;
+        height: 100%;
+
+        .container {
+          height: 100%;
+
+          .posts {
+            display: flex;
+            flex-wrap: wrap;
+
+            .post {
+              margin: 15px 0;
+              padding: 25px 20px;
+              padding-bottom: 0;
+              border: 1px solid #eee;
+              border-radius: 20px;
+              box-shadow: 2px 2px 3px darkgrey;
+              cursor: pointer;
+              min-height: 160px;
+              transition: 0.3s ease-in-out all;
+              min-height: 200px;
+              // max-height: 250px;
+              width: calc(50% - 10px);
+              margin: 5px;
+              max-height: 275px !important;
+
+              display: flex;
+              flex-wrap: wrap;
+              position: relative;
+
+              .divider,
+              span {
+                color: #fff;
+              }
+
+              .summary {
+                background: rgba(255, 255, 255, 0.7);
+                padding: 10px;
+                margin-top: 5px;
+                border-radius: 5px;
+              }
+
+              .label {
+                width: 75px;
+                padding-top: 5px;
+                text-align: center;
+
+                img {
+                  transition: 0.3s ease-in-out all;
+
+                  &:hover {
+                    transform: scale(1.05);
+                  }
+                }
+              }
+
+              .content {
+                width: calc(100% - 95px);
+                p {
+                  margin: 0;
+                  text-transform: uppercase;
+                  font-weight: 600;
+                }
+
+                .summary {
+                  font-family: "Montserrat" !important;
+                  font-weight: 600;
+                  height: 80px;
+                }
+
+                .date {
+                  text-align: right;
+                  margin-top: 5px;
+                }
+              }
+
+              .usersAvatar {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: space-between;
+
+                .usersLiked,
+                .usersCommented {
+                  width: 49%;
+                  display: flex;
+                  flex-wrap: wrap;
+                  padding-top: 15px;
+                  padding-bottom: 5px;
+
+                  p {
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                    padding: 0;
+                    font-weight: 400;
+                    font-size: 14px !important;
+                    color: rgba(0, 0, 0, 0.4);
+                    font-size: 14px;
+                    font-weight: 600;
+                  }
+
+                  .avatar {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    background: rgba(255, 255, 255, 0.3);
+                    width: 100%;
+                    padding: 5px;
+                    border-radius: 10px;
+                    height: 45px;
+                    margin-top: 5px;
+
+                    img {
+                      width: 30px;
+                      height: 30px;
+                      margin: 2px;
+                      border-radius: 50%;
+                    }
+                  }
+                }
+
+                .usersCommented {
+                  justify-content: flex-start;
+
+                  p {
+                    text-align: start;
+                  }
+                }
+              }
+
+              .postBtns {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: transparent;
+
+                i {
+                  font-size: 17px;
+                  margin: 2px;
+                  transition: 0.3s ease-in-out all;
+                  position: absolute;
+
+                  &:hover {
+                    transform: scale(1.05);
+                  }
+                }
+
+                .fa-trash-alt {
+                  color: #252525;
+                  top: 7px;
+                  right: 7px;
+                }
+              }
+
+              .likeBtns {
+                display: flex;
+                justify-content: space-around;
+                background: #424242;
+                padding: 5px;
+                border-radius: 5px;
+
+                i {
+                  color: #fff;
+                  margin: 3px;
+                  font-size: 16px;
+                  transition: 0.3s ease-in-out all;
+
+                  &:hover {
+                    transform: scale(1.05);
+                  }
+                }
+              }
+
+              &:hover {
+                transform: translateY(-3px);
+              }
+            }
+          }
+
+          .noPosts {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+
+            h1 {
+              font-size: 33px;
+            }
+          }
+        }
+      }
+    }
 
     .cta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+
+      h2 {
+        margin: 0;
+      }
+
       a {
         display: block;
         background: #252525;
         border-radius: 5px;
         color: #fff;
-        padding: 15px;
+        padding: 13px;
         font-family: "Montserrat";
         font-weight: 600;
         font-size: 16.5px;
-        max-width: 200px;
+        max-width: 175px;
         text-align: center;
+        transition: 0.3s ease-in-out all;
+        margin-left: auto;
+
+        i {
+          margin-right: 10px;
+          transition: 0.3s ease-in-out all;
+        }
+
+        &:hover {
+          opacity: 0.8;
+
+          i {
+            transform: translateX(-3px);
+          }
+        }
       }
     }
   }
