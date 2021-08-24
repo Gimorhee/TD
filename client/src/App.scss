@@ -1451,10 +1451,20 @@ button {
             }
 
             .summary {
-              background: rgba(255, 255, 255, 0.7);
+              background: rgba(255, 255, 255, 0.5);
               padding: 10px;
               margin-top: 5px;
               border-radius: 5px;
+              transition: 0.3s ease-in-out all;
+
+              p {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-transform: initial !important;
+              }
             }
 
             .label {
@@ -1633,7 +1643,7 @@ button {
             }
 
             &:hover {
-              transform: translateY(-3px);
+              transform: translateY(-30px);
             }
           }
         }
@@ -1711,10 +1721,19 @@ button {
               }
 
               .summary {
-                background: rgba(255, 255, 255, 0.7);
+                background: rgba(255, 255, 255, 0.6);
                 padding: 10px;
                 margin-top: 5px;
                 border-radius: 5px;
+
+                p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 3;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  text-transform: initial !important;
+                }
               }
 
               .label {

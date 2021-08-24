@@ -65,7 +65,9 @@ const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePos
                           <p>
                             {post.name} & {post.pet}
                           </p>
-                          <Feed.Summary>{post.text}</Feed.Summary>
+                          <Feed.Summary>
+                            <p>{post.text}</p>
+                          </Feed.Summary>
                           <Feed.Date content={<Moment fromNow>{post.date}</Moment>} />
                         </Feed.Content>
                         <div className="usersAvatar">
