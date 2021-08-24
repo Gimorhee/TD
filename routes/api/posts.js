@@ -190,6 +190,7 @@ router.post("/comment/:post_id", [auth, check("text", "Text is required").not().
   try {
     const user = await User.findById(req.user.id).select("-password");
     const post = await Post.findById(req.params.post_id);
+    const petProfile = await PetProfile.findOne({ user: req.user.id });
 
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });
@@ -200,6 +201,7 @@ router.post("/comment/:post_id", [auth, check("text", "Text is required").not().
       text: req.body.text,
       name: user.name,
       avatar: user.avatar,
+      pet: petProfile.name,
     };
 
     post.comments.unshift(newComment);

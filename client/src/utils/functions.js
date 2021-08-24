@@ -1,6 +1,7 @@
-export const generatePostColor = (i) => {
-  const postColors = ["#FEEFD0", "#C0D3EE", "#DDB8B9", "#AFCFB6", "#94A2B7", "#82BEB7"];
+const postColors = ["#FEEFD0", "#C0D3EE", "#DDB8B9", "#AFCFB6", "#94A2B7", "#82BEB7"];
 
+// GENERATE POST BG COLORS
+export const generatePostColor = (i) => {
   switch (i % postColors.length) {
     case 0:
       return postColors[0];
@@ -17,4 +18,11 @@ export const generatePostColor = (i) => {
     default:
       break;
   }
+};
+
+// GENERATE RANDOM SINGLE POST COLOR
+export const generateRandomColor = () => {
+  const randomNum = Math.floor(Math.random() * postColors.length);
+
+  return postColors[randomNum];
 };
