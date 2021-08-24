@@ -7,6 +7,7 @@ import Auth from "./components/auth/Auth";
 import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import Profile from "./components/dashboard/Main/Profile";
+import Post from "./components/dashboard/Main/Post";
 // ACTIONS
 import { loadUser } from "./actions/auth";
 // UTILS
@@ -41,6 +42,7 @@ const App = () => {
               <Route exact path="/auth" component={Auth} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <Route exact path="/petProfile/:id" component={Profile} />
+              <Route exact path="/user/:user_id/post/:post_id" component={Post} />
             </Switch>
           </section>
         </Fragment>

@@ -29,7 +29,7 @@ const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePos
                 {userPosts && userPosts.length > 0 ? (
                   <Feed className="posts">
                     {userPosts.map((post, i) => (
-                      <Feed.Event className="post" style={{ background: generatePostColor(i) }}>
+                      <Feed.Event as="a" href={`/user/${post.user._id}/post/${post._id}`} className="post" style={{ background: generatePostColor(i) }}>
                         <Feed.Label>
                           <Link to={`/petProfile/${post.user._id}`}>
                             <img src={post.avatar} alt="user-avatar" />

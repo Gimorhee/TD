@@ -1440,6 +1440,7 @@ button {
             width: calc(50% - 10px);
             margin: 5px;
             max-height: 275px !important;
+            color: #252525 !important;
 
             display: flex;
             flex-wrap: wrap;
@@ -1473,6 +1474,8 @@ button {
 
             .content {
               width: calc(100% - 95px);
+              //   color: #252525 !important;
+
               p {
                 margin: 0;
                 text-transform: uppercase;
@@ -1658,6 +1661,7 @@ button {
               display: flex;
               flex-wrap: wrap;
               position: relative;
+              color: #252525 !important;
 
               .divider,
               span {
@@ -1687,6 +1691,7 @@ button {
 
               .content {
                 width: calc(100% - 95px);
+
                 p {
                   margin: 0;
                   text-transform: uppercase;

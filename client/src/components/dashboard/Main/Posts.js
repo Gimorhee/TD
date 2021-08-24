@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import Spinner from "../../layout/Spinner";
-import { Feed } from "semantic-ui-react";
+import { Feed, Card } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import PostModal from "../../modal/PostModal";
@@ -64,7 +64,7 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
             {postToShow &&
               postToShow.length > 0 &&
               postToShow.map((post, i) => (
-                <Feed.Event className="post" key={post._id} style={{ background: generatePostColor(i) }}>
+                <Feed.Event as="a" href={`/user/${post.user._id}/post/${post._id}`} className="post" key={post._id} style={{ background: generatePostColor(i) }}>
                   <Feed.Label>
                     <Link to={`/petProfile/${post.user._id}`}>
                       <img src={post.avatar} alt="user-avatar" />
