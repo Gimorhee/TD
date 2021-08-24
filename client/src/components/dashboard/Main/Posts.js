@@ -9,10 +9,14 @@ import { generatePostColor } from "../../../utils/functions";
 const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { profile, profiles }, setAlert, likePost, unlikePost, deletePost, addPost }) => {
   const [open, setOpen] = useState(false);
   const [postType, setPostType] = useState("All");
+  const [readMore, setReadMore] = useState({
+    status: false,
+    index: null,
+  });
 
   useEffect(() => {
     getPosts();
-  }, [getPosts, posts]);
+  }, [getPosts]);
 
   const handlePostModal = (profile) => {
     if (profile === null) {
@@ -58,13 +62,26 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
               <span>ADD</span>
             </div>
 
-            <PostModal profile={profile} addPost={addPost} open={open} setOpen={setOpen} setAlert={setAlert} />
+            <PostModal profile={profile} addPost={addPost} open={open} setOpen={setOpen} setAlert={setAlert} getPosts={getPosts} />
           </div>
           <Feed className="posts">
             {postToShow &&
               postToShow.length > 0 &&
               postToShow.map((post, i) => (
-                <Feed.Event as="a" href={`/user/${post.user._id}/post/${post._id}`} className="post" key={post._id} style={{ background: generatePostColor(i) }}>
+                <Feed.Event
+                  className="post"
+                  key={post._id}
+                  style={{ background: generatePostColor(i) }}
+                  onClick={() => {
+                    setReadMore({ status: !readMore.status, index: i });
+                  }}
+                  onMouseEnter={() => {
+                    setReadMore({ status: true, index: i });
+                  }}
+                  onMouseLeave={() => {
+                    setReadMore({ status: false, index: null });
+                  }}
+                >
                   <Feed.Label>
                     <Link to={`/petProfile/${post.user._id}`}>
                       <img src={post.avatar} alt="user-avatar" />
@@ -110,6 +127,11 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
                     )}
                   </div>
                   <div className="postBtns">{!auth.loading && auth.user._id === post.user._id && <i className="far fa-trash-alt" onClick={() => deletePost(post._id)}></i>}</div>
+                  <div className={readMore.status && readMore.index === i ? "postLink showLink" : "postLink"}>
+                    <Link style={{ color: generatePostColor(i) }} to={`/post/${post._id}`}>
+                      READ MORE
+                    </Link>
+                  </div>
                 </Feed.Event>
               ))}
           </Feed>

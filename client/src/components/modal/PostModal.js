@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "semantic-ui-react";
 
-const PostModal = ({ profile, addPost, open, setOpen, setAlert }) => {
+const PostModal = ({ profile, addPost, open, setOpen, setAlert, getPosts }) => {
   const [text, setText] = useState("");
 
   const onSubmit = (text) => {
@@ -11,6 +11,10 @@ const PostModal = ({ profile, addPost, open, setOpen, setAlert }) => {
       addPost({ text });
       setText("");
       setOpen(false);
+
+      setTimeout(() => {
+        getPosts();
+      }, 250);
     }
   };
 

@@ -2,6 +2,29 @@ import { GET_POST, GET_POSTS, POST_ERROR, UPDATE_POST_LIKES, DELETE_POST, ADD_PO
 import axios from "axios";
 import { setAlert } from "./alert";
 
+// GET A POST
+export const getPost = (postId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/posts/${postId}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err && err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 // GET ALL POSTS
 export const getPosts = () => async (dispatch) => {
   try {
