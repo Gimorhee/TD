@@ -6,6 +6,10 @@ import { generatePostColor } from "../../../utils/functions";
 
 const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePost }) => {
   const [userPosts, setUserPosts] = useState([]);
+  const [readMore, setReadMore] = useState({
+    status: false,
+    index: null,
+  });
 
   useEffect(() => {
     const filteredPosts = post.posts.filter((post) => post.user._id === match.params.id);
@@ -29,7 +33,19 @@ const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePos
                 {userPosts && userPosts.length > 0 ? (
                   <Feed className="posts">
                     {userPosts.map((post, i) => (
-                      <Feed.Event as="a" href={`/post/${post._id}`} className="post" style={{ background: generatePostColor(i) }}>
+                      <Feed.Event
+                        className="post"
+                        style={{ background: generatePostColor(i) }}
+                        onClick={() => {
+                          setReadMore({ status: !readMore.status, index: i });
+                        }}
+                        onMouseEnter={() => {
+                          setReadMore({ status: true, index: i });
+                        }}
+                        onMouseLeave={() => {
+                          setReadMore({ status: false, index: null });
+                        }}
+                      >
                         <Feed.Label>
                           <Link to={`/petProfile/${post.user._id}`}>
                             <img src={post.avatar} alt="user-avatar" />
@@ -75,6 +91,11 @@ const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePos
                           )}
                         </div>
                         <div className="postBtns">{!auth.loading && auth.user._id === post.user._id && <i className="far fa-trash-alt" onClick={() => deletePost(post._id)}></i>}</div>
+                        <div className={readMore.status && readMore.index === i ? "postLink showLink" : "postLink"}>
+                          <Link style={{ color: generatePostColor(i) }} to={`/post/${post._id}`}>
+                            READ MORE
+                          </Link>
+                        </div>
                       </Feed.Event>
                     ))}
                   </Feed>
