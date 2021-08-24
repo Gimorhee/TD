@@ -693,7 +693,7 @@ button {
   display: flex;
   justify-content: space-between;
 
-  //   USER PET PROFILE
+  // USER PET PROFILE
   .userPetProfile {
     width: 20%;
     // width: 400px;
@@ -1421,12 +1421,9 @@ button {
         }
 
         .posts {
-          height: calc(100% - 60px);
           margin-top: 5px;
-
           display: flex;
           flex-wrap: wrap;
-          //   justify-content: space-evenly;
 
           .post {
             margin: 15px 0;
@@ -1597,6 +1594,29 @@ button {
             }
           }
         }
+      }
+    }
+  }
+
+  // USER POSTS
+  .userPosts {
+    width: 60%;
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 15px;
+
+    .cta {
+      a {
+        display: block;
+        background: #252525;
+        border-radius: 5px;
+        color: #fff;
+        padding: 15px;
+        font-family: "Montserrat";
+        font-weight: 600;
+        font-size: 16.5px;
+        max-width: 200px;
+        text-align: center;
       }
     }
   }
