@@ -20,7 +20,7 @@ const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePos
     {
       menuItem: () => (
         <div className="ui attached tabular menu">
-          <a className="active item">
+          <a className="active item" style={{ background: "#eee" }}>
             <i className="fas fa-mail-bulk"></i> POSTS
           </a>
         </div>

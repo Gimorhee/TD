@@ -121,8 +121,8 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
                       <div className="usersCommented">
                         <p>Commented by..</p>
                         <div className="avatar">
-                          {post.comments.map((comment, i) => (
-                            <img src={comment.avatar} key={`avatar-${i}`} alt="user-avatar" />
+                          {[...new Set(post.comments.map((comment) => comment.user))].map((user, i) => (
+                            <img src={post.comments.find((c) => c.user === user).avatar} key={`avatar-${i}`} alt="user-avatar" />
                           ))}
                         </div>
                       </div>

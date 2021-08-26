@@ -3,14 +3,16 @@ import PropTypes from "prop-types";
 import UserPetProfile from "../UserPetProfile";
 import Spinner from "../../layout/Spinner";
 import Sidebar from "../Sidebar";
-import { getPost, likePost, unlikePost, addComment } from "../../../actions/post";
+import { getPost, likePost, unlikePost, addComment, deleteComment } from "../../../actions/post";
 import { connect } from "react-redux";
 import { getPetProfileById } from "../../../actions/petProfile";
+import { logout } from "../../../actions/auth";
 import { Feed, Tab } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
+import { Redirect } from "react-router-dom";
 
-const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { profile }, auth, logout, getPost, likePost, unlikePost, getPetProfileById, addComment }) => {
+const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { profile }, auth, logout, getPost, likePost, unlikePost, getPetProfileById, addComment, deleteComment }) => {
   const [text, setText] = useState("");
 
   useEffect(() => {
@@ -24,6 +26,10 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
     addComment(match.params.post_id, { text });
     setText("");
   };
+
+  if (auth.user === null) {
+    return <Redirect to="/" />;
+  }
 
   const panes = [
     {
@@ -110,7 +116,6 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
 
                     {/* COMMENTS */}
                     <div className="comments">
-                      {/* <header>{post && post.comments.length} Comment(s)</header> */}
                       <div className="container">
                         <form className="commentForm" onSubmit={(e) => onSubmit(e)}>
                           <div className="avatar">
@@ -125,8 +130,8 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                         <section className={post && post.comments.length === 0 && "noOverflow"}>
                           {post &&
                             post.comments.length > 0 &&
-                            post.comments.map((comment) => (
-                              <div className="comment">
+                            post.comments.map((comment, i) => (
+                              <div className="comment" key={comment._id}>
                                 <div className="avatar">
                                   <img src={comment.avatar} alt="user-avatar" />
                                 </div>
@@ -136,6 +141,11 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                                     <small>
                                       <Moment fromNow>{comment.date}</Moment>
                                     </small>
+                                    {auth && auth.user._id === comment.user && (
+                                      <button className="deleteBtn" onClick={() => deleteComment(post._id, comment._id)}>
+                                        <i className="far fa-trash-alt"></i>
+                                      </button>
+                                    )}
                                   </p>
 
                                   <p className="text">{comment.text}</p>
@@ -176,7 +186,7 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
         <div className="Post">
           <UserPetProfile user={profile && profile.user} profile={profile} editable={false} />
           <Tab panes={panes} className="userPostTab" />
-          <Sidebar />
+          <Sidebar logout={logout} />
         </div>
       )}
     </Fragment>
@@ -193,6 +203,7 @@ Post.propTypes = {
   likePost: PropTypes.func.isRequired,
   unlikePost: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -201,4 +212,4 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPost, likePost, unlikePost, getPetProfileById, addComment })(Post);
+export default connect(mapStateToProps, { getPost, likePost, unlikePost, getPetProfileById, addComment, logout, deleteComment })(Post);
