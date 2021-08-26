@@ -3,24 +3,27 @@ import PropTypes from "prop-types";
 import UserPetProfile from "../UserPetProfile";
 import Spinner from "../../layout/Spinner";
 import Sidebar from "../Sidebar";
-import { getPost, likePost, unlikePost, deletePost, addPost } from "../../../actions/post";
+import { getPost, likePost, unlikePost, addComment } from "../../../actions/post";
 import { connect } from "react-redux";
 import { getPetProfileById } from "../../../actions/petProfile";
 import { Feed, Tab } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { generateRandomColor } from "../../../utils/functions";
 import Moment from "react-moment";
 
-const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { profile }, auth, logout, getPost, likePost, unlikePost, deletePost, addPost, getPetProfileById }) => {
-  const [randomColor, setRandomColor] = useState("");
+const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { profile }, auth, logout, getPost, likePost, unlikePost, getPetProfileById, addComment }) => {
+  const [text, setText] = useState("");
 
   useEffect(() => {
     getPost(match.params.post_id);
     getPetProfileById(match.params.user_id);
-
-    // Set a random color to share throught the page
-    setRandomColor(generateRandomColor());
   }, [getPost, getPetProfileById]);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    addComment(match.params.post_id, { text });
+    setText("");
+  };
 
   const panes = [
     {
@@ -97,8 +100,8 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                         <div className="usersCommented">
                           <p>Commented by..</p>
                           <div className="avatar">
-                            {post.comments.map((comment, i) => (
-                              <img src={comment.avatar} key={`avatar-${i}`} alt="user-avatar" />
+                            {[...new Set(post.comments.map((comment) => comment.user))].map((user, i) => (
+                              <img src={post.comments.find((c) => c.user === user).avatar} key={`avatar-${i}`} alt="user-avatar" />
                             ))}
                           </div>
                         </div>
@@ -109,12 +112,12 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                     <div className="comments">
                       {/* <header>{post && post.comments.length} Comment(s)</header> */}
                       <div className="container">
-                        <form className="commentForm">
+                        <form className="commentForm" onSubmit={(e) => onSubmit(e)}>
                           <div className="avatar">
                             <img src={auth && auth.user && auth.user.avatar} alt="user-avatar" />
                           </div>
-                          <input type="text" placeholder="Add a comment" className="commentInput" />
-                          <input type="submit" value="REPLY" className="replyBtn" />
+                          <input type="text" placeholder="Add a comment" name="comment" value={text} className="commentInput" onChange={(e) => setText(e.target.value)} />
+                          <input type="submit" value="WOOF!" className="replyBtn" />
                         </form>
 
                         <header>{post && post.comments.length} Comment(s)</header>
@@ -189,8 +192,7 @@ Post.propTypes = {
   getPost: PropTypes.func.isRequired,
   likePost: PropTypes.func.isRequired,
   unlikePost: PropTypes.func.isRequired,
-  deletePost: PropTypes.func.isRequired,
-  addPost: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -199,4 +201,4 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPost, likePost, unlikePost, deletePost, addPost, getPetProfileById })(Post);
+export default connect(mapStateToProps, { getPost, likePost, unlikePost, getPetProfileById, addComment })(Post);

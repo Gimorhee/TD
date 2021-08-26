@@ -157,7 +157,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
       payload: res.data,
     });
 
-    setAlert("Thanks for the comment <3", "teal");
+    dispatch(setAlert("Thanks for the comment <3", "teal"));
   } catch (err) {
     dispatch({
       type: POST_ERROR,
