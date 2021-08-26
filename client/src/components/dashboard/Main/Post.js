@@ -6,7 +6,7 @@ import Sidebar from "../Sidebar";
 import { getPost, likePost, unlikePost, deletePost, addPost } from "../../../actions/post";
 import { connect } from "react-redux";
 import { getPetProfileById } from "../../../actions/petProfile";
-import { Feed, Tab, Divider } from "semantic-ui-react";
+import { Feed, Tab } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { generateRandomColor } from "../../../utils/functions";
 import Moment from "react-moment";
@@ -44,12 +44,30 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                       </Link>
                       <div className="likeBtns">
                         <div className="like">
-                          <i className="fas fa-thumbs-up" onClick={() => likePost(post && post._id)}></i>
+                          <i
+                            className="fas fa-thumbs-up"
+                            onClick={() => {
+                              likePost(post && post._id);
+
+                              setTimeout(() => {
+                                getPost(match.params.post_id);
+                              }, 200);
+                            }}
+                          ></i>
                           {post && post.likes.length > 0 && <span>{post && post.likes.length}</span>}
                         </div>
                         <span className="divider">|</span>
                         <div className="unlike">
-                          <i className="fas fa-thumbs-down" onClick={() => unlikePost(post._id)}></i>
+                          <i
+                            className="fas fa-thumbs-down"
+                            onClick={() => {
+                              unlikePost(post._id);
+
+                              setTimeout(() => {
+                                getPost(match.params.post_id);
+                              }, 200);
+                            }}
+                          ></i>
                         </div>
                       </div>
                     </Feed.Label>
