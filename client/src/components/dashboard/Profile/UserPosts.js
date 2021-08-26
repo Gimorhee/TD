@@ -94,7 +94,7 @@ const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePos
                         </div>
                         <div className="postBtns">{!auth.loading && auth.user._id === post.user._id && <i className="far fa-trash-alt" onClick={() => deletePost(post._id)}></i>}</div>
                         <div className={readMore.status && readMore.index === i ? "postLink showLink" : "postLink"}>
-                          <Link style={{ color: generatePostColor(i) }} to={`/user/${post.user._id}/post/${post._id}`}>
+                          <Link style={{ color: generatePostColor(i) }} to={`/user/${post.user._id}/post/${post._id}`} className={`color${generatePostColor(i).toString().split("#")[1]}`}>
                             READ MORE
                           </Link>
                         </div>

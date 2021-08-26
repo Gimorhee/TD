@@ -1627,7 +1627,62 @@ button {
                 font-weight: 600;
                 font-size: 18px;
 
-                transition: 2s ease-in-out all;
+                transition: 0.3s ease-in-out all;
+                position: relative;
+
+                &:after {
+                  content: "";
+                  position: absolute;
+                  left: 10%;
+                  width: 0;
+                  height: 1px;
+                  border-top: 2px solid #f7f7f7;
+                  top: 40px;
+                  transition: 0.3s ease-in-out all;
+                }
+
+                &:hover {
+                  &:after {
+                    width: calc(80%);
+                    left: 10%;
+                  }
+                }
+              }
+
+              .colorFEEFD0 {
+                &:after {
+                  border-top: 2px solid #feefd0 !important;
+                }
+              }
+
+              .colorC0D3EE {
+                &:after {
+                  border-top: 2px solid #c0d3ee !important;
+                }
+              }
+
+              .colorAFCFB6 {
+                &:after {
+                  border-top: 2px solid #afcfb6 !important;
+                }
+              }
+
+              .color94A2B7 {
+                &:after {
+                  border-top: 2px solid #94a2b7 !important;
+                }
+              }
+
+              .color827 {
+                &:after {
+                  border-top: 2px solid #82beb7 !important;
+                }
+              }
+
+              .colorDDB8B9 {
+                &:after {
+                  border-top: 2px solid #ddb8b9 !important;
+                }
               }
             }
 
@@ -1637,10 +1692,6 @@ button {
               left: 0px;
               height: 100px;
               box-shadow: 2px 2px 3px darkgrey;
-
-              a {
-                background: #000;
-              }
             }
 
             &:hover {
@@ -1897,7 +1948,62 @@ button {
                   font-weight: 600;
                   font-size: 18px;
 
-                  transition: 2s ease-in-out all;
+                  transition: 0.3s ease-in-out all;
+                  position: relative;
+
+                  &:after {
+                    content: "";
+                    position: absolute;
+                    left: 10%;
+                    width: 0;
+                    height: 1px;
+                    border-top: 2px solid #f7f7f7;
+                    top: 40px;
+                    transition: 0.3s ease-in-out all;
+                  }
+
+                  &:hover {
+                    &:after {
+                      width: calc(80%);
+                      left: 10%;
+                    }
+                  }
+                }
+
+                .colorFEEFD0 {
+                  &:after {
+                    border-top: 2px solid #feefd0 !important;
+                  }
+                }
+
+                .colorC0D3EE {
+                  &:after {
+                    border-top: 2px solid #c0d3ee !important;
+                  }
+                }
+
+                .colorAFCFB6 {
+                  &:after {
+                    border-top: 2px solid #afcfb6 !important;
+                  }
+                }
+
+                .color94A2B7 {
+                  &:after {
+                    border-top: 2px solid #94a2b7 !important;
+                  }
+                }
+
+                .color827 {
+                  &:after {
+                    border-top: 2px solid #82beb7 !important;
+                  }
+                }
+
+                .colorDDB8B9 {
+                  &:after {
+                    border-top: 2px solid #ddb8b9 !important;
+                  }
                 }
               }
 

@@ -58,7 +58,7 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                         {post && post.name} & {post && post.pet}
                       </p>
                       <Feed.Summary>
-                        <p>{post.text}</p>
+                        <p>{post && post.text}</p>
                       </Feed.Summary>
                       <Feed.Date content={<Moment fromNow>{post.date}</Moment>} />
                     </Feed.Content>
