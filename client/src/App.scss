@@ -1457,6 +1457,7 @@ button {
               margin-top: 5px;
               border-radius: 5px;
               transition: 0.3s ease-in-out all;
+              box-shadow: 1px 1px 2px darkgray;
 
               p {
                 display: -webkit-box;
@@ -1540,6 +1541,7 @@ button {
                   border-radius: 10px;
                   height: 45px;
                   margin-top: 5px;
+                  box-shadow: 1px 1px 2px darkgray;
 
                   img {
                     width: 30px;
@@ -2122,7 +2124,7 @@ button {
               justify-content: space-between;
 
               .label {
-                height: 25%;
+                height: 205px;
                 width: 125px;
 
                 .likeBtns {
@@ -2132,22 +2134,32 @@ button {
               }
 
               .content {
-                height: 25%;
-                width: calc(100% - 150px);
-                margin: 0 10px;
-                padding: 10px;
+                height: 205px;
+                width: calc(100% - 125px);
+                margin: 0;
+                padding-left: 15px;
 
-                p {
-                  font-size: 20px;
+                h4 {
+                  text-transform: uppercase;
+
+                  small {
+                    margin-left: 7px;
+                    font-size: 11px;
+                    color: darkgray;
+                    text-transform: lowercase;
+                    font-weight: 600;
+                  }
                 }
 
                 .summary {
-                  height: calc(100% - 32px);
+                  height: calc(100% - 35px);
                   overflow-y: scroll;
-                  background: rgba(0, 0, 0, 0.02);
+                  background: rgba(0, 0, 0, 0.03);
+                  box-shadow: 1px 1px 3px darkgray;
 
                   p {
                     font-size: 16px;
+                    font-weight: 500;
                   }
                 }
 
@@ -2158,7 +2170,6 @@ button {
 
               .usersAvatar {
                 height: 80px;
-                // position: absolute;
                 padding: 0;
                 margin: 0;
 
@@ -2167,35 +2178,33 @@ button {
                   padding: 0;
 
                   .avatar {
-                    background: rgba(0, 0, 0, 0.02);
+                    background: rgba(0, 0, 0, 0.03);
+                    box-shadow: 1px 1px 3px darkgray;
                   }
                 }
               }
 
               .comments {
                 width: 100%;
-                height: calc(65% - 55px);
-                // position: absolute;
+                height: calc(100% - 330px);
                 left: 15px;
-                // bottom: 105px;
                 bottom: 5px;
 
-                header {
-                  font-family: "Montserrat" !important;
-                  font-size: 16px;
-                  margin-bottom: 10px;
-                  font-weight: 500;
-                }
-
                 .container {
-                  //   background: rgba(255, 255, 255, 0.5);
-                  height: calc(100% - 45px);
+                  height: 100%;
+
+                  header {
+                    font-family: "Montserrat" !important;
+                    font-size: 15px;
+                    font-weight: 500;
+                    height: 30px;
+                  }
 
                   .commentForm {
                     display: flex;
                     flex-wrap: wrap;
                     width: 100%;
-                    padding-bottom: 15px;
+                    padding: 15px 0;
                     height: 110px;
 
                     .avatar {
@@ -2216,10 +2225,10 @@ button {
                       color: #252525;
                       padding: 0 10px;
                       font-size: 16px;
-                      border-bottom: 1px solid #252525;
+                      border-bottom: 2px solid darkgray;
 
                       &::placeholder {
-                        color: #252525;
+                        color: darkgray;
                         font-family: "Montserrat" !important;
                         font-size: 16px;
                         font-weight: 500;
@@ -2227,7 +2236,11 @@ button {
 
                       &:focus {
                         outline: none;
-                        border-bottom: 2px solid #252525;
+                        border-bottom: 2px solid #424242;
+
+                        &::placeholder {
+                          color: #424242;
+                        }
                       }
                     }
 
@@ -2245,9 +2258,12 @@ button {
                   }
 
                   section {
-                    height: calc(100% - 95px);
+                    height: calc(100% - 140px);
                     overflow-y: scroll;
-                    padding: 10px 0;
+                    padding: 10px;
+                    background: rgba(0, 0, 0, 0.03);
+                    box-shadow: 1px 1px 3px darkgray;
+                    // background: black;
 
                     .comment {
                       display: flex;
@@ -2255,9 +2271,11 @@ button {
                       justify-content: space-between;
                       width: 100%;
                       margin-bottom: 15px;
+
                       .avatar {
-                        width: 50px;
-                        height: 50px;
+                        width: 40px;
+                        height: 40px;
+                        margin-top: 3px;
 
                         img {
                           width: 100%;
@@ -2267,7 +2285,7 @@ button {
                       }
 
                       .info {
-                        width: calc(100% - 60px);
+                        width: calc(100% - 40px);
                         padding: 0 10px;
                         border-radius: 5px;
 
@@ -2290,12 +2308,21 @@ button {
                       }
                     }
 
+                    .comment:last-child {
+                      margin-bottom: 0;
+                    }
+
                     .noComment {
                       height: 100%;
                       display: flex;
                       align-items: center;
                       justify-content: center;
-                      background: rgba(0, 0, 0, 0.02);
+
+                      margin: 0 5px;
+
+                      h3 {
+                        font-weight: 600;
+                      }
                     }
                   }
 
@@ -2565,7 +2592,6 @@ button {
             padding: 5px;
             font-weight: 600;
             font-size: 16px;
-            // background: pink;
 
             span {
               font-size: 25px;

@@ -26,7 +26,7 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
     {
       menuItem: () => (
         <div className="ui attached tabular menu">
-          <a className="active item" style={{ background: "#fff" }}>
+          <a className="active item" style={{ background: "#f9f9f9" }}>
             <i className="fas fa-envelope"></i> POST
           </a>
         </div>
@@ -37,7 +37,7 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
             <Feed className="singlePost">
               <div className="container">
                 <Feed className="posts">
-                  <Feed.Event className="post" style={{ background: "#fff" }}>
+                  <Feed.Event className="post" style={{ background: "#f9f9f9" }}>
                     <Feed.Label>
                       <Link to={`/user/${match.params.user_id}/post/${match.params.post_id}`}>
                         <img src={post && post.avatar} alt="user-avatar" />
@@ -55,13 +55,14 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                     </Feed.Label>
 
                     <Feed.Content>
-                      <p>
+                      <h4>
                         {post && post.name} & {post && post.pet}
-                      </p>
+                        <small>{<Moment fromNow>{post && post.date}</Moment>}</small>
+                      </h4>
+
                       <Feed.Summary>
                         <p>{post && post.text}</p>
                       </Feed.Summary>
-                      <Feed.Date content={<Moment fromNow>{post && post.date}</Moment>} />
                     </Feed.Content>
                     <div className="usersAvatar">
                       {post && post.likes.length > 0 && (
@@ -88,7 +89,7 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
 
                     {/* COMMENTS */}
                     <div className="comments">
-                      <header>{post && post.comments.length} Comment(s)</header>
+                      {/* <header>{post && post.comments.length} Comment(s)</header> */}
                       <div className="container">
                         <form className="commentForm">
                           <div className="avatar">
@@ -98,7 +99,219 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                           <input type="submit" value="REPLY" className="replyBtn" />
                         </form>
 
+                        <header>{post && post.comments.length} Comment(s)</header>
+
                         <section className={post && post.comments.length === 0 && "noOverflow"}>
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                          {post &&
+                            post.comments.length > 0 &&
+                            post.comments.map((comment) => (
+                              <div className="comment">
+                                <div className="avatar">
+                                  <img src={comment.avatar} alt="user-avatar" />
+                                </div>
+                                <div className="info">
+                                  <p className="detail">
+                                    {comment.name} & {comment.pet}
+                                    <small>
+                                      <Moment fromNow>{comment.date}</Moment>
+                                    </small>
+                                  </p>
+
+                                  <p className="text">{comment.text}</p>
+                                </div>
+                              </div>
+                            ))}
                           {post &&
                             post.comments.length > 0 &&
                             post.comments.map((comment) => (
