@@ -12,7 +12,7 @@ export const getPost = (postId) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err && err.response.data.errors;
+    const errors = err && err.response && err.response.data.errors;
 
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));

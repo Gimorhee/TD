@@ -26,7 +26,7 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
     {
       menuItem: () => (
         <div className="ui attached tabular menu">
-          <a className="active item" style={{ background: randomColor }}>
+          <a className="active item" style={{ background: "#fff" }}>
             <i className="fas fa-envelope"></i> POST
           </a>
         </div>
@@ -37,7 +37,7 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
             <Feed className="singlePost">
               <div className="container">
                 <Feed className="posts">
-                  <Feed.Event className="post" style={{ background: randomColor }}>
+                  <Feed.Event className="post" style={{ background: "#fff" }}>
                     <Feed.Label>
                       <Link to={`/user/${match.params.user_id}/post/${match.params.post_id}`}>
                         <img src={post && post.avatar} alt="user-avatar" />
@@ -53,6 +53,7 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                         </div>
                       </div>
                     </Feed.Label>
+
                     <Feed.Content>
                       <p>
                         {post && post.name} & {post && post.pet}
@@ -60,10 +61,10 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                       <Feed.Summary>
                         <p>{post && post.text}</p>
                       </Feed.Summary>
-                      <Feed.Date content={<Moment fromNow>{post.date}</Moment>} />
+                      <Feed.Date content={<Moment fromNow>{post && post.date}</Moment>} />
                     </Feed.Content>
                     <div className="usersAvatar">
-                      {post.likes.length > 0 && (
+                      {post && post.likes.length > 0 && (
                         <div className="usersLiked">
                           <p>Liked by..</p>
                           <div className="avatar">
@@ -73,7 +74,7 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                           </div>
                         </div>
                       )}
-                      {post.comments.length > 0 && (
+                      {post && post.comments.length > 0 && (
                         <div className="usersCommented">
                           <p>Commented by..</p>
                           <div className="avatar">
@@ -87,19 +88,17 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
 
                     {/* COMMENTS */}
                     <div className="comments">
-                      <Divider />
-
-                      <header>{post.comments.length} Comment(s)</header>
+                      <header>{post && post.comments.length} Comment(s)</header>
                       <div className="container">
-                        <form>
+                        <form className="commentForm">
                           <div className="avatar">
                             <img src={auth && auth.user && auth.user.avatar} alt="user-avatar" />
                           </div>
-                          <input type="text" placeholder="Add a comment" className="input" />
+                          <input type="text" placeholder="Add a comment" className="commentInput" />
                           <input type="submit" value="REPLY" className="replyBtn" />
                         </form>
 
-                        <section>
+                        <section className={post && post.comments.length === 0 && "noOverflow"}>
                           {post &&
                             post.comments.length > 0 &&
                             post.comments.map((comment) => (
@@ -119,10 +118,16 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
                                 </div>
                               </div>
                             ))}
+
+                          {post && post.comments.length === 0 && (
+                            <div className="noComment">
+                              <h3>There are no comments yet. </h3>
+                            </div>
+                          )}
                         </section>
                       </div>
                     </div>
-                    <div className="postBtns">{!auth.loading && auth.user._id === post.user && <i className="far fa-trash-alt" onClick={() => deletePost(post._id)}></i>}</div>
+                    {/* <div className="postBtns">{!auth.loading && auth.user._id === post.user && <i className="far fa-trash-alt" onClick={() => deletePost(post._id)}></i>}</div> */}
                   </Feed.Event>
                 </Feed>
               </div>

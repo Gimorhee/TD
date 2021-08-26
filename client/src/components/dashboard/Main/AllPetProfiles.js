@@ -118,7 +118,7 @@ const AllPetProfiles = ({ petProfile: { profile, profiles } }) => {
                       </div>
                     ) : (
                       <div className="matchRatio">
-                        <p>Match Ratio: Unknown</p>
+                        <p>Match Ratio: 0%</p>
                         <p style={{ fontSize: 11.5, margin: 0 }}>
                           <i>(Update your pet's type to see match ratio)</i>
                         </p>
