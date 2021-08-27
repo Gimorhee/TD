@@ -195,19 +195,58 @@ router.put("/lookingFor", auth, async (req, res) => {
   }
 });
 
-// // @route DELETE api/petProfile/:petProfile_id
-// // @desc Delete a pet profile
-// // @access Private
-// router.delete("/:petProfile_id", auth, async (req, res) => {
-//   try {
-//     const petProfile = await PetProfile.findOne({ _id: req.params.petProfile_id });
+// @route PUT api/petProfile/like/:petProfile_id
+// @desc Like a Pet Profile
+// @access Private
+router.put(`/like/:petProfile_id`, auth, async (req, res) => {
+  try {
+    const petProfile = await PetProfile.findById(req.params.petProfile_id);
+    const user = await User.findById(req.user.id);
 
-//     res.json(petProfile);
-//   } catch (err) {
-//     console.error(err.message);
+    // Check if the pet profile has been liked already
+    if (petProfile.likes.filter((like) => like.user.toString() === req.user.id).length > 0) {
+      // return res.status(400).json({ msg: "Profile has been already liked" });
+      //   return res.status(400).json({ errors: [{ msg: "Profile has been already liked" }] });
+      return res.json("error");
+    }
 
-//     res.status(500).send("Server Error!");
-//   }
-// });
+    const newLike = {
+      user: req.user.id,
+      avatar: user.avatar,
+    };
+
+    petProfile.likes.unshift(newLike);
+
+    await petProfile.save();
+
+    res.json(petProfile.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error!");
+  }
+});
+
+// @route PUT api/petProfile/unlike/:petProfile_id
+// @desc Unlike a Pet Profile
+// @access Private
+router.put("/unlike/:petProfile_id", auth, async (req, res) => {
+  try {
+    const petProfile = await PetProfile.findById(req.params.petProfile_id);
+
+    // Check if the pet profile has been already liked
+    if (petProfile.likes.filter((like) => like.user.toString() === req.user.id).length === 0) {
+      return res.status(400).json({ msg: "You must like the profile first!" });
+    }
+
+    petProfile.likes = petProfile.likes.filter((like) => like.user.toString() !== req.user.id);
+
+    await petProfile.save();
+
+    res.json(petProfile.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Sever Error!");
+  }
+});
 
 module.exports = router;

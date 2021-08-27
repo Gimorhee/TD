@@ -8,6 +8,7 @@ import {
   OPEN_PET_PROFILE_MODAL,
   PUT_LOOKFOR_PROFILE_INFO,
   GET_ALL_PET_PROFILES,
+  UPDATE_PET_PROFILE_LIKES,
 } from "../actions/types";
 
 const initialState = {
@@ -53,6 +54,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profile: payload,
+        loading: false,
+      };
+    case UPDATE_PET_PROFILE_LIKES:
+      return {
+        ...state,
+        petProfiles: state.petProfiles.map((petProfile) => (petProfile._id === payload.petProfileId ? { ...petProfile, likes: payload.likes } : petProfile)),
         loading: false,
       };
     case CLOSE_PET_PROFILE_MODAL:

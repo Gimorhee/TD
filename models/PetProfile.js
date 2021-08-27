@@ -60,6 +60,17 @@ const PetProfileSchema = new mongoose.Schema({
       type: String,
     },
   },
+  likes: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+      },
+      avatar: {
+        type: String,
+      },
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

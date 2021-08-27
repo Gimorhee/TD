@@ -5,14 +5,14 @@ import Posts from "./Main/Posts";
 import PropTypes from "prop-types";
 
 // ACTIONS
-import { getAllPetProfiles } from "../../actions/petProfile";
+import { getAllPetProfiles, likePetProfile, unlikePetProfile } from "../../actions/petProfile";
 import { getPosts, likePost, unlikePost, deletePost, addPost } from "../../actions/post";
 import { setAlert } from "../../actions/alert";
 
 // REDUX
 import { connect } from "react-redux";
 
-const Main = ({ auth, petProfile, getAllPetProfiles, post, getPosts, setAlert, likePost, unlikePost, deletePost, addPost }) => {
+const Main = ({ auth, petProfile, likePetProfile, unlikePetProfile, getAllPetProfiles, post, getPosts, setAlert, likePost, unlikePost, deletePost, addPost }) => {
   useEffect(() => {
     getAllPetProfiles();
   }, [getAllPetProfiles]);
@@ -22,7 +22,7 @@ const Main = ({ auth, petProfile, getAllPetProfiles, post, getPosts, setAlert, l
       menuItem: "PROFILES",
       render: () => (
         <Tab.Pane attached={false}>
-          <AllPetProfiles petProfile={petProfile} />
+          <AllPetProfiles auth={auth} petProfile={petProfile} likePetProfile={likePetProfile} unlikePetProfile={unlikePetProfile} />
         </Tab.Pane>
       ),
     },
@@ -56,6 +56,8 @@ Main.propTypes = {
   unlikePost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
   addPost: PropTypes.func.isRequired,
+  likePetProfile: PropTypes.func.isRequired,
+  unlikePetProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -64,4 +66,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getAllPetProfiles, getPosts, setAlert, likePost, unlikePost, deletePost, addPost })(Main);
+export default connect(mapStateToProps, { likePetProfile, unlikePetProfile, getAllPetProfiles, getPosts, setAlert, likePost, unlikePost, deletePost, addPost })(Main);

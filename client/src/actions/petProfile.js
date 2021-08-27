@@ -9,6 +9,7 @@ import {
   CLEAR_PET_PROFILE,
   GET_ALL_PET_PROFILES,
   GET_PET_PROFILE_BY_ID,
+  UPDATE_PET_PROFILE_LIKES,
 } from "../actions/types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -176,5 +177,54 @@ export const deleteAccount = () => async (dispatch) => {
         payload: { msg: err.response.statusText, status: err.response.status },
       });
     }
+  }
+};
+
+// LIKE THE PET PROFILE
+export const likePetProfile = (petProfileId) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/petProfile/like/${petProfileId}`);
+
+    dispatch({
+      type: UPDATE_PET_PROFILE_LIKES,
+      payload: {
+        petProfileId,
+        likes: res.data,
+      },
+    });
+
+    dispatch(setAlert("Thanks for the like :)", "teal"));
+  } catch (err) {
+    // dispatch({
+    //   type: PET_PROFILE_ERROR,
+    //   payload: { msg: err.response.statusText, status: err.response.status },
+    // });
+
+    console.log("=> ", err);
+    // dispatch(setAlert("You've already liked this post :)", "red"));
+  }
+};
+
+// UNLIKE THE PET PROFILE
+export const unlikePetProfile = (petProfileId) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/petProfile/unlike/${petProfileId}`);
+
+    dispatch({
+      type: UPDATE_PET_PROFILE_LIKES,
+      payload: {
+        petProfileId,
+        likes: res.data,
+      },
+    });
+
+    dispatch(setAlert("Thanks for the like :)", "teal"));
+  } catch (err) {
+    dispatch({
+      type: PET_PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+
+    dispatch(setAlert("Dislike is not allowed here :(", "red"));
   }
 };

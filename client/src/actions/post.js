@@ -89,6 +89,7 @@ export const likePost = (postId) => async (dispatch) => {
         likes: res.data,
       },
     });
+
     dispatch(setAlert("Thanks for the like :)", "teal"));
   } catch (err) {
     dispatch({

@@ -5,7 +5,7 @@ import { Divider, Progress } from "semantic-ui-react";
 import Spinner from "../../layout/Spinner";
 import { Link } from "react-router-dom";
 
-const AllPetProfiles = ({ petProfile: { profile, profiles } }) => {
+const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { profile, profiles } }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -85,21 +85,39 @@ const AllPetProfiles = ({ petProfile: { profile, profiles } }) => {
             <Slider {...settings}>
               {profiles &&
                 profiles.map((p, i) => (
-                  <Link to={`/petProfile/${p.user._id}`} className="singleProfile" key={`petProfile-${i}`}>
-                    <h4>
-                      <i className="fas fa-user-circle"></i> {p.user.name}
-                    </h4>
+                  <div className="singleProfile" key={`petProfile-${i}`}>
+                    <div className="like">
+                      {[...new Set(p.likes.map((like) => like.user))].includes(auth.user._id) === true ? (
+                        <i className="fas fa-heart" onClick={() => likePetProfile(p._id)}>
+                          yes
+                        </i>
+                      ) : (
+                        <i className="far fa-heart" onClick={() => unlikePetProfile(p._id)}>
+                          no
+                        </i>
+                      )}
+                      {/* {[...new Set(p.likes.map((like) => like.user))].includes(auth.user._id) === true ? <span onClick={() => likePetProfile(p._id)}>YES</span> : <span>NO</span>}{" "} */}
+                    </div>
+                    <Link to={`/petProfile/${p.user._id}`}>
+                      <h4>
+                        <i className="fas fa-user-circle"></i> {p.user.name}
+                      </h4>
+                    </Link>
 
                     <div className="avatar">
-                      <img src={p.user.avatar} alt="" />
+                      <Link to={`/petProfile/${p.user._id}`}>
+                        <img src={p.user.avatar} alt="" />
+                      </Link>
                     </div>
 
                     <div className="info">
-                      <h3>
-                        <i className="fas fa-paw"></i> {p.name}
-                      </h3>
+                      <Link to={`/petProfile/${p.user._id}`}>
+                        <h3>
+                          <i className="fas fa-paw"></i> {p.name}
+                        </h3>
+                      </Link>
                       <p>
-                        {p.breed} | {p.gender} | {p.location}
+                        {p.gender} | {p.location} | {p.age} yrs
                       </p>
                     </div>
 
@@ -159,7 +177,7 @@ const AllPetProfiles = ({ petProfile: { profile, profiles } }) => {
                         <i>No Social Network Info for this user yet.</i>
                       </div>
                     )}
-                  </Link>
+                  </div>
                 ))}
             </Slider>
           </div>
