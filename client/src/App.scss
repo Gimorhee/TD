@@ -1241,8 +1241,15 @@ button {
                       right: 10px;
                       font-size: 18px;
                       transition: 0.3s ease-in-out all;
-                      color: red;
                       cursor: pointer;
+
+                      span {
+                        margin-right: 3px;
+                      }
+
+                      .dontShow {
+                        opacity: 0;
+                      }
                     }
 
                     &:hover {

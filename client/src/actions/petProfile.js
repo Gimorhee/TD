@@ -194,14 +194,14 @@ export const likePetProfile = (petProfileId) => async (dispatch) => {
     });
 
     dispatch(setAlert("Thanks for the like :)", "teal"));
+    console.log(res.data);
   } catch (err) {
-    // dispatch({
-    //   type: PET_PROFILE_ERROR,
-    //   payload: { msg: err.response.statusText, status: err.response.status },
-    // });
+    dispatch({
+      type: PET_PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
 
-    console.log("=> ", err);
-    // dispatch(setAlert("You've already liked this post :)", "red"));
+    dispatch(setAlert("You've already liked this post :)", "red"));
   }
 };
 
@@ -218,7 +218,7 @@ export const unlikePetProfile = (petProfileId) => async (dispatch) => {
       },
     });
 
-    dispatch(setAlert("Thanks for the like :)", "teal"));
+    dispatch(setAlert("Disliked the profile :)", "red"));
   } catch (err) {
     dispatch({
       type: PET_PROFILE_ERROR,

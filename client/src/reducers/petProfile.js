@@ -59,7 +59,7 @@ export default function (state = initialState, action) {
     case UPDATE_PET_PROFILE_LIKES:
       return {
         ...state,
-        petProfiles: state.petProfiles.map((petProfile) => (petProfile._id === payload.petProfileId ? { ...petProfile, likes: payload.likes } : petProfile)),
+        profiles: state.profiles.map((petProfile) => (petProfile._id === payload.petProfileId ? { ...petProfile, likes: payload.likes } : petProfile)),
         loading: false,
       };
     case CLOSE_PET_PROFILE_MODAL:

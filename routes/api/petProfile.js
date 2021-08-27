@@ -205,9 +205,8 @@ router.put(`/like/:petProfile_id`, auth, async (req, res) => {
 
     // Check if the pet profile has been liked already
     if (petProfile.likes.filter((like) => like.user.toString() === req.user.id).length > 0) {
-      // return res.status(400).json({ msg: "Profile has been already liked" });
+      return res.status(400).json({ msg: "Profile has been already liked" });
       //   return res.status(400).json({ errors: [{ msg: "Profile has been already liked" }] });
-      return res.json("error");
     }
 
     const newLike = {

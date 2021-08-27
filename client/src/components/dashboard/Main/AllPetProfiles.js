@@ -88,15 +88,16 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                   <div className="singleProfile" key={`petProfile-${i}`}>
                     <div className="like">
                       {[...new Set(p.likes.map((like) => like.user))].includes(auth.user._id) === true ? (
-                        <i className="fas fa-heart" onClick={() => likePetProfile(p._id)}>
-                          yes
-                        </i>
+                        <Fragment>
+                          <span className={p.likes.length === 0 && "dontShow"}>{p.likes.length}</span>
+                          <i className="fas fa-heart" onClick={() => unlikePetProfile(p._id)}></i>
+                        </Fragment>
                       ) : (
-                        <i className="far fa-heart" onClick={() => unlikePetProfile(p._id)}>
-                          no
-                        </i>
+                        <Fragment>
+                          <span className={p.likes.length === 0 && "dontShow"}>{p.likes.length}</span>
+                          <i className="far fa-heart" onClick={() => likePetProfile(p._id)}></i>
+                        </Fragment>
                       )}
-                      {/* {[...new Set(p.likes.map((like) => like.user))].includes(auth.user._id) === true ? <span onClick={() => likePetProfile(p._id)}>YES</span> : <span>NO</span>}{" "} */}
                     </div>
                     <Link to={`/petProfile/${p.user._id}`}>
                       <h4>
