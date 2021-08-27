@@ -62,7 +62,7 @@ const Posts = ({ auth, post: { post, posts, loading }, getPosts, petProfile: { p
               <span>ADD</span>
             </div>
 
-            <PostModal profile={profile} addPost={addPost} open={open} setOpen={setOpen} setAlert={setAlert} getPosts={getPosts} />
+            <PostModal auth={auth} profile={profile} addPost={addPost} open={open} setOpen={setOpen} setAlert={setAlert} getPosts={getPosts} />
           </div>
           <Feed className="posts">
             {postToShow &&

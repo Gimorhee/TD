@@ -2554,44 +2554,52 @@ button {
           flex-wrap: wrap;
           align-items: center;
 
-          .optionContainer {
-            margin: 5px;
-            display: flex;
+          p {
+            font-size: 13px;
 
-            button {
-              padding: 10px;
-              background: #252525;
-              color: #fff;
-              cursor: pointer;
-              height: 40px;
-              font-family: "Montserrat";
-            }
-
-            .gravatarBtn {
-              border-top-left-radius: 5px;
-              border-bottom-left-radius: 5px;
-            }
-
-            .selectFileBtn {
-              border-radius: 5px;
-              padding: 10px 20px;
-              // text-transform: uppercase;
-            }
-
-            label {
-              font-family: "Montserrat";
-              display: block;
-              // height: 40px !important;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              padding: 5px 10px;
-              background: #fff;
-              border: 2px solid #252525;
-              border-top-right-radius: 5px;
-              border-bottom-right-radius: 5px;
+            a {
+              color: #252525;
+              text-decoration: underline;
             }
           }
+          //   .optionContainer {
+          //     margin: 5px;
+          //     display: flex;
+
+          //     button {
+          //       padding: 10px;
+          //       background: #252525;
+          //       color: #fff;
+          //       cursor: pointer;
+          //       height: 40px;
+          //       font-family: "Montserrat";
+          //     }
+
+          //     .gravatarBtn {
+          //       border-top-left-radius: 5px;
+          //       border-bottom-left-radius: 5px;
+          //     }
+
+          //     .selectFileBtn {
+          //       border-radius: 5px;
+          //       padding: 10px 20px;
+          //       // text-transform: uppercase;
+          //     }
+
+          //     label {
+          //       font-family: "Montserrat";
+          //       display: block;
+          //       // height: 40px !important;
+          //       display: flex;
+          //       justify-content: center;
+          //       align-items: center;
+          //       padding: 5px 10px;
+          //       background: #fff;
+          //       border: 2px solid #252525;
+          //       border-top-right-radius: 5px;
+          //       border-bottom-right-radius: 5px;
+          //     }
+          //   }
         }
 
         .mainImage {
@@ -2635,7 +2643,8 @@ button {
             }
           }
 
-          input {
+          input,
+          select {
             background: #f7f7f7;
             width: 60%;
             border: none;
@@ -2646,6 +2655,12 @@ button {
 
             &::placeholder {
               font-size: 14px;
+            }
+
+            // FOR SELECT
+            .default {
+              opacity: 0.8;
+              font-size: 20px;
             }
           }
         }

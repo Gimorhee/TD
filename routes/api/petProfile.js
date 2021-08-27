@@ -70,7 +70,7 @@ router.post(
     [
       check("name", "Name is required").not().isEmpty(),
       check("age", "Age is required").not().isEmpty(),
-      //   check("breed", "Breed is required").not().isEmpty(),
+      check("location", "Location is required").not().isEmpty(),
       check("gender", "Gender is required").not().isEmpty(),
       check("characteristics", "Please choose 3 characteristics").not().isEmpty(),
       check("description", "Description is required").not().isEmpty(),
@@ -83,7 +83,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, age, breed, gender, characteristics, location, description, youtube, twitter, facebook, instagram } = req.body;
+    const { name, age, breed, gender, characteristics, location, description, youtube, twitter, facebook, instagram, forLocation, forGender, forAge, forDescription, forWhatfor } = req.body;
 
     // Pet Profile Object
     let petProfileObj = {};
@@ -108,6 +108,14 @@ router.post(
     if (twitter) petProfileObj.social.twitter = twitter;
     if (facebook) petProfileObj.social.facebook = facebook;
     if (instagram) petProfileObj.social.instagram = instagram;
+
+    // Pet Profile LookingFor Object
+    petProfileObj.lookingFor = {};
+    if (forLocation) petProfileObj.lookingFor.location = forLocation;
+    if (forGender) petProfileObj.lookingFor.gender = forGender;
+    if (forAge) petProfileObj.lookingFor.age = forAge;
+    if (forDescription) petProfileObj.lookingFor.description = forDescription;
+    if (forWhatfor) petProfileObj.lookingFor.whatfor = forWhatfor;
 
     try {
       let petProfile = await PetProfile.findOne({ user: req.user.id });

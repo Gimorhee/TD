@@ -169,12 +169,6 @@ const UserPetProfile = ({ user, profile, openPetProfileModal, editable }) => {
                   <Divider />
 
                   <div className="detail">
-                    <h3>BREED: </h3>
-                    <p>{profile && profile.breed}</p>
-                  </div>
-                  <Divider />
-
-                  <div className="detail">
                     <h3>GENDER:</h3>
                     <p>{profile && profile.gender}</p>
                   </div>

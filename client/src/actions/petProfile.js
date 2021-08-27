@@ -79,7 +79,7 @@ export const putPetProfile =
         payload: res.data,
       });
 
-      dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "teal"));
+      dispatch(setAlert(edit ? "Profile Updated" : "Profile Updated", "teal"));
 
       dispatch({
         type: CLOSE_PET_PROFILE_MODAL,

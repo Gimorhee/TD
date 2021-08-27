@@ -10,7 +10,6 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
   const [formData, setFormData] = useState({
     name: "",
     age: "",
-    breed: "",
     gender: "",
     characteristics: [],
     description: "",
@@ -19,25 +18,21 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
     twitter: "",
     instagram: "",
     facebook: "",
+    //
+
+    forLocation: "Any",
+    forGender: "Any",
+    forAge: "Any",
+    forWhatfor: "Any",
+    forDescription: "",
   });
 
-  const { name, age, breed, gender, characteristics, description, location, lookingFor, youtube, twitter, instagram, facebook } = formData;
-
-  // LOOKINGFOR FORM DATA
-  const [lookingForData, setLookingForData] = useState({
-    age: "",
-    breed: "",
-    location: "",
-    description: "",
-    gender: "",
-    whatfor: "",
-  });
+  const { name, age, gender, characteristics, description, location, lookingFor, youtube, twitter, instagram, facebook, forLocation, forGender, forAge, forWhatfor, forDescription } = formData;
 
   useEffect(() => {
     if (profile) {
       setFormData({
         age: profile.age,
-        breed: profile.breed,
         gender: profile.gender,
         characteristics: profile.characteristics,
         description: profile.description,
@@ -48,24 +43,18 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
         instagram: profile && profile.social && profile.social.instagram,
         facebook: profile && profile.social && profile.social.facebook,
         name: profile.name,
+        forLocation: profile && profile.lookingFor && profile.lookingFor.location,
+        forGender: profile && profile.lookingFor && profile.lookingFor.gender,
+        forAge: profile && profile.lookingFor && profile.lookingFor.age,
+        forWhatfor: profile && profile.lookingFor && profile.lookingFor.whatfor,
+        forDescription: profile && profile.lookingFor && profile.lookingFor.description,
       });
-
-      setLookingForData(profile.lookingFor);
     }
   }, [profile]);
 
-  //   FOR NORMAL
   const onChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  // FOR LOOKING FOR
-  const lookingForChange = (e) => {
-    setLookingForData({
-      ...lookingForData,
       [e.target.name]: e.target.value,
     });
   };
@@ -74,7 +63,6 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
     const newFormData = {
       name,
       age,
-      breed,
       gender,
       characteristics,
       description,
@@ -84,24 +72,24 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
       twitter,
       instagram,
       facebook,
+      forLocation,
+      forGender,
+      forAge,
+      forWhatfor,
+      forDescription,
     };
 
+    if (name === "" || age === "" || gender === "" || description === "") {
+      setAlert("Please fill all the required fields", "red");
+    }
+
     if (characteristics.length < 3) {
-      setAlert("Please select 3 characteristics of your pet", "red");
+      //   putPetProfile(newFormData);
+      setAlert("Please select 3 characteristics", "red");
     }
 
     if (characteristics.length === 3) {
       putPetProfile(newFormData);
-    }
-  };
-
-  const handleLookFor = () => {
-    const { age, breed, gender, location, description, whatfor } = lookingForData;
-
-    if (age === "" && breed === "" && gender === "" && location === "" && description === "" && whatfor === "") {
-      setAlert("Please fill out at least one of the optional forms", "red");
-    } else {
-      putLookingFor(lookingForData);
     }
   };
 
@@ -177,17 +165,10 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
             <img src={user && user.avatar} alt="main-petfile-image" />
           </div>
           <div className="options">
-            <div className="optionContainer">
-              {/* <input type="checkbox" name="gravatar" id="" className="gravaterCheckBtn" /> */}
-              <button className="gravatarBtn">
-                <i className="fas fa-check"></i>
-                {/* <i className="fas fa-times"></i> */}
-              </button>
-              <label>Use Gravatar</label>
-            </div>
-            <div className="optionContainer">
-              <button className="selectFileBtn">Select File</button>
-            </div>
+            {/* TODO: TOGGLE GRAVATAR IMAGE & UPLOAD IMAGE (MAYBE)  */}
+            <p>
+              Please use <a href="https://en.gravatar.com/">Gravatar</a> email to set the profile image.
+            </p>
           </div>
         </div>
 
@@ -196,37 +177,54 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
             <label>
               NAME <span>*</span>
             </label>
-            <input type="text" name="name" value={formData.name} onChange={(e) => onChange(e)} />
+            <input type="text" name="name" placeholder="Your pet's name" value={formData.name} onChange={(e) => onChange(e)} />
           </div>
           <Divider />
           <div className="inputContainer">
             <label>
               AGE <span>*</span>
             </label>
-            <input type="text" name="age" value={formData.age} onChange={(e) => onChange(e)} />
+            <input type="number" name="age" min="1" value={formData.age} onChange={(e) => onChange(e)} />
           </div>
           <Divider />
           <div className="inputContainer">
             <label>
               GENDER <span>*</span>
             </label>
-            <input type="text" name="gender" value={formData.gender} onChange={(e) => onChange(e)} />
+            <select name="gender" value={formData.gender} onChange={(e) => onChange(e)}>
+              <option value="" disabled selected className="default"></option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
             <div></div>
           </div>
           <Divider />
           <div className="inputContainer">
-            <label>LOCATION</label>
-            <input type="text" name="location" placeholder="Ex) Vancouver" value={formData.location} onChange={(e) => onChange(e)} />
+            <label>
+              LOCATION <span>*</span>
+            </label>
+            <select name="location" value={formData.location} onChange={(e) => onChange(e)}>
+              <option value="" disabled selected className="default"></option>
+              <option value="Abbotsford">Abbotsford</option>
+              <option value="Burnaby">Burnaby</option>
+              <option value="Chilliwack">Chilliwack</option>
+              <option value="Coquitlam">Coquitlam</option>
+              <option value="Delta">Delta</option>
+              <option value="Langley">Langley</option>
+              <option value="Maple Ridge">Maple Ridge</option>
+              <option value="New Westminster">New Westminster</option>
+              <option value="Port Moody">Port Moody</option>
+              <option value="Richmond">Richmond</option>
+              <option value="Surrey">Surrey</option>
+              <option value="Vancouver">Vancouver</option>
+              <option value="White Rock">White Rock</option>
+            </select>
           </div>
-          <Divider />
-          <div className="inputContainer">
-            <label>BREED</label>
-            <input type="text" name="breed" value={formData.breed} placeholder="(optional)" onChange={(e) => onChange(e)} />
-          </div>
+
           <Divider />
           <div className="inputContainer description">
             <label>
-              DESCRIPTION <span>*</span>
+              DESCRIPTION<span>*</span>
             </label>
             <textarea type="text" name="description" placeholder="Tell us more about your lovely pet!" value={formData.description} onChange={(e) => onChange(e)} />
           </div>
@@ -283,42 +281,87 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
             <div className="opener">
               <div className="inputContainer">
                 <label>AGE</label>
-                <input type="text" name="age" placeholder="Ex) Any, ..." value={lookingForData && lookingForData.age} onChange={(e) => lookingForChange(e)} />
-              </div>
-              <Divider />
-              <div className="inputContainer">
-                <label>BREED</label>
-                <input type="text" name="breed" placeholder="Ex) Any, ..." value={lookingForData && lookingForData.breed} onChange={(e) => lookingForChange(e)} />
+
+                <select name="forAge" name="forAge" value={formData.forAge} value={formData && formData.forAge} onChange={(e) => onChange(e)}>
+                  <option value="" disabled selected className="default"></option>
+                  <option value="Any">Any</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                </select>
               </div>
               <Divider />
               <div className="inputContainer">
                 <label>GENDER</label>
-                <input type="text" name="gender" placeholder="Ex) Any, ..." value={lookingForData && lookingForData.gender} onChange={(e) => lookingForChange(e)} />
+                <select name="forGender" value={formData.forGender} onChange={(e) => onChange(e)}>
+                  <option value="" disabled selected className="default"></option>
+                  <option value="Any">Any</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
               </div>
               <Divider />
               <div className="inputContainer">
                 <label>LOCATION</label>
-                <input type="text" name="location" placeholder="Ex) Any, Vancouver, ..." value={lookingForData && lookingForData.location} onChange={(e) => lookingForChange(e)} />
+                <select name="forLocation" value={formData && formData.forLocation} onChange={(e) => onChange(e)}>
+                  <option value="" disabled selected className="default"></option>
+                  <option value="Any">Any</option>
+                  <option value="Abbotsford">Abbotsford</option>
+                  <option value="Burnaby">Burnaby</option>
+                  <option value="Chilliwack">Chilliwack</option>
+                  <option value="Coquitlam">Coquitlam</option>
+                  <option value="Delta">Delta</option>
+                  <option value="Langley">Langley</option>
+                  <option value="Maple Ridge">Maple Ridge</option>
+                  <option value="New Westminster">New Westminster</option>
+                  <option value="Port Moody">Port Moody</option>
+                  <option value="Richmond">Richmond</option>
+                  <option value="Surrey">Surrey</option>
+                  <option value="Vancouver">Vancouver</option>
+                  <option value="White Rock">White Rock</option>
+                </select>
               </div>
               <Divider />
               <div className="inputContainer description">
                 <label>WHAT IS YOUR PET LOOKING FOR?</label>
-                <input
+                {/* <input
                   style={{ width: "100%" }}
                   type="text"
-                  name="whatfor"
+                  name="forWhatfor"
                   placeholder="Ex) Friendship, True Love, Walk-buddy, ..."
-                  value={lookingForData && lookingForData.whatfor}
-                  onChange={(e) => lookingForChange(e)}
-                />
+                  value={formData && formData.forWhatfor}
+                  onChange={(e) => onChange(e)}
+                /> */}
+                <select style={{ width: "100%" }} name="forWhatfor" value={formData && formData.forWhatfor} onChange={(e) => onChange(e)}>
+                  <option value="" disabled selected className="default"></option>
+                  <option value="Any">Any</option>
+                  <option value="True Love">True Love</option>
+                  <option value="Friendship">Friendship</option>
+                  <option value="Walk-buddy">Walk-buddy</option>
+                  <option value="Just for fun">Just for fun</option>
+                </select>
               </div>
               <Divider />
               <div className="inputContainer description">
-                <label>DESCRIPTION</label>
-                <textarea type="text" name="description" placeholder="Want to share more? Let us know!" value={lookingForData && lookingForData.description} onChange={(e) => lookingForChange(e)} />
-              </div>
-              <div className="lookForBtn" onClick={() => handleLookFor()}>
-                UPDATE YOUR PET'S TYPE
+                <label>ANYTHING TO SHARE?</label>
+                <textarea type="text" name="forDescription" placeholder="Want to share more? Let us know!" value={formData && formData.forDescription} onChange={(e) => onChange(e)} />
               </div>
               <Divider />
             </div>

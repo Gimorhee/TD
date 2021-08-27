@@ -13,9 +13,6 @@ const PetProfileSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  breed: {
-    type: String,
-  },
   gender: {
     type: String,
     required: true,
@@ -30,12 +27,10 @@ const PetProfileSchema = new mongoose.Schema({
   },
   location: {
     type: String,
+    required: true,
   },
   lookingFor: {
     location: {
-      type: String,
-    },
-    breed: {
       type: String,
     },
     gender: {

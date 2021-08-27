@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "semantic-ui-react";
 
-const PostModal = ({ profile, addPost, open, setOpen, setAlert, getPosts }) => {
+const PostModal = ({ auth, profile, addPost, open, setOpen, setAlert, getPosts }) => {
   const [text, setText] = useState("");
 
   const onSubmit = (text) => {
@@ -23,7 +23,7 @@ const PostModal = ({ profile, addPost, open, setOpen, setAlert, getPosts }) => {
       <Modal.Header>CREATE POST</Modal.Header>
       <Modal.Content>
         <div className="avatar">
-          <img src={profile && profile.user.avatar} alt="user-avatar" />
+          <img src={auth && auth.user.avatar} alt="user-avatar" />
         </div>
         <div className="textInput">
           <p>
