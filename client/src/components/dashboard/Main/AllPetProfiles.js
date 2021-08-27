@@ -90,12 +90,12 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                       {[...new Set(p.likes.map((like) => like.user))].includes(auth.user._id) === true ? (
                         <Fragment>
                           <span className={p.likes.length === 0 && "dontShow"}>{p.likes.length}</span>
-                          <i className="fas fa-heart" onClick={() => unlikePetProfile(p._id)}></i>
+                          <i className="fas fa-heart liked" onClick={() => unlikePetProfile(p._id)}></i>
                         </Fragment>
                       ) : (
                         <Fragment>
                           <span className={p.likes.length === 0 && "dontShow"}>{p.likes.length}</span>
-                          <i className="far fa-heart" onClick={() => likePetProfile(p._id)}></i>
+                          <i className="fas fa-heart" onClick={() => likePetProfile(p._id)}></i>
                         </Fragment>
                       )}
                     </div>

@@ -218,7 +218,7 @@ export const unlikePetProfile = (petProfileId) => async (dispatch) => {
       },
     });
 
-    dispatch(setAlert("Disliked the profile :)", "red"));
+    // dispatch(setAlert("Disliked the profile :)", "red"));
   } catch (err) {
     dispatch({
       type: PET_PROFILE_ERROR,
