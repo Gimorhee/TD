@@ -62,12 +62,15 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
     if (data1.age === data2.age || data1.age === "Any") {
       mr += 0.25;
     }
+
     if (data1.breed === data2.breed || data1.breed === "Any") {
       mr += 0.25;
     }
+
     if (data1.gender === data2.gender || data1.gender === "Any") {
       mr += 0.25;
     }
+
     if (data1.location === data2.location || data1.location === "Any") {
       mr += 0.25;
     }
