@@ -56,6 +56,7 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
     }
   };
 
+  // CALCULATING M/R - MIGHT NEED BETTER LOGIC
   const checkMatchRatio = (data1, data2) => {
     let mr = 0;
 
