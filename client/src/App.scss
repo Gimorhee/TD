@@ -2619,70 +2619,7 @@ button {
       }
 
       .contentContainer {
-        border-top: 3px solid #eee;
-        height: 100vh;
-
-        padding: 0px 3px;
-        padding-right: 15px;
-        overflow-y: scroll;
-
-        .feed {
-          margin-top: 14px;
-
-          .event {
-            margin: 15px 0;
-            padding: 20px;
-            padding-bottom: 0;
-            border: 1px solid #eee;
-            border-radius: 20px;
-            box-shadow: 2px 2px 3px darkgrey;
-            cursor: pointer;
-            min-height: 160px;
-            transition: 0.3s ease-in-out all;
-
-            display: flex;
-            flex-wrap: wrap;
-
-            .summary {
-              background: rgba(255, 255, 255, 0.6);
-              padding: 10px;
-              margin-top: 5px;
-              border-radius: 5px;
-            }
-
-            .label {
-              width: 55px;
-            }
-
-            .summary {
-              font-family: "Montserrat" !important;
-              font-weight: 600;
-            }
-
-            .usersCommented {
-              width: 100%;
-
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: flex-end;
-
-              .avatar {
-                display: flex;
-                align-items: center;
-
-                img {
-                  width: 30px;
-                  height: 30px;
-                  margin: 2px;
-                }
-              }
-            }
-
-            &:hover {
-              transform: translateY(-3px);
-            }
-          }
-        }
+        height: 100%;
       }
     }
   }
