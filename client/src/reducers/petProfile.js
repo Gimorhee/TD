@@ -9,6 +9,9 @@ import {
   PUT_LOOKFOR_PROFILE_INFO,
   GET_ALL_PET_PROFILES,
   UPDATE_PET_PROFILE_LIKES,
+  SEND_MESSAGE,
+  DELETE_MESSAGE,
+  MESSAGE_ERROR,
 } from "../actions/types";
 
 const initialState = {
@@ -38,6 +41,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case PET_PROFILE_ERROR:
+    case MESSAGE_ERROR:
       return {
         ...state,
         errors: payload,
@@ -72,6 +76,21 @@ export default function (state = initialState, action) {
         ...state,
         closeModal: false,
       };
+
+    // MESSAGE
+    case SEND_MESSAGE:
+      return {
+        ...state,
+        profile: { ...state.profile, messages: payload },
+        loading: false,
+      };
+    case DELETE_MESSAGE:
+      return {
+        ...state,
+        profile: { ...state.profile, messages: state.profile.messages.filter((message) => message._id !== payload) },
+        loading: false,
+      };
+
     default:
       return state;
   }

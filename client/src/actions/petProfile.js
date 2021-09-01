@@ -10,6 +10,9 @@ import {
   GET_ALL_PET_PROFILES,
   GET_PET_PROFILE_BY_ID,
   UPDATE_PET_PROFILE_LIKES,
+  SEND_MESSAGE,
+  DELETE_MESSAGE,
+  MESSAGE_ERROR,
 } from "../actions/types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -226,5 +229,41 @@ export const unlikePetProfile = (petProfileId) => async (dispatch) => {
     });
 
     dispatch(setAlert("Dislike is not allowed here :(", "red"));
+  }
+};
+
+// SEND MESSAGE
+export const sendMessage = (petProfileId) => async (dispatch) => {
+  try {
+    const res = axios.post(`/api/petProfile/message/${petProfileId}`);
+
+    dispatch({
+      type: SEND_MESSAGE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Message sent!", "teal"));
+  } catch (err) {
+    dispatch({
+      type: MESSAGE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// DELETTE MESSAGE
+export const deleteMessage = (messageId) => async (dispatch) => {
+  try {
+    dispatch({
+      type: DELETE_MESSAGE,
+      payload: messageId,
+    });
+
+    setAlert("Message removed!", "teal");
+  } catch (err) {
+    dispatch({
+      type: MESSAGE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
   }
 };
