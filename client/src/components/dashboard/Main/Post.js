@@ -4,16 +4,34 @@ import UserPetProfile from "../UserPetProfile";
 import Spinner from "../../layout/Spinner";
 import Sidebar from "../Sidebar";
 import { getPost, likePost, unlikePost, addComment, deleteComment } from "../../../actions/post";
-import { connect } from "react-redux";
-import { getPetProfileById } from "../../../actions/petProfile";
+import { getPetProfileById, sendMessage } from "../../../actions/petProfile";
+import { setAlert } from "../../../actions/alert";
 import { logout } from "../../../actions/auth";
 import { Feed, Tab } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
+import MessageModal from "../../modal/MessageModal";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { profile }, auth, logout, getPost, likePost, unlikePost, getPetProfileById, addComment, deleteComment }) => {
+const Post = ({
+  post: { post, loading },
+  match,
+  getProfileById,
+  petProfile: { profile },
+  auth,
+  logout,
+  getPost,
+  likePost,
+  unlikePost,
+  getPetProfileById,
+  addComment,
+  deleteComment,
+  sendMessage,
+  setAlert,
+}) => {
   const [text, setText] = useState("");
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     getPost(match.params.post_id);
@@ -172,6 +190,11 @@ const Post = ({ post: { post, loading }, match, getProfileById, petProfile: { pr
               <i className="fas fa-chevron-left"></i>
               DASHBOARD
             </Link>
+            <button className="messageBtn" onClick={() => setOpen(true)}>
+              SEND MESSAGE <i className="far fa-envelope"></i>
+            </button>
+
+            <MessageModal setOpen={setOpen} open={open} auth={auth} profile={profile} sendMessage={sendMessage} setAlert={setAlert} />
           </section>
         </Fragment>
       ),
@@ -204,6 +227,8 @@ Post.propTypes = {
   unlikePost: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -212,4 +237,4 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPost, likePost, unlikePost, getPetProfileById, addComment, logout, deleteComment })(Post);
+export default connect(mapStateToProps, { getPost, likePost, unlikePost, getPetProfileById, addComment, logout, deleteComment, sendMessage, setAlert })(Post);

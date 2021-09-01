@@ -2,17 +2,18 @@ import React, { useEffect } from "react";
 import { Tab } from "semantic-ui-react";
 import AllPetProfiles from "./Main/AllPetProfiles";
 import Posts from "./Main/Posts";
+import Messages from "./Main/Messages";
 import PropTypes from "prop-types";
 
 // ACTIONS
-import { getAllPetProfiles, likePetProfile, unlikePetProfile } from "../../actions/petProfile";
+import { getAllPetProfiles, likePetProfile, unlikePetProfile, deleteMessage, getPetProfileById } from "../../actions/petProfile";
 import { getPosts, likePost, unlikePost, deletePost, addPost } from "../../actions/post";
 import { setAlert } from "../../actions/alert";
 
 // REDUX
 import { connect } from "react-redux";
 
-const Main = ({ auth, petProfile, likePetProfile, unlikePetProfile, getAllPetProfiles, post, getPosts, setAlert, likePost, unlikePost, deletePost, addPost }) => {
+const Main = ({ auth, petProfile, likePetProfile, unlikePetProfile, getAllPetProfiles, post, getPosts, setAlert, likePost, unlikePost, deletePost, addPost, deleteMessage, getPetProfileById }) => {
   useEffect(() => {
     getAllPetProfiles();
   }, [getAllPetProfiles]);
@@ -36,7 +37,11 @@ const Main = ({ auth, petProfile, likePetProfile, unlikePetProfile, getAllPetPro
     },
     {
       menuItem: "MESSAGES",
-      render: () => <Tab.Pane attached={false}>MESSAGES COMPONENT (TODO)</Tab.Pane>,
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Messages auth={auth} petProfile={petProfile} deleteMessage={deleteMessage} getPetProfileById={getPetProfileById} />
+        </Tab.Pane>
+      ),
     },
   ];
 
@@ -58,6 +63,8 @@ Main.propTypes = {
   addPost: PropTypes.func.isRequired,
   likePetProfile: PropTypes.func.isRequired,
   unlikePetProfile: PropTypes.func.isRequired,
+  getPetProfileById: PropTypes.func.isRequired,
+  deleteMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -66,4 +73,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { likePetProfile, unlikePetProfile, getAllPetProfiles, getPosts, setAlert, likePost, unlikePost, deletePost, addPost })(Main);
+export default connect(mapStateToProps, { likePetProfile, unlikePetProfile, getAllPetProfiles, getPosts, setAlert, likePost, unlikePost, deletePost, addPost, deleteMessage, getPetProfileById })(Main);

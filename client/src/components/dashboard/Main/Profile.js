@@ -5,13 +5,12 @@ import Spinner from "../../layout/Spinner";
 import UserPosts from "../Profile/UserPosts";
 import Sidebar from "../Sidebar";
 import { logout } from "../../../actions/auth";
-import { getPetProfileById } from "../../../actions/petProfile";
+import { getPetProfileById, sendMessage } from "../../../actions/petProfile";
 import { getPosts, likePost, unlikePost, deletePost, addPost } from "../../../actions/post";
+import { setAlert } from "../../../actions/alert";
 import { connect } from "react-redux";
 
-// import { setAlert } from "../../../actions/alert";
-
-const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loading }, auth, logout, getPosts, likePost, unlikePost, deletePost, addPost }) => {
+const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loading }, auth, logout, getPosts, likePost, unlikePost, deletePost, addPost, sendMessage, setAlert }) => {
   useEffect(() => {
     getPetProfileById(match.params.id);
     getPosts();
@@ -24,7 +23,7 @@ const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loadin
       ) : (
         <div className="userProfile">
           <UserPetProfile user={profile && profile.user} profile={profile} editable={false} />
-          <UserPosts profile={profile} auth={auth} post={post} match={match} likePost={likePost} unlikePost={unlikePost} deletePost={deletePost} />
+          <UserPosts profile={profile} auth={auth} post={post} match={match} likePost={likePost} unlikePost={unlikePost} deletePost={deletePost} sendMessage={sendMessage} setAlert={setAlert} />
           <Sidebar logout={logout} />
         </div>
       )}
@@ -43,6 +42,8 @@ Profile.propTypes = {
   unlikePost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
   addPost: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -51,4 +52,4 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPetProfileById, logout, getPosts, likePost, unlikePost, deletePost, addPost })(Profile);
+export default connect(mapStateToProps, { getPetProfileById, logout, getPosts, likePost, unlikePost, deletePost, addPost, sendMessage, setAlert })(Profile);

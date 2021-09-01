@@ -197,7 +197,6 @@ export const likePetProfile = (petProfileId) => async (dispatch) => {
     });
 
     dispatch(setAlert("Thanks for the like :)", "teal"));
-    console.log(res.data);
   } catch (err) {
     dispatch({
       type: PET_PROFILE_ERROR,
@@ -233,9 +232,15 @@ export const unlikePetProfile = (petProfileId) => async (dispatch) => {
 };
 
 // SEND MESSAGE
-export const sendMessage = (petProfileId) => async (dispatch) => {
+export const sendMessage = (petProfileId, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
   try {
-    const res = axios.post(`/api/petProfile/message/${petProfileId}`);
+    const res = await axios.post(`/api/petProfile/message/${petProfileId}`, formData, config);
 
     dispatch({
       type: SEND_MESSAGE,
@@ -254,12 +259,13 @@ export const sendMessage = (petProfileId) => async (dispatch) => {
 // DELETTE MESSAGE
 export const deleteMessage = (messageId) => async (dispatch) => {
   try {
+    const res = await axios.delete(`/api/petProfile/message/${messageId}`);
     dispatch({
       type: DELETE_MESSAGE,
       payload: messageId,
     });
 
-    setAlert("Message removed!", "teal");
+    dispatch(setAlert("Message Removed"));
   } catch (err) {
     dispatch({
       type: MESSAGE_ERROR,

@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import { Feed, Tab } from "semantic-ui-react";
 import Moment from "react-moment";
 import { generatePostColor } from "../../../utils/functions";
+import MessageModal from "../../modal/MessageModal";
 
-const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePost }) => {
+const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePost, sendMessage, setAlert }) => {
   const [userPosts, setUserPosts] = useState([]);
   const [readMore, setReadMore] = useState({
     status: false,
     index: null,
   });
+
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const filteredPosts = post.posts.filter((post) => post.user._id === match.params.id);
@@ -114,6 +117,11 @@ const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePos
               <i className="fas fa-chevron-left"></i>
               DASHBOARD
             </Link>
+            <button className="messageBtn" onClick={() => setOpen(true)}>
+              SEND MESSAGE <i className="far fa-envelope"></i>
+            </button>
+
+            <MessageModal setOpen={setOpen} open={open} auth={auth} profile={profile} sendMessage={sendMessage} setAlert={setAlert} />
           </section>
         </Fragment>
       ),

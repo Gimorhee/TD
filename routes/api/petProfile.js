@@ -293,16 +293,16 @@ router.delete("/message/:message_id", auth, async (req, res) => {
   try {
     const petProfile = await PetProfile.findOne({ user: req.user.id });
 
-    const theMessage = petProfile.messages.filter((message) => message._id.toString() === req.params.message_id);
+    // const theMessage = petProfile.messages.filter((message) => message._id.toString() === req.params.message_id);
 
-    if (theMessage.length === 0) {
-      return res.status(400).json({ msg: "Message not found" });
-    }
+    // if (theMessage.length === 0) {
+    //   return res.status(400).json({ msg: "Message not found" });
+    // }
 
-    // Check user authorization
-    if (theMessage[0].user.toString() !== req.user.id) {
-      return res.status(400).json({ msg: "User not authorized" });
-    }
+    // // Check user authorization
+    // if (theMessage[0].user.toString() !== req.user.id) {
+    //   return res.status(400).json({ msg: "User not authorized" });
+    // }
 
     petProfile.messages = petProfile.messages.filter((message) => message._id.toString() !== req.params.message_id);
 
