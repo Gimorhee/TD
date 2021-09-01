@@ -248,4 +248,71 @@ router.put("/unlike/:petProfile_id", auth, async (req, res) => {
   }
 });
 
+// @route POST api/petProfile/message/:petProfile_id
+// @desc Send a message to user (petProfile)
+// @access Private
+router.post("/message/:petProfile_id", [auth, check("text", "Text is required").not().isEmpty()], async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    const toPetProfile = await PetProfile.findById(req.params.petProfile_id);
+    const fromPetProfile = await PetProfile.findOne({ user: req.user.id });
+
+    if (!toPetProfile) {
+      return res.status(400).json({ msg: "User & Profile not found" });
+    }
+
+    let newMessage = {
+      user: req.user.id,
+      text: req.body.text,
+      name: user.name,
+      avatar: user.avatar,
+      pet: fromPetProfile.name,
+    };
+
+    toPetProfile.messages.unshift(newMessage);
+
+    await toPetProfile.save();
+
+    res.json(toPetProfile.messages);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Sever Error!");
+  }
+});
+
+// @route DELETE api/petProfile/message/:message_id
+// @desc Delete a message
+// @access Private
+router.delete("/message/:message_id", auth, async (req, res) => {
+  try {
+    const petProfile = await PetProfile.findOne({ user: req.user.id });
+
+    const theMessage = petProfile.messages.filter((message) => message._id.toString() === req.params.message_id);
+
+    if (theMessage.length === 0) {
+      return res.status(400).json({ msg: "Message not found" });
+    }
+
+    // Check user authorization
+    if (theMessage[0].user.toString() !== req.user.id) {
+      return res.status(400).json({ msg: "User not authorized" });
+    }
+
+    petProfile.messages = petProfile.messages.filter((message) => message._id.toString() !== req.params.message_id);
+
+    await petProfile.save();
+
+    res.json(petProfile.messages);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Sever Error!");
+  }
+});
+
 module.exports = router;
