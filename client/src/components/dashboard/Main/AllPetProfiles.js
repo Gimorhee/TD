@@ -98,7 +98,7 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                       ) : (
                         <Fragment>
                           <span className={p.likes.length === 0 && "dontShow"}>{p.likes.length}</span>
-                          <i className="fas fa-heart" onClick={() => likePetProfile(p._id)}></i>
+                          <i className="far fa-heart" onClick={() => likePetProfile(p._id)}></i>
                         </Fragment>
                       )}
                     </div>
