@@ -1,19 +1,19 @@
 import React, { useEffect, Fragment } from "react";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
+import { generatePostColor } from "../../../utils/functions";
 
 const Messages = ({ auth, petProfile, deleteMessage, getPetProfileById }) => {
   useEffect(() => {
     getPetProfileById(auth.user._id);
-    // alert("60f6294bf208224210b93b34");
   }, []);
   return (
     <div className="messages">
       <div style={{ width: "100%" }}>
         {petProfile && petProfile.profile && petProfile.profile.messages.length > 0 ? (
           <Fragment>
-            {petProfile.profile.messages.map((message) => (
-              <div className="message">
+            {petProfile.profile.messages.map((message, i) => (
+              <div className="message" key={message._id} style={{ background: generatePostColor(i) }}>
                 <div className="avatar">
                   <Link to={`/petProfile/${message.user}`}>
                     <img src={message.avatar} alt="user-avatar" />
@@ -47,7 +47,9 @@ const Messages = ({ auth, petProfile, deleteMessage, getPetProfileById }) => {
             ))}
           </Fragment>
         ) : (
-          <div>No Messages Found</div>
+          <div className="noMessages">
+            <h1>You have not received any messages yet.</h1>
+          </div>
         )}
       </div>
     </div>
