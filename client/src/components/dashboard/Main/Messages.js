@@ -1,12 +1,14 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import { generatePostColor } from "../../../utils/functions";
+import { Modal } from "semantic-ui-react";
 
-const Messages = ({ auth, petProfile, deleteMessage, getPetProfileById }) => {
+const Messages = ({ auth, petProfile, deleteMessage, getPetProfileById, sendMessage, setAlert }) => {
   useEffect(() => {
     getPetProfileById(auth.user._id);
   }, []);
+
   return (
     <div className="messages">
       <div style={{ width: "100%" }}>
@@ -41,6 +43,7 @@ const Messages = ({ auth, petProfile, deleteMessage, getPetProfileById }) => {
                   <Link to={`/petProfile/${message.user}`}>
                     <i className="far fa-address-card"></i>
                   </Link>
+                  {/* <i className="fas fa-reply" onClick={() => setOpen(true)}></i> */}
                   <i className="far fa-trash-alt" onClick={() => deleteMessage(message._id)}></i>
                 </div>
               </div>

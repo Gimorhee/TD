@@ -6,7 +6,7 @@ import Messages from "./Main/Messages";
 import PropTypes from "prop-types";
 
 // ACTIONS
-import { getAllPetProfiles, likePetProfile, unlikePetProfile, deleteMessage, getPetProfileById } from "../../actions/petProfile";
+import { getAllPetProfiles, likePetProfile, unlikePetProfile, deleteMessage, getPetProfileById, sendMessage } from "../../actions/petProfile";
 import { getPosts, likePost, unlikePost, deletePost, addPost } from "../../actions/post";
 import { setAlert } from "../../actions/alert";
 
@@ -39,7 +39,7 @@ const Main = ({ auth, petProfile, likePetProfile, unlikePetProfile, getAllPetPro
       menuItem: "MESSAGES",
       render: () => (
         <Tab.Pane attached={false}>
-          <Messages auth={auth} petProfile={petProfile} deleteMessage={deleteMessage} getPetProfileById={getPetProfileById} />
+          <Messages auth={auth} petProfile={petProfile} deleteMessage={deleteMessage} getPetProfileById={getPetProfileById} sendMessage={sendMessage} setAlert={setAlert} />
         </Tab.Pane>
       ),
     },
@@ -65,6 +65,7 @@ Main.propTypes = {
   unlikePetProfile: PropTypes.func.isRequired,
   getPetProfileById: PropTypes.func.isRequired,
   deleteMessage: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -73,4 +74,17 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { likePetProfile, unlikePetProfile, getAllPetProfiles, getPosts, setAlert, likePost, unlikePost, deletePost, addPost, deleteMessage, getPetProfileById })(Main);
+export default connect(mapStateToProps, {
+  likePetProfile,
+  unlikePetProfile,
+  getAllPetProfiles,
+  getPosts,
+  setAlert,
+  likePost,
+  unlikePost,
+  deletePost,
+  addPost,
+  deleteMessage,
+  getPetProfileById,
+  sendMessage,
+})(Main);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "semantic-ui-react";
 
-const MessageModal = ({ setOpen, open, auth, profile, sendMessage, setAlert }) => {
+const MessageModal = ({ setOpen, open, auth, profile, sendMessage, setAlert, fromMsg }) => {
   const [text, setText] = useState("");
 
   const onSubmit = (profileId, text) => {
@@ -23,7 +23,7 @@ const MessageModal = ({ setOpen, open, auth, profile, sendMessage, setAlert }) =
         </div>
         <div className="textInput">
           <p>
-            <span>TO</span> {profile && profile.user.name} & {profile && profile.name}
+            <span>To.</span> {profile && profile.user.name} & {profile && profile.name}
           </p>
           <textarea value={text} onChange={(e) => setText(e.target.value)} name="text" placeholder={`Say Woof!`}></textarea>
         </div>

@@ -41,7 +41,7 @@ const Sidebar = ({ logout, history, auth, petProfile, post, getAllPetProfiles })
           {leaderboard.map((profile, i) => (
             <Link to={`/petProfile/${profile.user._id}`} className="user" key={`leaderboard-${i}`}>
               <div className="info">
-                <span className="rank">{i + 1}</span>
+                <span className="rank">{i + 1}.</span>
 
                 <img src={profile.user.avatar} alt="user-avatar" />
 
