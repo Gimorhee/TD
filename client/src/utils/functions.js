@@ -22,7 +22,9 @@ export const generatePostColor = (i) => {
 
 // GENERATE RANDOM SINGLE POST COLOR
 export const generateRandomColor = () => {
-  const randomNum = Math.floor(Math.random() * postColors.length);
+  const filteredColors = ["#FEEFD0", "#C0D3EE", "#AFCFB6"];
 
-  return postColors[randomNum];
+  const randomNum = Math.floor(Math.random() * filteredColors.length);
+
+  return filteredColors[randomNum];
 };

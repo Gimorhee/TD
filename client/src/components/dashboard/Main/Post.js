@@ -13,6 +13,7 @@ import Moment from "react-moment";
 import MessageModal from "../../modal/MessageModal";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { generatePostColor, generateRandomColor } from "../../../utils/functions";
 
 const Post = ({
   post: { post, loading },
@@ -31,12 +32,18 @@ const Post = ({
   setAlert,
 }) => {
   const [text, setText] = useState("");
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [postColor, setPostColor] = useState("");
 
   useEffect(() => {
     getPost(match.params.post_id);
     getPetProfileById(match.params.user_id);
   }, [getPost, getPetProfileById]);
+
+  // FOR POST COLOR
+  useEffect(() => {
+    setPostColor(generateRandomColor());
+  }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +60,7 @@ const Post = ({
     {
       menuItem: () => (
         <div className="ui attached tabular menu">
-          <a className="active item" style={{ background: "#f9f9f9" }}>
+          <a className="active item" style={{ background: postColor }}>
             <i className="fas fa-envelope"></i> POST
           </a>
         </div>
@@ -64,7 +71,7 @@ const Post = ({
             <Feed className="singlePost">
               <div className="container">
                 <Feed className="posts">
-                  <Feed.Event className="post" style={{ background: "#f9f9f9" }}>
+                  <Feed.Event className="post" style={{ background: postColor }}>
                     <Feed.Label>
                       <Link to={`/user/${match.params.user_id}/post/${match.params.post_id}`}>
                         <img src={post && post.avatar} alt="user-avatar" />
@@ -151,7 +158,9 @@ const Post = ({
                             post.comments.map((comment, i) => (
                               <div className="comment" key={comment._id}>
                                 <div className="avatar">
-                                  <img src={comment.avatar} alt="user-avatar" />
+                                  <Link to={`/petProfile/${comment.user}`}>
+                                    <img src={comment.avatar} alt="user-avatar" />
+                                  </Link>
                                 </div>
                                 <div className="info">
                                   <p className="detail">
