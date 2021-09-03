@@ -750,16 +750,26 @@ button {
 
       .editProfile {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 5px;
+        left: 5px;
+        background: #fff;
+        border-radius: 10px !important;
+        font-size: 13px;
+        padding: 1px 5px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.3s ease-in-out all;
 
         i {
-          font-size: 22px;
-          cursor: pointer;
+          font-size: 13px;
           transition: 0.3s ease-in-out all;
-          padding: 5px;
+          padding: 2px;
+        }
 
-          &:hover {
+        &:hover {
+          i {
             transform: scale(1.11);
           }
         }
@@ -770,7 +780,7 @@ button {
         top: 0;
         right: 0;
         z-index: 400;
-        width: 100%;
+        width: 90%;
         text-align: right;
 
         i {
@@ -2625,7 +2635,6 @@ button {
     .outerCard {
       background: #f9f9f9;
       margin-bottom: 15px;
-      padding: 15px;
 
       .btnContainer {
         position: fixed;
@@ -2671,19 +2680,71 @@ button {
       }
 
       .headerContainer {
-        border-top: none;
-        padding: 5px 0;
+        // height: 50px;
+        display: block;
+        border: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        padding-top: 30px;
+        padding-bottom: 0;
 
-        .header {
+        .select {
+          width: 100%;
+
+          border: none;
+          border-radius: 0 !important;
+          background: transparent;
+          padding: 5px;
+
+          color: #252525 !important;
           font-size: 18.2px;
-          text-transform: uppercase;
           font-weight: 700;
           font-family: "Montserrat" !important;
-          margin-bottom: 7px;
+          text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          height: 100%;
+
+          .divider.default.text {
+            color: #252525 !important;
+            font-size: 18.2px;
+            font-weight: 700;
+            font-family: "Montserrat" !important;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+            &:focus {
+              outline: none !important;
+            }
+          }
+
+          .visible.menu.transition {
+            border: none;
+            padding: 5px 0;
+            background: #f9f9f9;
+            display: none;
+
+            .item {
+              background: #f9f9f9;
+
+              &:hover {
+                background: #eee;
+              }
+            }
+
+            .text {
+              text-transform: uppercase !important;
+            }
+          }
         }
       }
 
       .contentContainer {
+        padding: 15px;
+        padding-top: 0;
         height: 100%;
         width: 100%;
         display: flex;

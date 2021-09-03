@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Card, Feed } from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
+import { Card, Select } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 import { withRouter } from "react-router-dom";
@@ -7,8 +7,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getAllPetProfiles } from "../../actions/petProfile";
 
+import Leaderboard from "./Sidebar/Leaderboard";
+import UsersByLocation from "./Sidebar/UsersByLocation";
+
 const Sidebar = ({ logout, history, auth, petProfile, post, getAllPetProfiles }) => {
   const [leaderboard, setLeaderBoard] = useState([]);
+  const [type, setType] = useState("leaderboard");
+
   useEffect(() => {
     setLeaderBoard(petProfile.profiles.sort((a, b) => (a.likes.length < b.likes.length ? 1 : -1)));
   }, [petProfile]);
@@ -16,6 +21,15 @@ const Sidebar = ({ logout, history, auth, petProfile, post, getAllPetProfiles })
   useEffect(() => {
     getAllPetProfiles();
   }, [getAllPetProfiles]);
+
+  const selectOptions = [
+    { key: "leaderboard", value: "leaderboard", text: "leaderboard" },
+    { key: "location", value: "location", text: "location" },
+  ];
+
+  const onChange = (e) => {
+    setType(e.target.outerText);
+  };
 
   return (
     <section className="sidebar">
@@ -33,32 +47,13 @@ const Sidebar = ({ logout, history, auth, petProfile, post, getAllPetProfiles })
           </span>
         </div>
 
-        <Card.Content className="headerContainer">
-          <Card.Header>leaderboard</Card.Header>
-        </Card.Content>
+        <div className="headerContainer">
+          <Select className="select" options={selectOptions} placeholder="LEADERBOARD" onChange={(e) => onChange(e)}></Select>
+        </div>
 
         <section className="contentContainer">
-          {leaderboard.map((profile, i) => (
-            <Link to={`/petProfile/${profile.user._id}`} className="user" key={`leaderboard-${i}`}>
-              <div className="info">
-                <span className="rank">{i + 1}.</span>
-
-                <img src={profile.user.avatar} alt="user-avatar" />
-
-                <p>
-                  <span>{profile.user.name}</span> & <span>{profile.name}</span>
-                </p>
-              </div>
-              <div className="likes">
-                <Fragment>
-                  {i === 0 && <i className="challenger fas fa-trophy"></i>}
-                  {i === 1 && <i className="grandmaster fas fa-trophy"></i>}
-                  {i === 2 && <i className="master fas fa-trophy"></i>}
-                  <span>{profile.likes.length}</span> <i className="fas fa-heart like"></i>
-                </Fragment>
-              </div>
-            </Link>
-          ))}
+          {type.toLowerCase() === "leaderboard" && <Leaderboard leaderboard={leaderboard} />}
+          {type.toLowerCase() === "location" && <UsersByLocation />}
         </section>
       </Card>
     </section>

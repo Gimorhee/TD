@@ -54,7 +54,7 @@ const UserPetProfile = ({ user, profile, openPetProfileModal, editable }) => {
         {editable && (
           <PetProfileModal
             user={user}
-            setting={setting}
+            setting={background}
             profile={profile}
             openPetProfileModal={openPetProfileModal}
             noProfileTrigger={

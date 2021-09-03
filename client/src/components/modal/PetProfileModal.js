@@ -22,6 +22,7 @@ const PetProfileModal = ({ user, setting, profile, noProfileTrigger, openPetProf
           profile !== null ? (
             <div className="editProfile" onClick={() => openPetProfileModal()}>
               <i className="fas fa-user-edit" style={{ color: setting }}></i>
+              EDIT
             </div>
           ) : (
             noProfileTrigger
