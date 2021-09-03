@@ -121,7 +121,7 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                         </h3>
                       </Link>
                       <p>
-                        {p.gender} | {p.location} | {p.age} yrs
+                        {p.gender} | {p.location} | {p.age} {p.age <= 1 ? "yr" : "yrs"}
                       </p>
                     </div>
 

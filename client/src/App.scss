@@ -1903,6 +1903,7 @@ button {
   .userPostsTab,
   .userPostTab {
     width: 60%;
+    width: calc(100% - 770px);
     padding: 15px;
     height: 100vh;
     background: #f9f9f9;
@@ -2600,6 +2601,10 @@ button {
     width: 385px;
     height: 100vh;
 
+    .scrollY {
+      overflow-y: scroll;
+    }
+
     .outerCard {
       background: #f9f9f9;
       margin-bottom: 15px;
@@ -2663,6 +2668,89 @@ button {
 
       .contentContainer {
         height: 100%;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .user {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          transition: 0.3s ease-in-out all;
+          cursor: pointer;
+          padding: 5px 0;
+          color: #424242;
+
+          .info {
+            width: 80%;
+            display: flex;
+            align-items: center;
+
+            .rank {
+              font-size: 14px;
+              font-weight: 500;
+              margin: 0 10px;
+            }
+
+            img {
+              width: 45px;
+              height: 45px;
+              border-radius: 50%;
+              transition: 0.3s ease-in-out all;
+            }
+
+            p {
+              margin: 0 10px;
+              font-size: 15.5px;
+              font-weight: 500;
+            }
+          }
+
+          .likes {
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 3px;
+
+            span {
+              font-size: 16px;
+            }
+
+            .like {
+              font-size: 11px;
+              margin: 3px;
+              color: rgba(0, 0, 0, 0.5);
+            }
+
+            .challenger {
+              color: gold;
+              font-size: 17px;
+              padding-right: 5px;
+            }
+
+            .grandmaster {
+              color: silver;
+              font-size: 16px;
+              padding-right: 5px;
+            }
+
+            .master {
+              color: brown;
+              font-size: 15px;
+              padding-right: 5px;
+            }
+          }
+
+          &:hover {
+            transform: translatey(-4px);
+
+            img {
+              transform: scale(1.1);
+            }
+          }
+        }
       }
     }
   }

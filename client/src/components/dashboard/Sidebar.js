@@ -5,28 +5,21 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import AllPetProfiles from "./Main/AllPetProfiles";
+import { getAllPetProfiles } from "../../actions/petProfile";
 
-const Sidebar = ({ logout, history, auth, petProfile, post }) => {
+const Sidebar = ({ logout, history, auth, petProfile, post, getAllPetProfiles }) => {
   const [leaderboard, setLeaderBoard] = useState([]);
   useEffect(() => {
-    // petProfile.profiles.map((profile) => {
-    //     arr.push({
-    //         userId: profile.user._id,
-    //         user: profile.user.name,
-    //         pet: profile.name,
-
-    //     })
-    // })
-    // arr = petProfile.profiles.sort((a, b) => (a.likes.length > b.likes.length ? 1 : -1));
-
     setLeaderBoard(petProfile.profiles.sort((a, b) => (a.likes.length < b.likes.length ? 1 : -1)));
-    console.log("=> ", leaderboard);
   }, [petProfile]);
+
+  useEffect(() => {
+    getAllPetProfiles();
+  }, [getAllPetProfiles]);
 
   return (
     <section className="sidebar">
-      <Card className="outerCard">
+      <Card className="outerCard scrollY">
         {/* GLOBAL BUTTONS */}
         <div className="btnContainer">
           <Link to="/" className="btn">
@@ -41,17 +34,30 @@ const Sidebar = ({ logout, history, auth, petProfile, post }) => {
         </div>
 
         <Card.Content className="headerContainer">
-          <Card.Header>Recent Posts</Card.Header>
+          <Card.Header>leaderboard</Card.Header>
         </Card.Content>
 
         <section className="contentContainer">
-          {/* {petProfile.profiles.sort((a, b) => (a.likes.length > b.likes.length ? 1 : -1)).map()} */}
-          {leaderboard.map((profile) => (
-            <div>
-              <h1>
-                {profile.user.name} : {profile.likes.length}
-              </h1>
-            </div>
+          {leaderboard.map((profile, i) => (
+            <Link to={`/petProfile/${profile.user._id}`} className="user" key={`leaderboard-${i}`}>
+              <div className="info">
+                <span className="rank">{i + 1}</span>
+
+                <img src={profile.user.avatar} alt="user-avatar" />
+
+                <p>
+                  <span>{profile.user.name}</span> & <span>{profile.name}</span>
+                </p>
+              </div>
+              <div className="likes">
+                <Fragment>
+                  {i === 0 && <i className="challenger fas fa-trophy"></i>}
+                  {i === 1 && <i className="grandmaster fas fa-trophy"></i>}
+                  {i === 2 && <i className="master fas fa-trophy"></i>}
+                  <span>{profile.likes.length}</span> <i className="fas fa-heart like"></i>
+                </Fragment>
+              </div>
+            </Link>
           ))}
         </section>
       </Card>
@@ -63,6 +69,7 @@ Sidebar.propTypes = {
   auth: PropTypes.object.isRequired,
   petProfile: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
+  getAllPetProfiles: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -71,5 +78,5 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps)(withRouter(Sidebar));
+export default connect(mapStateToProps, { getAllPetProfiles })(withRouter(Sidebar));
 // export default connect(null, { addExperience })(withRouter(AddExperience));

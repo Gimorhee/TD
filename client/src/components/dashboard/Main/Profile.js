@@ -14,7 +14,11 @@ const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loadin
   useEffect(() => {
     getPetProfileById(match.params.id);
     getPosts();
-  }, [getPetProfileById, getPosts]);
+  }, [getPetProfileById, getPosts, window.location.pathname]);
+
+  //   useEffect(() => {
+  //     console.log("changed");
+  //   }, [window.location.pathname]);
 
   return (
     <Fragment>
