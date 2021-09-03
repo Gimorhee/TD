@@ -685,6 +685,18 @@ button {
   z-index: 500;
 }
 
+@keyframes mymove {
+  0% {
+    left: 0px;
+  }
+  50% {
+    left: 20px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
 // DASHBOARD
 .dashboard,
 .userProfile,
@@ -693,11 +705,40 @@ button {
   height: 100vh;
   display: flex;
   justify-content: space-between;
+  position: relative;
+
+  .noProfileOverlay {
+    position: absolute;
+    top: 0;
+    left: 385px;
+    width: calc(100% - 385px);
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+
+    display: flex;
+    align-items: center;
+
+    h1 {
+      color: #fff;
+      margin-left: 15px;
+      margin-top: 55px;
+      font-size: 50px;
+      font-weight: 400;
+      text-shadow: 1px 1px grey;
+
+      i {
+        font-size: 50px;
+        position: relative;
+        animation: mymove 2s infinite;
+        margin-right: 50px;
+      }
+    }
+  }
 
   // USER PET PROFILE
   .userPetProfile {
-    width: 20%;
-    // width: 400px;
+    // width: 20%;
+    width: 385px;
     height: 100%;
     position: relative;
 
@@ -1130,7 +1171,8 @@ button {
 
   // ALL PET PROFILES
   .main {
-    width: 60%;
+    // width: 60%;
+    width: calc(100% - 770px);
     padding: 4px 15px;
 
     background: #f9f9f9;
@@ -2554,7 +2596,8 @@ button {
 
   //   SIDEBAR
   .sidebar {
-    width: 20%;
+    // width: 20%;
+    width: 385px;
     height: 100vh;
 
     .outerCard {

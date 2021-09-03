@@ -26,6 +26,15 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
           <UserPetProfile user={user} profile={profile} openPetProfileModal={openPetProfileModal} editable={true} />
           <Main />
           <Sidebar logout={logout} />
+
+          {profile === null && (
+            <div className="noProfileOverlay">
+              <h1>
+                <i className="fas fa-hand-point-left"></i>
+                Start building your profile and get started!
+              </h1>
+            </div>
+          )}
         </Fragment>
       )}
     </div>
