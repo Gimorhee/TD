@@ -10,7 +10,7 @@ import { getAllPetProfiles } from "../../actions/petProfile";
 import Leaderboard from "./Sidebar/Leaderboard";
 import UsersByLocation from "./Sidebar/UsersByLocation";
 
-const Sidebar = ({ logout, history, auth, petProfile, post, getAllPetProfiles }) => {
+const Sidebar = ({ logout, history, auth, petProfile, getAllPetProfiles }) => {
   const [leaderboard, setLeaderBoard] = useState([]);
   const [type, setType] = useState("leaderboard");
 
