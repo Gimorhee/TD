@@ -9,6 +9,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import LandingMap from "../map/LandingMap";
+
 const Landing = () => {
   const settings = {
     dots: false,
@@ -39,6 +41,8 @@ const Landing = () => {
           <img src={iphoneImg} alt="" />
         </div>
       </section>
+
+      <LandingMap />
 
       {/* ABOUT SECTION */}
       <section className="about">
