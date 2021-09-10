@@ -41,8 +41,8 @@ const App = () => {
               <Route exact path="/" component={Landing} />
               <Route exact path="/auth" component={Auth} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/petProfile/:id" component={Profile} />
-              <Route exact path="/user/:user_id/post/:post_id" component={Post} />
+              <PrivateRoute exact path="/petProfile/:id" component={Profile} />
+              <PrivateRoute exact path="/user/:user_id/post/:post_id" component={Post} />
             </Switch>
           </section>
         </Fragment>

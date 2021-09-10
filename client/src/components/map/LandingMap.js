@@ -4,6 +4,8 @@ import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-load
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "mapbox-gl/dist/mapbox-gl.css";
+import Moment from "react-moment";
+import { Redirect } from "react-router-dom";
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZ2ltb3JoZWUiLCJhIjoiY2t0NDhzdDBoMGZqdzJ4dWNhNGVxZTdiNSJ9.5tKlTXRt5ROyhKEWQx2nYg";
 
@@ -13,110 +15,6 @@ const LandingMap = ({ profiles }) => {
   const [lng, setLng] = useState(-122.75);
   const [lat, setLat] = useState(49.19);
   const [zoom, setZoom] = useState(9.5);
-  const [mapData, setMapData] = useState({
-    features: [
-      {
-        type: "Feature",
-        properties: {
-          title: "Guildford mall",
-          description: "Guildford mall description",
-        },
-        geometry: {
-          coordinates: [-122.803694, 49.19252],
-          type: "Point",
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          title: "Coquitlam Centre",
-          description: "Coquitlam Centre description",
-        },
-        geometry: {
-          coordinates: [-122.7988905, 49.2794845],
-          type: "Point",
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          title: "Lighthouse Labs",
-          description: "A downtown park known for its art installations and unique architecture",
-        },
-        geometry: {
-          coordinates: [-123.108286, 49.281966],
-          type: "Point",
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          title: "North Vancouver",
-          description: "North Vancouver Sushi Town",
-        },
-        geometry: {
-          coordinates: [-123.108098, 49.323693],
-          type: "Point",
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          title: "Burnaby Sushi Garden",
-          description: "Really famous sushi place in Burnaby",
-        },
-        geometry: {
-          coordinates: [-123.001057, 49.229068],
-          type: "Point",
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          title: "Richmond General Hospital",
-          description: "One of the hospitals in Richmond",
-        },
-        geometry: {
-          coordinates: [-123.146353, 49.168657],
-          type: "Point",
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          title: "Euroline Windows Inc.",
-          description: "Euroline Windows Inc is the manufacturing company",
-        },
-        geometry: {
-          coordinates: [-123.034234, 49.136762],
-          type: "Point",
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          title: "Langley Casino",
-          description: "Langley Casino is very good",
-        },
-        geometry: {
-          coordinates: [-122.6569, 49.105911],
-          type: "Point",
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          title: "Abbotsford Hana Sushi",
-          description: "Abbotsford Hana Sushi is very good",
-        },
-        geometry: {
-          coordinates: [-122.380428, 49.06165],
-          type: "Point",
-        },
-      },
-    ],
-    type: "FeatureCollection",
-  });
 
   useEffect(() => {
     map.current = new mapboxgl.Map({
@@ -162,6 +60,7 @@ const LandingMap = ({ profiles }) => {
             pet: profile && profile.name,
             date: profile && profile.date,
             avatar: profile && profile.user.avatar,
+            location: profile && profile.location,
           },
           geometry: {
             type: "Point",
@@ -174,7 +73,7 @@ const LandingMap = ({ profiles }) => {
 
       if (profileData.features.length > 0) {
         // ADD IMAGE ON MAP
-        map.current.loadImage("https://docs.mapbox.com/mapbox-gl-js/assets/cat.png", function (error, image) {
+        map.current.loadImage("https://image.flaticon.com/icons/png/512/1076/1076928.png", function (error, image) {
           if (error) throw error;
           map.current.addImage("avatar", image);
           map.current.addSource("avatarImages", {
@@ -187,7 +86,7 @@ const LandingMap = ({ profiles }) => {
             source: "avatarImages",
             layout: {
               "icon-image": "avatar",
-              "icon-size": 0.1,
+              "icon-size": 0.06,
             },
           });
         });
@@ -227,15 +126,10 @@ const LandingMap = ({ profiles }) => {
     // HANDLE CLICKING POINTS
     map.current.on("click", "points-avatar", function (e) {
       console.log("=> ", e.features[0]);
-    });
 
-    // HANDLE HOVERING POINTS
-    map.current.on("mousemove", "points-avatar", function (e) {
       map.current.getCanvas().style.cursor = "pointer";
       const coordinates = e.features[0].geometry.coordinates;
       const description = e.features[0].properties;
-
-      //   console.log(e.features[0]);
 
       if (hoveredStateId) {
         map.current.setFeatureState({ source: "avatarImages", id: hoveredStateId }, { hover: false });
@@ -249,22 +143,60 @@ const LandingMap = ({ profiles }) => {
         .setLngLat(coordinates)
         .setHTML(
           `
-                <div class="">
-                  ${description.name}
-                </div>
+                <a class="landingMapPopup" href="/petProfile/${description.userId}">
+                    <img src="${description.avatar}" alt="user-avatar" />
+
+                    <div class="content">
+                        <h4>${description.name} & ${description.pet}</h4>
+                        <p>${description.location}</p>
+                        <span>became member at <small>${description.date.split("T")[0]}</small></span>
+                    </div>
+                </a>
+            `
+        )
+        .addTo(map.current);
+    });
+
+    // HANDLE HOVERING POINTS
+    map.current.on("mousemove", "points-avatar", function (e) {
+      map.current.getCanvas().style.cursor = "pointer";
+      const coordinates = e.features[0].geometry.coordinates;
+      const description = e.features[0].properties;
+
+      if (hoveredStateId) {
+        map.current.setFeatureState({ source: "avatarImages", id: hoveredStateId }, { hover: false });
+      }
+
+      hoveredStateId = 1;
+      map.current.setFeatureState({ source: "avatarImages", id: hoveredStateId }, { hover: true });
+
+      // Handle popup
+      popup
+        .setLngLat(coordinates)
+        .setHTML(
+          `
+                <a class="landingMapPopup" href="/petProfile/${description.userId}">
+                    <img src="${description.avatar}" alt="user-avatar" />
+
+                    <div class="content">
+                        <h4>${description.name} & ${description.pet}</h4>
+                        <p>${description.location}</p>
+                        <span>became member at <small>${description.date.split("T")[0]}</small></span>
+                    </div>
+                </a>
             `
         )
         .addTo(map.current);
 
       // HANDLE NOT-HOVERING POINTS
-      map.current.on("mouseleave", "points-image", function () {
-        map.current.getCanvas().style.cursor = "";
-        popup.remove();
-        if (hoveredStateId) {
-          map.current.setFeatureState({ soure: "dummyData", id: hoveredStateId }, { hover: false });
-        }
-        hoveredStateId = null;
-      });
+      //   map.current.on("mouseleave", "points-avatar", function () {
+      //     map.current.getCanvas().style.cursor = "";
+      //     popup.remove();
+      //     if (hoveredStateId) {
+      //       map.current.setFeatureState({ soure: "avatarImages", id: hoveredStateId }, { hover: false });
+      //     }
+      //     hoveredStateId = null;
+      //   });
     });
 
     // console.log("=> ", profiles);
@@ -275,6 +207,7 @@ const LandingMap = ({ profiles }) => {
       <div className="info">
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div>
+
       <div ref={mapContainer} className="map-container"></div>
     </div>
   );

@@ -2,6 +2,7 @@ import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS
 import { setAlert } from "./alert";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
+import { getCurrentPetProfile } from "./petProfile";
 
 // Load User
 export const loadUser = () => async (dispatch) => {
@@ -43,6 +44,7 @@ export const register =
       });
 
       dispatch(loadUser());
+      dispatch(getCurrentPetProfile());
     } catch (err) {
       const errors = err.response.data.errors;
 
@@ -78,7 +80,7 @@ export const login =
 
       dispatch(loadUser());
     } catch (err) {
-      const errors = err.response.data.errors;
+      const errors = err && err.response && err.response.data.errors;
 
       if (errors) {
         errors.forEach((error) => dispatch(setAlert(error.msg, "red")));

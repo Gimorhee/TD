@@ -90,7 +90,7 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                 profiles.map((p, i) => (
                   <div className="singleProfile" key={`petProfile-${i}`}>
                     <div className="like">
-                      {[...new Set(p.likes.map((like) => like.user))].includes(auth.user._id) === true ? (
+                      {[...new Set(p.likes.map((like) => like.user))].includes(auth && auth.user && auth.user._id) === true ? (
                         <Fragment>
                           <span className={p.likes.length === 0 && "dontShow"}>{p.likes.length}</span>
                           <i className="fas fa-heart liked" onClick={() => unlikePetProfile(p._id)}></i>
