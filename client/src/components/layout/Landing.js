@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import iphoneImg from "../../assets/image/iphone6.png";
 import dogImg1 from "../../assets/image/cutedog1.jpg";
 import dogImg2 from "../../assets/image/dog-img.jpg";
@@ -8,10 +8,13 @@ import { Button } from "semantic-ui-react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import PropTypes from "prop-types";
 import LandingMap from "../map/LandingMap";
 
-const Landing = () => {
+import { connect } from "react-redux";
+import { getAllPetProfiles } from "../../actions/petProfile";
+
+const Landing = ({ petProfile: { profiles }, getAllPetProfiles }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -22,6 +25,11 @@ const Landing = () => {
     autoplaySpeed: 8000,
   };
 
+  useEffect(() => {
+    getAllPetProfiles();
+  }, []);
+
+  //   console.log("HERE: ", petProfile.profiles);
   return (
     <div className="landing">
       {/* HERO SECTION */}
@@ -42,7 +50,7 @@ const Landing = () => {
         </div>
       </section>
 
-      <LandingMap />
+      <LandingMap profiles={profiles} />
 
       {/* ABOUT SECTION */}
       <section className="about">
@@ -95,4 +103,12 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+Landing.propTypes = {
+  petProfile: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  petProfile: state.petProfile,
+});
+
+export default connect(mapStateToProps, { getAllPetProfiles })(Landing);

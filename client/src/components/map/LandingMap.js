@@ -7,7 +7,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZ2ltb3JoZWUiLCJhIjoiY2t0NDhzdDBoMGZqdzJ4dWNhNGVxZTdiNSJ9.5tKlTXRt5ROyhKEWQx2nYg";
 
-const LandingMap = ({}) => {
+const LandingMap = ({ profiles }) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-122.75);
@@ -119,7 +119,6 @@ const LandingMap = ({}) => {
   });
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
@@ -148,32 +147,32 @@ const LandingMap = ({}) => {
       setLat(map.current.getCenter().lat.toFixed(2));
       setZoom(map.current.getZoom().toFixed(2));
     });
-  }, []);
-
-  useEffect(() => {
-    if (!map.current) return; // wait for map to initialize
 
     map.current.on("load", () => {
-      if (mapData.features.length > 0) {
-        // // ADD SOURCE
-        // map.current.addSource("avatarData", {
-        //   type: "geojson",
-        //   data: mapData,
-        // });
+      const profileData = { type: "FeatureCollection", features: [] };
 
-        // // ADD LAYER
-        // map.current.addLayer({
-        //   id: "points",
-        //   type: "circle",
-        //   source: "avatarData",
-        //   paint: {
-        //     "circle-radius": 6,
-        //     "circle-color": "#000",
-        //     "circle-stroke-color": "#FFFFFF",
-        //     "circle-stroke-width": 2,
-        //   },
-        // });
+      profiles.map((profile) => {
+        let data = {
+          type: "Feature",
+          id: Math.random() * 1000000,
+          properties: {
+            context: profile && profile.mapInfo && JSON.parse(profile.mapInfo.context),
+            userId: profile && profile.user._id,
+            name: profile && profile.user.name,
+            pet: profile && profile.name,
+            date: profile && profile.date,
+            avatar: profile && profile.user.avatar,
+          },
+          geometry: {
+            type: "Point",
+            coordinates: profile && profile.mapInfo && JSON.parse(profile.mapInfo.coordinates),
+          },
+        };
 
+        profileData.features.push(data);
+      });
+
+      if (profileData.features.length > 0) {
         // ADD IMAGE ON MAP
         map.current.loadImage("https://docs.mapbox.com/mapbox-gl-js/assets/cat.png", function (error, image) {
           if (error) throw error;
@@ -182,7 +181,7 @@ const LandingMap = ({}) => {
 
           map.current.addSource("avatarImages", {
             type: "geojson",
-            data: mapData,
+            data: profileData,
           });
 
           map.current.addLayer({
@@ -231,7 +230,7 @@ const LandingMap = ({}) => {
         .setHTML(
           `
                 <div class="">
-                  ${description.title}
+                  ${description.name}
                 </div>
             `
         )
@@ -247,7 +246,9 @@ const LandingMap = ({}) => {
         hoveredStateId = null;
       });
     });
-  }, []);
+
+    // console.log("=> ", profiles);
+  }, [profiles]);
 
   return (
     <div className="landingMap">

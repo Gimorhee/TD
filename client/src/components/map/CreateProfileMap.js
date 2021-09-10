@@ -6,17 +6,12 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZ2ltb3JoZWUiLCJhIjoiY2t0NDhzdDBoMGZqdzJ4dWNhNGVxZTdiNSJ9.5tKlTXRt5ROyhKEWQx2nYg";
 
-const CreateProfileMap = ({ profile, formData, setFormData, handleAddress }) => {
+const CreateProfileMap = ({ profile, handleAddress, handleCoordinates, handleContext }) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-122.75);
   const [lat, setLat] = useState(49.19);
   const [zoom, setZoom] = useState(7.5);
-
-  //   useEffect(() => {
-  //     console.log("!@#!@#", formData);
-  //   }, []);
-  //   console.log("!@#!@#", formData);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -65,8 +60,12 @@ const CreateProfileMap = ({ profile, formData, setFormData, handleAddress }) => 
         });
       },
     }).on("result", (e) => {
-      console.log("DATA: ", e.result.place_name);
+      console.log("DATA: ", e.result);
+      const coordinates = JSON.stringify(e.result.geometry.coordinates);
+      const context = JSON.stringify(e.result.context);
       handleAddress(e.result.place_name);
+      handleCoordinates(coordinates);
+      handleContext(context);
     });
 
     document.getElementById("mapbox-geocoder").appendChild(geocoder.onAdd(map.current));

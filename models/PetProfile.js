@@ -29,6 +29,14 @@ const PetProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  mapInfo: {
+    coordinates: {
+      type: String,
+    },
+    context: {
+      type: String,
+    },
+  },
   lookingFor: {
     location: {
       type: String,

@@ -16,12 +16,15 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
     characteristics: [],
     description: "",
     location: "",
+    // sns
     youtube: "",
     twitter: "",
     instagram: "",
     facebook: "",
-    //
-
+    // map info
+    coordinates: "",
+    context: "",
+    // looking for
     forLocation: "Any",
     forGender: "Any",
     forAge: "Any",
@@ -29,7 +32,26 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
     forDescription: "",
   });
 
-  const { name, age, gender, characteristics, description, location, lookingFor, youtube, twitter, instagram, facebook, forLocation, forGender, forAge, forWhatfor, forDescription } = formData;
+  const {
+    name,
+    age,
+    gender,
+    characteristics,
+    description,
+    location,
+    lookingFor,
+    youtube,
+    twitter,
+    instagram,
+    facebook,
+    forLocation,
+    forGender,
+    forAge,
+    forWhatfor,
+    forDescription,
+    coordinates,
+    context,
+  } = formData;
 
   useEffect(() => {
     if (profile) {
@@ -50,15 +72,28 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
         forAge: profile && profile.lookingFor && profile.lookingFor.age,
         forWhatfor: profile && profile.lookingFor && profile.lookingFor.whatfor,
         forDescription: profile && profile.lookingFor && profile.lookingFor.description,
+
+        coordinates: profile && profile.mapInfo && profile.mapInfo.coordinates,
+        context: profile && profile.mapInfo && profile.mapInfo.context,
       });
     }
   }, [profile]);
 
   // HAHDNLING LOCATION CHANGE THROUGH MAP GEOCODER
   const [address, setAddresss] = useState("");
+  const [center, setCenter] = useState("");
+  const [info, setInfo] = useState("");
 
   const handleAddress = (address) => {
     setAddresss(address);
+  };
+
+  const handleCoordinates = (coordinates) => {
+    setCenter(coordinates);
+  };
+
+  const handleContext = (context) => {
+    setInfo(context);
   };
 
   useEffect(() => {
@@ -68,7 +103,21 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
         location: address,
       });
     }
-  }, [address]);
+
+    if (center !== "") {
+      setFormData({
+        ...formData,
+        coordinates: center,
+      });
+    }
+
+    if (info !== "") {
+      setFormData({
+        ...formData,
+        context: info,
+      });
+    }
+  }, [address, center, info]);
 
   const onChange = (e) => {
     setFormData({
@@ -95,6 +144,8 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
       forAge,
       forWhatfor,
       forDescription,
+      coordinates,
+      context,
     };
 
     if (name === "" || age === "" || gender === "" || description === "") {
@@ -221,23 +272,7 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
             <label>
               LOCATION <span>*</span>
             </label>
-            <CreateProfileMap profile={profile} formData={formData} setFormData={setFormData} handleAddress={handleAddress} />
-            {/* <select name="location" value={formData.location} onChange={(e) => onChange(e)}>
-              <option value="" disabled selected className="default"></option>
-              <option value="Abbotsford">Abbotsford</option>
-              <option value="Burnaby">Burnaby</option>
-              <option value="Chilliwack">Chilliwack</option>
-              <option value="Coquitlam">Coquitlam</option>
-              <option value="Delta">Delta</option>
-              <option value="Langley">Langley</option>
-              <option value="Maple Ridge">Maple Ridge</option>
-              <option value="New Westminster">New Westminster</option>
-              <option value="Port Moody">Port Moody</option>
-              <option value="Richmond">Richmond</option>
-              <option value="Surrey">Surrey</option>
-              <option value="Vancouver">Vancouver</option>
-              <option value="White Rock">White Rock</option>
-            </select> */}
+            <CreateProfileMap profile={profile} handleAddress={handleAddress} handleCoordinates={handleCoordinates} handleContext={handleContext} />
           </div>
 
           <Divider />

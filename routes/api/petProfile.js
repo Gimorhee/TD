@@ -83,7 +83,26 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, age, breed, gender, characteristics, location, description, youtube, twitter, facebook, instagram, forLocation, forGender, forAge, forDescription, forWhatfor } = req.body;
+    const {
+      name,
+      age,
+      breed,
+      gender,
+      characteristics,
+      location,
+      description,
+      youtube,
+      twitter,
+      facebook,
+      instagram,
+      forLocation,
+      forGender,
+      forAge,
+      forDescription,
+      forWhatfor,
+      coordinates,
+      context,
+    } = req.body;
 
     // Pet Profile Object
     let petProfileObj = {};
@@ -116,6 +135,11 @@ router.post(
     if (forAge) petProfileObj.lookingFor.age = forAge;
     if (forDescription) petProfileObj.lookingFor.description = forDescription;
     if (forWhatfor) petProfileObj.lookingFor.whatfor = forWhatfor;
+
+    // Pet Profile Map Info Object
+    petProfileObj.mapInfo = {};
+    if (coordinates) petProfileObj.mapInfo.coordinates = coordinates;
+    if (context) petProfileObj.mapInfo.context = context;
 
     try {
       let petProfile = await PetProfile.findOne({ user: req.user.id });
