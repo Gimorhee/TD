@@ -292,40 +292,10 @@ button {
     }
   }
 
-  // MAP
-  .map-container {
-    height: 650px;
-    position: relative;
-
-    .info {
-      background-color: rgba(35, 55, 75, 0.9);
-      color: #fff;
-      padding: 6px 12px;
-      font-family: monospace;
-      z-index: 1;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      margin: 35px;
-      border-radius: 4px;
-    }
-
-    .mapboxgl-canvas-container {
-      canvas {
-        width: 100%;
-        padding: 25px;
-        border-radius: 30px;
-      }
-    }
-
-    .mapboxgl-control-container {
-      display: none;
-    }
-  }
-
   //ABOUT
   .about {
     padding: 100px 150px;
+    padding-top: 35px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -1065,7 +1035,8 @@ button {
             width: 100%;
             padding: 15px;
             cursor: pointer;
-            height: calc(100vh - 520px);
+            min-height: calc(100vh - 520px);
+            max-height: calc(100vh - 555px);
             overflow-y: scroll;
 
             .detail {
@@ -1090,6 +1061,18 @@ button {
                 font-size: 16px;
                 color: #252525;
                 font-weight: 500;
+              }
+            }
+
+            .location {
+              h3 {
+                width: 100%;
+              }
+
+              p {
+                width: 100%;
+                margin-top: 5px;
+                font-size: 15px;
               }
             }
 
@@ -2914,44 +2897,6 @@ button {
               text-decoration: underline;
             }
           }
-          //   .optionContainer {
-          //     margin: 5px;
-          //     display: flex;
-
-          //     button {
-          //       padding: 10px;
-          //       background: #252525;
-          //       color: #fff;
-          //       cursor: pointer;
-          //       height: 40px;
-          //       font-family: "Montserrat";
-          //     }
-
-          //     .gravatarBtn {
-          //       border-top-left-radius: 5px;
-          //       border-bottom-left-radius: 5px;
-          //     }
-
-          //     .selectFileBtn {
-          //       border-radius: 5px;
-          //       padding: 10px 20px;
-          //       // text-transform: uppercase;
-          //     }
-
-          //     label {
-          //       font-family: "Montserrat";
-          //       display: block;
-          //       // height: 40px !important;
-          //       display: flex;
-          //       justify-content: center;
-          //       align-items: center;
-          //       padding: 5px 10px;
-          //       background: #fff;
-          //       border: 2px solid #252525;
-          //       border-top-right-radius: 5px;
-          //       border-bottom-right-radius: 5px;
-          //     }
-          //   }
         }
 
         .mainImage {
@@ -3014,6 +2959,13 @@ button {
               opacity: 0.8;
               font-size: 20px;
             }
+          }
+        }
+
+        .location {
+          flex-wrap: wrap;
+          label {
+            width: 100%;
           }
         }
 
@@ -3266,3 +3218,66 @@ button {
 //       padding: 10px 35px;
 //     }
 //   }
+
+// MAP
+// LANDING
+.landingMap {
+  padding: 15px;
+  position: relative;
+
+  .info {
+    background-color: rgba(35, 55, 75, 0.9);
+    color: #fff;
+    padding: 6px 12px;
+    font-family: monospace;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 35px;
+    margin: 24px;
+    border-radius: 4px;
+  }
+
+  .map-container {
+    height: 650px;
+
+    .mapboxgl-canvas-container {
+      canvas {
+        // width: 100%;
+        // padding: 25px;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+// CREATE PROFILE
+.createProfileMap {
+  height: 250px;
+  width: 100%;
+
+  .map-container {
+    height: 100%;
+  }
+
+  #mapbox-geocoder {
+    .mapboxgl-ctrl-geocoder {
+      width: 100% !important;
+
+      .mapboxgl-ctrl-geocoder--icon {
+        height: 29px;
+      }
+
+      input {
+        width: 100% !important;
+        padding: 1px 30px;
+        height: 45px;
+        font-size: 13.5px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}

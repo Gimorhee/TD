@@ -5,6 +5,8 @@ import { putPetProfile, openPetProfileModal, putLookingFor, deleteAccount } from
 import { setAlert } from "../../actions/alert";
 import { connect } from "react-redux";
 
+import CreateProfileMap from "../map/CreateProfileMap";
+
 const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor, deleteAccount, setAlert, modalStatus, openPetProfileModal }) => {
   // GENERAL FORM DATA
   const [formData, setFormData] = useState({
@@ -51,6 +53,22 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
       });
     }
   }, [profile]);
+
+  // HAHDNLING LOCATION CHANGE THROUGH MAP GEOCODER
+  const [address, setAddresss] = useState("");
+
+  const handleAddress = (address) => {
+    setAddresss(address);
+  };
+
+  useEffect(() => {
+    if (address !== "") {
+      setFormData({
+        ...formData,
+        location: address,
+      });
+    }
+  }, [address]);
 
   const onChange = (e) => {
     setFormData({
@@ -199,11 +217,12 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
             <div></div>
           </div>
           <Divider />
-          <div className="inputContainer">
+          <div className="inputContainer location">
             <label>
               LOCATION <span>*</span>
             </label>
-            <select name="location" value={formData.location} onChange={(e) => onChange(e)}>
+            <CreateProfileMap profile={profile} formData={formData} setFormData={setFormData} handleAddress={handleAddress} />
+            {/* <select name="location" value={formData.location} onChange={(e) => onChange(e)}>
               <option value="" disabled selected className="default"></option>
               <option value="Abbotsford">Abbotsford</option>
               <option value="Burnaby">Burnaby</option>
@@ -218,7 +237,7 @@ const CreatePetProfile = ({ profile, user, setOpen, putPetProfile, putLookingFor
               <option value="Surrey">Surrey</option>
               <option value="Vancouver">Vancouver</option>
               <option value="White Rock">White Rock</option>
-            </select>
+            </select> */}
           </div>
 
           <Divider />

@@ -174,7 +174,7 @@ const UserPetProfile = ({ user, profile, openPetProfileModal, editable }) => {
                   </div>
                   <Divider />
 
-                  <div className="detail">
+                  <div className="detail location">
                     <h3>LOCATION:</h3>
                     <p>{profile && profile.location}</p>
                   </div>
