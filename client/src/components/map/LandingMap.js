@@ -176,14 +176,11 @@ const LandingMap = ({ profiles }) => {
         // ADD IMAGE ON MAP
         map.current.loadImage("https://docs.mapbox.com/mapbox-gl-js/assets/cat.png", function (error, image) {
           if (error) throw error;
-
           map.current.addImage("avatar", image);
-
           map.current.addSource("avatarImages", {
             type: "geojson",
             data: profileData,
           });
-
           map.current.addLayer({
             id: "points-avatar",
             type: "symbol",
@@ -194,6 +191,29 @@ const LandingMap = ({ profiles }) => {
             },
           });
         });
+
+        // profileData.features.map((profile) => {
+        //   map.current.loadImage(profile.properties.avatar, function (error, image) {
+        //     if (error) throw error;
+
+        //     map.current.addImage(profile.properties.userId, image);
+
+        //     map.current.addSource(`avatarImages-${profile.properties.userId}`, {
+        //       type: "geojson",
+        //       data: profileData.features.find((feature) => feature.properties.userId === profile.properties.userId),
+        //     });
+
+        //     map.current.addLayer({
+        //       id: `points-avatar-${profile.properties.userId}`,
+        //       type: "symbol",
+        //       source: `avatarImages-${profile.properties.userId}`,
+        //       layout: {
+        //         "icon-image": profile.properties.userId,
+        //         "icon-size": 0.2,
+        //       },
+        //     });
+        //   });
+        // });
       }
     });
 
