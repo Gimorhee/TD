@@ -4,8 +4,9 @@ import { Button, Label } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
+import { withRouter } from "react-router-dom";
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, loading }, logout, history }) => {
   const [navStatus, setNavStatus] = useState(true);
 
   const authLinks = (
@@ -23,7 +24,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li>
-        <Link onClick={logout} to="/">
+        <Link onClick={() => logout(history)} to="/">
           <Button as="div" labelPosition="right" className="link">
             <Button color="black">
               <i className="fas fa-sign-out-alt" />{" "}
@@ -91,4 +92,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout })(withRouter(Navbar));

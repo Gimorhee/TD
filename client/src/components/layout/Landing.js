@@ -3,7 +3,7 @@ import iphoneImg from "../../assets/image/iphone6.png";
 import dogImg1 from "../../assets/image/cutedog1.jpg";
 import dogImg2 from "../../assets/image/dog-img.jpg";
 import dogImg3 from "../../assets/image/cutedog.jpg";
-
+import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -37,12 +37,9 @@ const Landing = ({ petProfile: { profiles }, getAllPetProfiles }) => {
         <div className="left">
           <h1>Meet new, beautiful and interesting dogs nearby</h1>
           <div className="buttons">
-            <Button secondary size="huge" className="register-button">
+            <Link to="/auth" secondary size="huge" className="register-button">
               GET STARTED!
-            </Button>
-            <Button size="huge" className="hero-button">
-              OUR CUTIES
-            </Button>
+            </Link>
           </div>
         </div>
         <div className="right">
