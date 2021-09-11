@@ -749,9 +749,11 @@ button {
       box-shadow: 2px 2px 3px darkgrey;
       height: 100%;
       width: 100%;
+      overflow-y: scroll;
 
       .editProfile {
-        position: absolute;
+        position: fixed;
+        z-index: 500;
         top: 5px;
         left: 5px;
         background: #fff;
@@ -918,7 +920,6 @@ button {
         width: 100%;
 
         .info {
-          height: 100%;
           width: 100%;
 
           //   INTRO
@@ -984,16 +985,13 @@ button {
                 margin-top: -13px;
               }
 
-              .description {
-                padding: 15px;
-                height: 100vh;
-                max-height: 115px;
-                overflow-y: scroll;
-              }
-
               &:hover {
                 transform: translateY(-2px);
               }
+            }
+
+            .description {
+              padding: 15px;
             }
 
             .sns {
@@ -1036,9 +1034,6 @@ button {
             width: 100%;
             padding: 15px;
             cursor: pointer;
-            min-height: calc(100vh - 520px);
-            max-height: calc(100vh - 555px);
-            overflow-y: scroll;
 
             .detail {
               align-items: center;
@@ -3228,7 +3223,7 @@ button {
 .landingMap {
   //   padding: 15px;
   position: relative;
-  padding: 35px;
+  padding: 75px 200px;
   background: #f9f9f9;
 
   .info {
