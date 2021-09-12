@@ -21,7 +21,7 @@ const Landing = ({ petProfile: { profiles }, getAllPetProfiles }) => {
     speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 8000,
   };
 
@@ -67,7 +67,7 @@ const Landing = ({ petProfile: { profiles }, getAllPetProfiles }) => {
 
         {/* ABOUT SECTION */}
         <section className="about">
-          <Slider {...settings2}>
+          <Slider {...settings2} className="aboutCarousel">
             <div className="part">
               <i className="icon fas fa-check-circle fa-4x"></i>
               <h3>Easy to use</h3>
@@ -95,29 +95,29 @@ const Landing = ({ petProfile: { profiles }, getAllPetProfiles }) => {
               </Link>
             </div>
           </Slider>
-          {/* <div>
-            <i className="icon fas fa-check-circle fa-4x"></i>
-            <h3>Easy to use</h3>
-            <p>It's very easy that even your cute dogs could do it!</p>
+          <div className="forMobile">
+            <div className="part">
+              <i className="icon fas fa-check-circle fa-4x"></i>
+              <h3>Easy to use</h3>
+              <p>It's very easy that even your cute dogs could do it!</p>
+            </div>
+            <div className="part">
+              <i className="icon fas fa-bullseye fa-4x"></i>
+              <h3>Elite Clients</h3>
+              <p>Checkout our beautiful and handsome dogs!</p>
+            </div>
+            <div className="part">
+              <i className="icon fas fa-heart fa-4x"></i>
+              <h3>You will love it</h3>
+              <p>Find the true love of your dog's life!</p>
+            </div>
           </div>
-
-          <div>
-            <i className="icon fas fa-bullseye fa-4x"></i>
-            <h3>Elite Clientele</h3>
-            <p>Checkout our beautiful and handsome dogs!</p>
-          </div>
-
-          <div>
-            <i className="icon fas fa-heart fa-4x"></i>
-            <h3>Your dogs will love it</h3>
-            <p>Find the true love of your dog's life!</p>
-          </div> */}
         </section>
       </div>
 
       {/* TESITMONIAL/CAROUSEL SECTION */}
       <section className="testimonial">
-        <Slider {...settings} className="carouse">
+        <Slider {...settings}>
           <div className="carouselContainer">
             <h3>I no longer have to sniff other dogs for love. I've found the hottest Retriever on TinDog. Woof!</h3>
             <div className="image">

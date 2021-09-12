@@ -1,20 +1,43 @@
 import React, { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Moment from "react-moment";
-import { Redirect } from "react-router-dom";
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZ2ltb3JoZWUiLCJhIjoiY2t0NDhzdDBoMGZqdzJ4dWNhNGVxZTdiNSJ9.5tKlTXRt5ROyhKEWQx2nYg";
 
 const LandingMap = ({ profiles }) => {
+  const getWidth = () => window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+  const useCurrentWidth = () => {
+    // save current window width in the state object
+    let [width, setWidth] = useState(getWidth());
+
+    // in this case useEffect will execute only once because
+    // it does not have any dependencies.
+    useEffect(() => {
+      const resizeListener = () => {
+        // change width from the state object
+        setWidth(getWidth());
+      };
+      // set resize listener
+      window.addEventListener("resize", resizeListener);
+
+      // clean up function
+      return () => {
+        // remove resize listener
+        window.removeEventListener("resize", resizeListener);
+      };
+    }, []);
+
+    return width;
+  };
+
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-122.93);
   const [lat, setLat] = useState(49.21);
-  const [zoom, setZoom] = useState(10);
+  const [zoom, setZoom] = useState(useCurrentWidth() > 550 ? 10 : 8.5);
 
   useEffect(() => {
     map.current = new mapboxgl.Map({
