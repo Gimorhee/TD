@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 // GLOBAL
@@ -170,6 +171,23 @@ button {
     justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
+    position: relative;
+
+    .downArrow {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      color: #f9f9f9;
+      font-size: 21px;
+      transition: 0.3s ease-in-out all;
+      cursor: pointer;
+
+      &:hover {
+        transform: translate(-50%, 6px);
+        font-size: 23px;
+      }
+    }
 
     .left {
       width: 50%;
@@ -3233,9 +3251,10 @@ button {
 // LANDING
 .landingMap {
   position: relative;
-  padding: 75px 200px;
-  padding: 15px;
+  //   padding: 75px 200px;
+  //   padding: 15px;
   background: #f9f9f9;
+  scroll-margin-top: 90px;
 
   .info {
     background-color: rgba(35, 55, 75, 0.9);

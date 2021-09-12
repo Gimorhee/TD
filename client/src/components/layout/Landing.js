@@ -45,6 +45,10 @@ const Landing = ({ petProfile: { profiles }, getAllPetProfiles }) => {
         <div className="right">
           <img src={iphoneImg} alt="" />
         </div>
+
+        <a href="#landingMap">
+          <i className="downArrow fas fa-chevron-down"></i>
+        </a>
       </section>
 
       <LandingMap profiles={profiles} />

@@ -13,7 +13,7 @@ const LandingMap = ({ profiles }) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-122.85);
-  const [lat, setLat] = useState(49.19);
+  const [lat, setLat] = useState(49.21);
   const [zoom, setZoom] = useState(10);
 
   useEffect(() => {
@@ -23,6 +23,9 @@ const LandingMap = ({ profiles }) => {
       center: [lng, lat],
       zoom: zoom,
     });
+
+    // DISABLE MAP SCROLLING
+    // map.current.scrollZoom.disable();
 
     map.current.addControl(
       new mapboxgl.GeolocateControl({
@@ -73,7 +76,7 @@ const LandingMap = ({ profiles }) => {
 
       if (profileData.features.length > 0) {
         // ADD IMAGE ON MAP
-        map.current.loadImage("https://image.flaticon.com/icons/png/512/1076/1076928.png", function (error, image) {
+        map.current.loadImage("https://image.flaticon.com/icons/png/512/2064/2064863.png", function (error, image) {
           if (error) throw error;
           map.current.addImage("avatar", image);
           map.current.addSource("avatarImages", {
@@ -86,22 +89,18 @@ const LandingMap = ({ profiles }) => {
             source: "avatarImages",
             layout: {
               "icon-image": "avatar",
-              "icon-size": 0.06,
+              "icon-size": 0.07,
             },
           });
         });
-
         // profileData.features.map((profile) => {
         //   map.current.loadImage(profile.properties.avatar, function (error, image) {
         //     if (error) throw error;
-
         //     map.current.addImage(profile.properties.userId, image);
-
         //     map.current.addSource(`avatarImages-${profile.properties.userId}`, {
         //       type: "geojson",
         //       data: profileData.features.find((feature) => feature.properties.userId === profile.properties.userId),
         //     });
-
         //     map.current.addLayer({
         //       id: `points-avatar-${profile.properties.userId}`,
         //       type: "symbol",
@@ -189,24 +188,24 @@ const LandingMap = ({ profiles }) => {
         .addTo(map.current);
 
       // HANDLE NOT-HOVERING POINTS
-      //   map.current.on("mouseleave", "points-avatar", function () {
-      //     map.current.getCanvas().style.cursor = "";
-      //     popup.remove();
-      //     if (hoveredStateId) {
-      //       map.current.setFeatureState({ soure: "avatarImages", id: hoveredStateId }, { hover: false });
-      //     }
-      //     hoveredStateId = null;
-      //   });
+      map.current.on("mouseleave", "points-avatar", function () {
+        map.current.getCanvas().style.cursor = "";
+        popup.remove();
+        if (hoveredStateId) {
+          map.current.setFeatureState({ soure: "avatarImages", id: hoveredStateId }, { hover: false });
+        }
+        hoveredStateId = null;
+      });
     });
 
     // console.log("=> ", profiles);
   }, [profiles]);
 
   return (
-    <div className="landingMap">
-      <div className="info">
+    <div className="landingMap" id="landingMap">
+      {/* <div className="info">
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div>
+      </div> */}
 
       <div ref={mapContainer} className="map-container"></div>
     </div>
