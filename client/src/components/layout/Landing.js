@@ -25,6 +25,17 @@ const Landing = ({ petProfile: { profiles }, getAllPetProfiles }) => {
     autoplaySpeed: 8000,
   };
 
+  const settings2 = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 1500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 8000,
+  };
+
   useEffect(() => {
     getAllPetProfiles();
   }, []);
@@ -51,32 +62,62 @@ const Landing = ({ petProfile: { profiles }, getAllPetProfiles }) => {
         </a>
       </section>
 
-      <LandingMap profiles={profiles} />
+      <div className="uiContainer">
+        <LandingMap profiles={profiles} />
 
-      {/* ABOUT SECTION */}
-      <section className="about">
-        <div>
-          <i className="icon fas fa-check-circle fa-4x"></i>
-          <h3>Easy to use</h3>
-          <p>It's very easy that even your cute dogs could do it!</p>
-        </div>
+        {/* ABOUT SECTION */}
+        <section className="about">
+          <Slider {...settings2}>
+            <div className="part">
+              <i className="icon fas fa-check-circle fa-4x"></i>
+              <h3>Easy to use</h3>
+              <p>It's very easy that even your cuies could do it!</p>
+              <Link to="/auth" secondary size="huge" className="register-button">
+                GET STARTED!
+              </Link>
+            </div>
 
-        <div>
-          <i className="icon fas fa-bullseye fa-4x"></i>
-          <h3>Elite Clientele</h3>
-          <p>Checkout our beautiful and handsome dogs!</p>
-        </div>
+            <div className="part">
+              <i className="icon fas fa-bullseye fa-4x"></i>
+              <h3>Elite Clients</h3>
+              <p>Checkout our beautiful and handsome dogs!</p>
+              <Link to="/auth" secondary size="huge" className="register-button">
+                GET STARTED!
+              </Link>
+            </div>
 
-        <div>
-          <i className="icon fas fa-heart fa-4x"></i>
-          <h3>Your dogs will love it</h3>
-          <p>Find the true love of your dog's life!</p>
-        </div>
-      </section>
+            <div className="part">
+              <i className="icon fas fa-heart fa-4x"></i>
+              <h3>You will love it</h3>
+              <p>Find the true love of your pet's life!</p>
+              <Link to="/auth" secondary size="huge" className="register-button">
+                GET STARTED!
+              </Link>
+            </div>
+          </Slider>
+          {/* <div>
+            <i className="icon fas fa-check-circle fa-4x"></i>
+            <h3>Easy to use</h3>
+            <p>It's very easy that even your cute dogs could do it!</p>
+          </div>
+
+          <div>
+            <i className="icon fas fa-bullseye fa-4x"></i>
+            <h3>Elite Clientele</h3>
+            <p>Checkout our beautiful and handsome dogs!</p>
+          </div>
+
+          <div>
+            <i className="icon fas fa-heart fa-4x"></i>
+            <h3>Your dogs will love it</h3>
+            <p>Find the true love of your dog's life!</p>
+          </div> */}
+        </section>
+      </div>
 
       {/* TESITMONIAL/CAROUSEL SECTION */}
       <section className="testimonial">
-        <Slider {...settings} className="carousel">
+        <Slider {...settings} className="carouse">
           <div className="carouselContainer">
             <h3>I no longer have to sniff other dogs for love. I've found the hottest Retriever on TinDog. Woof!</h3>
             <div className="image">

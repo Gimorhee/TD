@@ -12,7 +12,7 @@ mapboxgl.accessToken = "pk.eyJ1IjoiZ2ltb3JoZWUiLCJhIjoiY2t0NDhzdDBoMGZqdzJ4dWNhN
 const LandingMap = ({ profiles }) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-122.85);
+  const [lng, setLng] = useState(-122.93);
   const [lat, setLat] = useState(49.21);
   const [zoom, setZoom] = useState(10);
 
