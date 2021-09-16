@@ -23,6 +23,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout, history }) => {
           </Button>
         </Link>
       </li>
+      
       <li>
         <Link onClick={() => logout(history)} to="/">
           <Button as="div" labelPosition="right" className="link">
