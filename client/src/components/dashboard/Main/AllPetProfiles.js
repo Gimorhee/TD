@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 import { Divider, Progress } from "semantic-ui-react";
@@ -78,6 +78,11 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
     return mr;
   };
 
+
+//   useEffect(() => {
+//       profiles.map(profile => console.log(JSON.parse(profile.mapInfo.context)))
+//   }, [])
+
   return (
     <Fragment>
       {profiles.loading ? (
@@ -117,11 +122,11 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                     <div className="info">
                       <Link to={`/petProfile/${p.user._id}`}>
                         <h3>
-                          <i className="fas fa-paw"></i> {p.name}
+                          <i className="fas fa-paw"></i> {p.name} <small>{p.gender} | {p.age} {p.age <= 1 ? "yr" : "yrs"}</small>
                         </h3>
                       </Link>
-                      <p>
-                        {p.gender} | {p.location} | {p.age} {p.age <= 1 ? "yr" : "yrs"}
+                      <p className="userLocation">
+                        {p.location} 
                       </p>
                     </div>
 

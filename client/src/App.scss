@@ -1537,8 +1537,8 @@ button {
                     }
 
                     .avatar {
-                      width: 175px;
-                      height: 175px;
+                      width: 165px;
+                      height: 165px;
 
                       margin: auto;
 
@@ -1556,6 +1556,22 @@ button {
 
                     .info {
                       margin: 15px 0;
+
+                      h3 {
+                          small {
+                              opacity: 0.8;
+                              font-size: 11px;
+                          }
+                      }
+
+                      .userLocation {
+                          font-size: 12px;
+                          height: 55px;
+
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                      }
                     }
 
                     .characteristics {
@@ -1636,7 +1652,7 @@ button {
                       transition: 0.3s ease-in-out all;
 
                       text-shadow: 1px 1px 2px #eee;
-
+          
                       &:after {
                         content: "";
                         position: absolute;
@@ -1655,7 +1671,8 @@ button {
                       .description {
                         padding: 15px;
                         height: 100vh;
-                        max-height: 115px;
+                        font-size: 15px;
+                        max-height: 100px;
                         overflow-y: scroll;
                       }
 
