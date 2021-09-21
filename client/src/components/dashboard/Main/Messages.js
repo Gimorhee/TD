@@ -21,6 +21,7 @@ const Messages = ({ auth, petProfile, deleteMessage, getPetProfileById, sendMess
                     <img src={message.avatar} alt="user-avatar" />
                   </Link>
                 </div>
+
                 <div className="userInfo">
                   <h4>
                     <Link to={`/petProfile/${message.user}`}>
@@ -36,6 +37,7 @@ const Messages = ({ auth, petProfile, deleteMessage, getPetProfileById, sendMess
                     </small>
                   </p>
                 </div>
+                
                 <div className="content">
                   <p>{message.text}</p>
                 </div>

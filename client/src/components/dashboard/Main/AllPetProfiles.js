@@ -12,32 +12,47 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
     speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 3,
-    // responsive: [
-    //   {
-    //     breakpoint: 1024,
-    //     settings: {
-    //       slidesToShow: 3,
-    //       slidesToScroll: 3,
-    //       infinite: true,
-    //       dots: true,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 600,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 2,
-    //       initialSlide: 2,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    // ],
+    responsive: [
+      {
+        breakpoint: 1700,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1250,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1140,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+    ],
   };
 
   const progressColor = (value) => {
@@ -144,7 +159,7 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                         <Progress percent={checkMatchRatio(profile.lookingFor, p) * 100} color={progressColor(checkMatchRatio(profile.lookingFor, p) * 100)} />
                       </div>
                     ) : (
-                      <div className="matchRatio">
+                      <div className="matchRatio"> 
                         <p>Match Ratio: 0%</p>
                         <p style={{ fontSize: 11.5, margin: 0 }}>
                           <i>(Update your pet's type to see match ratio)</i>
