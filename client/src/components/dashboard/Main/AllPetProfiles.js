@@ -52,6 +52,37 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
           dots: false,
         },
       },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 499,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          infinite: true,
+          dots: false,
+          arrows: false
+        },
+      },
     ],
   };
 

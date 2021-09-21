@@ -1458,10 +1458,6 @@ button {
           padding: 50px;
           height: 100%;
 
-        //   @media only screen and (max-width: 1480px) {
-        //      padding: 25px;
-        //   }
-
           .slick-slider {
             height: 100%;
 
@@ -1693,6 +1689,30 @@ button {
               }
             }
           }
+
+          @media only screen and (max-width: 499px) {
+            padding: 0;
+
+                .slick-slider {
+                    .slick-list {
+                        height: 100%;
+
+                        .slick-track {
+                            .slick-slide {
+                                padding: 0;
+
+                                div:first-child {
+                                    height: 100%;
+                                }
+
+                                .singleProfile {
+                                    // overflow: hidden;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
       }
 
@@ -1703,6 +1723,10 @@ button {
         // background: #f0f2f5;
         background: #eee;
         overflow-y: scroll;
+
+        @media only screen and (max-width: 499px) {
+            padding: 15px 5px;
+        }
 
         .togglers {
           display: flex;
@@ -1760,11 +1784,6 @@ button {
             display: flex;
             flex-wrap: wrap;
             position: relative;
-
-            @media only screen and (max-width: 1500px) {
-                width: 100%;
-            }
-
 
             .divider,
             span {
@@ -2020,6 +2039,65 @@ button {
 
             &:hover {
               transform: translateY(-4px);
+            }
+
+            @media only screen and (max-width: 1500px) {
+                width: 100%;
+            }
+            
+            @media only screen and (max-width: 550px) {
+                padding: 10px;
+                min-height: 0 !important;
+
+                .label {
+                    width: 50px;
+                    height: 50px;
+
+                    img {
+                        height: 100%;
+                    }
+                }
+
+                .content {
+                    p {
+                        font-size: 13px;
+                    }
+
+                    .summary {
+                        padding: 5px;
+                    }
+
+                    .date {
+                        font-size: 11px;
+                    }
+                }
+
+                .likeBtns {
+                    padding: 3px;
+                    padding-bottom: 5px;
+
+                    i {
+                        font-size: 11px;
+                        
+                    }
+
+                    .like {
+                        display: flex;
+
+                        span {
+                            font-size: 11px;
+                            margin-right: 3px;
+                        }
+                    }
+                }
+
+                .usersAvatar {
+                    .usersLiked, .usersCommented {
+                        p {
+                            font-size: 11px !important;
+                        }
+                    }
+                }
             }
           }
         }
@@ -3164,20 +3242,6 @@ button {
                   }
               }
           }
-
-        //   .leaderboard {
-        //       i {
-        //           font-size: 14px;
-        //           background: #3E00FF;
-        //           color: #fff;
-        //           padding: 5px;
-        //           border-radius: 50%;
-        //           display: flex;
-        //           align-items: center;
-        //           justify-content: center;
-        //           text-align: center;
-        //       }
-        //   }
       }
 
       .userPetProfile {
@@ -3442,10 +3506,6 @@ button {
             background: #252525;
           }
         }
-
-        // TODO: TOGGLE OPTIONAL DATA
-        // .opener {
-        // }
       }
     }
   }
@@ -3564,22 +3624,6 @@ button {
 .ui.modals {
   background: rgba(0, 0, 0, 0.6) !important;
 }
-
-// .component {
-//     padding: 10px 200px;
-
-//     @media only screen and (max-width: 1540px) {
-//       padding: 10px 90px;
-//     }
-
-//     @media only screen and (max-width: 1140px) {
-//       padding: 10px 60px;
-//     }
-
-//     @media only screen and (max-width: 767px) {
-//       padding: 10px 35px;
-//     }
-//   }
 
 // MAP
 // LANDING
