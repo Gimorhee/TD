@@ -114,11 +114,21 @@ const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePos
           </Tab.Pane>
           <section className="cta">
             <Link to="/dashboard">
-              <i className="fas fa-chevron-left"></i>
-              DASHBOARD
+              <span className="firstCta">
+                <i className="fas fa-chevron-left"></i>
+                DASHBOARD
+              </span>
+              <span className="nextCta">
+                <i className="fas fa-columns"></i>
+              </span>
             </Link>
             <button className="messageBtn" onClick={() => setOpen(true)}>
-              SEND MESSAGE <i className="far fa-envelope"></i>
+              <span className="firstCta">
+                SEND MESSAGE <i className="far fa-envelope"></i>
+              </span>
+              <span className="nextCta">
+                <i className="far fa-envelope"></i>
+              </span>
             </button>
 
             <MessageModal setOpen={setOpen} open={open} auth={auth} profile={profile} sendMessage={sendMessage} setAlert={setAlert} />

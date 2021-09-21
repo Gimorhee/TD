@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -17,13 +17,19 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
     getCurrentPetProfile();
   }, [getCurrentPetProfile]);
 
+  const [mobileProfile, setMobileProfile] = useState(false);
+
   return (
     <div className="dashboard">
       {loading && profile === null ? (
         <Spinner />
       ) : (
         <Fragment>
-          <UserPetProfile user={user} profile={profile} openPetProfileModal={openPetProfileModal} editable={true} />
+          <div className={mobileProfile && "mobileUserPetProfile"}>
+            <UserPetProfile user={user} profile={profile} openPetProfileModal={openPetProfileModal} editable={true} />
+
+            <div className="mobileOverlay" onClick={() => setMobileProfile(false)}></div>
+          </div>
           <Main />
           <Sidebar logout={logout} />
 
@@ -35,6 +41,12 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
               </h1>
             </div>
           )}
+
+          <div className="mobileCta">
+             <div className="avatarProfile">
+                 <img src={user.avatar} alt="mobileUserProfile" onClick={() => setMobileProfile(!mobileProfile)}/>
+             </div>
+          </div> 
         </Fragment>
       )}
     </div>
