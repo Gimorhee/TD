@@ -19,6 +19,12 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
 
   const [mobileProfile, setMobileProfile] = useState(false);
 
+  useEffect(() => {
+      if(profile === null) {
+        setMobileProfile(true);
+      }
+  }, [user]);
+
   return (
     <div className="dashboard">
       {loading && profile === null ? (
@@ -34,19 +40,23 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
           <Sidebar logout={logout} />
 
           {profile === null && (
-            <div className="noProfileOverlay">
-              <h1>
-                <i className="fas fa-hand-point-left"></i>
-                Start building your profile and get started!
-              </h1>
+            <div className={mobileProfile && "mobileUserPetProfile"}>
+                <div className="noProfileOverlay">
+                <h1>
+                    <i className="fas fa-hand-point-left"></i>
+                    <span>Start building your profile and get started!</span>
+                </h1>
+                </div>
             </div>
           )}
 
-          <div className="mobileCta">
+          {
+            user && <div className="mobileCta">
              <div className="avatarProfile">
                  <img src={user.avatar} alt="mobileUserProfile" onClick={() => setMobileProfile(!mobileProfile)}/>
              </div>
           </div> 
+          }
         </Fragment>
       )}
     </div>

@@ -79,6 +79,7 @@ export const login =
       });
 
       dispatch(loadUser());
+      dispatch(getCurrentPetProfile());
     } catch (err) {
       const errors = err && err.response && err.response.data.errors;
 

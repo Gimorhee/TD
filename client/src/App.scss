@@ -2243,6 +2243,27 @@ button {
         padding-top: 25px;
         width: calc(100% - 385px);
     }
+
+    @media only screen and (max-width: 500px) {
+        .messages {
+            padding: 10px !important;
+
+            .message {
+                padding: 10px !important;
+
+                .userInfo {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .cta {
+                    i {
+                        font-size: 18px !important;
+                    }
+                }
+            }
+        }
+    }
   }
 
   // USER POSTS & SINGLE POST
@@ -3267,6 +3288,14 @@ button {
             background: rgba(0,0,0,0.7);
             z-index: 499;
         }
+
+        .noProfileOverlay {
+            z-index: 500;
+           
+            h1 {
+                font-size: 30px;
+            }
+        }
       }
 
       .main {
@@ -3278,6 +3307,51 @@ button {
           width: 100%;
       }
   }
+
+  @media only screen and (max-width: 499px) {
+        .mobileUserPetProfile {
+        .userPetProfile {
+         width: 85vw;
+        }
+
+        .mobileOverlay {
+            cursor: pointer;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 499;
+        }
+
+        .noProfileOverlay {
+            z-index: 500;
+            width: 15vw !important;
+            right: 0;
+            left: unset;
+            // display: none;
+            
+            h1 {
+                font-size: 30px;
+                display: none;
+
+                span {
+                    display: none;
+                }
+            }
+        }
+        }
+
+        .main {
+            width: 100%;
+        }
+
+        .userPostsTab,
+        .userPostTab {
+            width: 100%;
+        }
+    }
 }
 
 
