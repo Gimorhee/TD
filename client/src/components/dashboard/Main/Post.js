@@ -73,7 +73,7 @@ const Post = ({
                 <Feed className="posts">
                   <Feed.Event className="post" style={{ background: postColor }}>
                     <Feed.Label>
-                      <Link to={`/user/${match.params.user_id}/post/${match.params.post_id}`}>
+                      <Link to={`/petProfile/${match.params.user_id}`}>
                         <img src={post && post.avatar} alt="user-avatar" />
                       </Link>
                       <div className="likeBtns">
