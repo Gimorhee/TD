@@ -38,7 +38,7 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-        infinite: true,
+          infinite: true,
           dots: false,
         },
       },
@@ -80,7 +80,7 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
           initialSlide: 1,
           infinite: true,
           dots: false,
-          arrows: false
+          arrows: false,
         },
       },
     ],
@@ -124,11 +124,6 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
     return mr;
   };
 
-
-//   useEffect(() => {
-//       profiles.map(profile => console.log(JSON.parse(profile.mapInfo.context)))
-//   }, [])
-
   return (
     <Fragment>
       {profiles.loading ? (
@@ -168,12 +163,13 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                     <div className="info">
                       <Link to={`/petProfile/${p.user._id}`}>
                         <h3>
-                          <i className="fas fa-paw"></i> {p.name} <small>{p.gender} | {p.age} {p.age <= 1 ? "yr" : "yrs"}</small>
+                          <i className="fas fa-paw"></i> {p.name}{" "}
+                          <small>
+                            {p.gender} | {p.age} {p.age <= 1 ? "yr" : "yrs"}
+                          </small>
                         </h3>
                       </Link>
-                      <p className="userLocation">
-                        {p.location} 
-                      </p>
+                      <p className="userLocation">{p.location}</p>
                     </div>
 
                     <div className="characteristics">
@@ -190,7 +186,7 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                         <Progress percent={checkMatchRatio(profile.lookingFor, p) * 100} color={progressColor(checkMatchRatio(profile.lookingFor, p) * 100)} />
                       </div>
                     ) : (
-                      <div className="matchRatio"> 
+                      <div className="matchRatio">
                         <p>Match Ratio: 0%</p>
                         <p style={{ fontSize: 11.5, margin: 0 }}>
                           <i>(Update your pet's type to see match ratio)</i>

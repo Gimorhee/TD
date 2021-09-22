@@ -1393,7 +1393,7 @@ button {
 
   // ALL PET PROFILES
   .main {
-      overflow: hidden;
+    overflow: hidden;
     // width: 60%;
     width: calc(100% - 770px);
     padding: 4px 15px;
@@ -1473,9 +1473,9 @@ button {
             }
 
             .slick-list {
-            //   height: 100%;
-            top: 50%;
-            transform: translateY(-50%);
+              //   height: 100%;
+              top: 50%;
+              transform: translateY(-50%);
 
               .slick-track {
                 display: flex;
@@ -1562,19 +1562,19 @@ button {
                       margin: 15px 0;
 
                       h3 {
-                          small {
-                              opacity: 0.8;
-                              font-size: 11px;
-                          }
+                        small {
+                          opacity: 0.8;
+                          font-size: 11px;
+                        }
                       }
 
                       .userLocation {
-                          font-size: 12px;
-                          height: 55px;
+                        font-size: 12px;
+                        height: 55px;
 
-                          display: flex;
-                          align-items: center;
-                          justify-content: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                       }
                     }
 
@@ -1656,7 +1656,7 @@ button {
                       transition: 0.3s ease-in-out all;
 
                       text-shadow: 1px 1px 2px #eee;
-          
+
                       &:after {
                         content: "";
                         position: absolute;
@@ -1693,26 +1693,26 @@ button {
           @media only screen and (max-width: 499px) {
             padding: 0;
 
-                .slick-slider {
-                    .slick-list {
-                        height: 100%;
+            .slick-slider {
+              .slick-list {
+                height: 100%;
 
-                        .slick-track {
-                            .slick-slide {
-                                padding: 0;
+                .slick-track {
+                  .slick-slide {
+                    padding: 0;
 
-                                div:first-child {
-                                    height: 100%;
-                                }
-
-                                .singleProfile {
-                                    // overflow: hidden;
-                                }
-                            }
-                        }
+                    div:first-child {
+                      height: 100%;
                     }
+
+                    .singleProfile {
+                      // overflow: hidden;
+                    }
+                  }
                 }
+              }
             }
+          }
         }
       }
 
@@ -1725,7 +1725,7 @@ button {
         overflow-y: scroll;
 
         @media only screen and (max-width: 499px) {
-            padding: 15px 5px;
+          padding: 15px 5px;
         }
 
         .togglers {
@@ -2042,62 +2042,62 @@ button {
             }
 
             @media only screen and (max-width: 1500px) {
-                width: 100%;
+              width: 100%;
             }
-            
+
             @media only screen and (max-width: 550px) {
-                padding: 10px;
-                min-height: 0 !important;
+              padding: 10px;
+              min-height: 0 !important;
 
-                .label {
-                    width: 50px;
-                    height: 50px;
+              .label {
+                width: 50px;
+                height: 50px;
 
-                    img {
-                        height: 100%;
-                    }
+                img {
+                  height: 100%;
+                }
+              }
+
+              .content {
+                p {
+                  font-size: 13px;
                 }
 
-                .content {
-                    p {
-                        font-size: 13px;
-                    }
-
-                    .summary {
-                        padding: 5px;
-                    }
-
-                    .date {
-                        font-size: 11px;
-                    }
+                .summary {
+                  padding: 5px;
                 }
 
-                .likeBtns {
-                    padding: 3px;
-                    padding-bottom: 5px;
+                .date {
+                  font-size: 11px;
+                }
+              }
 
-                    i {
-                        font-size: 11px;
-                        
-                    }
+              .likeBtns {
+                padding: 3px;
+                padding-bottom: 5px;
 
-                    .like {
-                        display: flex;
-
-                        span {
-                            font-size: 11px;
-                            margin-right: 3px;
-                        }
-                    }
+                i {
+                  font-size: 11px;
                 }
 
-                .usersAvatar {
-                    .usersLiked, .usersCommented {
-                        p {
-                            font-size: 11px !important;
-                        }
-                    }
+                .like {
+                  display: flex;
+
+                  span {
+                    font-size: 11px;
+                    margin-right: 3px;
+                  }
                 }
+              }
+
+              .usersAvatar {
+                .usersLiked,
+                .usersCommented {
+                  p {
+                    font-size: 11px !important;
+                  }
+                }
+              }
             }
           }
         }
@@ -2180,7 +2180,6 @@ button {
             min-height: 100px;
             overflow-y: scroll;
 
-
             background: rgba(255, 255, 255, 0.5);
 
             box-shadow: 1px 1px 2px darkgrey;
@@ -2241,29 +2240,29 @@ button {
     }
 
     @media only screen and (max-width: 1250px) {
-        padding-top: 25px;
-        width: calc(100% - 385px);
+      padding-top: 25px;
+      width: calc(100% - 385px);
     }
 
     @media only screen and (max-width: 500px) {
-        .messages {
-            padding: 10px !important;
+      .messages {
+        padding: 10px !important;
 
-            .message {
-                padding: 10px !important;
+        .message {
+          padding: 10px !important;
 
-                .userInfo {
-                    display: flex;
-                    flex-direction: column;
-                }
+          .userInfo {
+            display: flex;
+            flex-direction: column;
+          }
 
-                .cta {
-                    i {
-                        font-size: 18px !important;
-                    }
-                }
+          .cta {
+            i {
+              font-size: 18px !important;
             }
+          }
         }
+      }
     }
   }
 
@@ -2333,10 +2332,6 @@ button {
               position: relative;
               color: #252525 !important;
               overflow: hidden;
-
-              @media only screen and (max-width: 1500px) {
-                  width: 100%;
-              }
 
               .divider,
               span {
@@ -2594,6 +2589,64 @@ button {
               &:hover {
                 transform: translateY(-3px);
               }
+
+              @media only screen and (max-width: 1500px) {
+                width: 100%;
+              }
+
+              @media only screen and (max-width: 499px) {
+                min-height: 200px !important;
+
+                .label {
+                  width: 50px;
+                  height: 50px;
+
+                  img {
+                    height: 100%;
+                  }
+                }
+
+                .content {
+                  p {
+                    font-size: 13px;
+                  }
+
+                  .summary {
+                    padding: 5px;
+                  }
+
+                  .date {
+                    font-size: 11px;
+                  }
+                }
+
+                .likeBtns {
+                  padding: 3px;
+                  padding-bottom: 5px;
+
+                  i {
+                    font-size: 11px;
+                  }
+
+                  .like {
+                    display: flex;
+
+                    span {
+                      font-size: 11px;
+                      margin-right: 3px;
+                    }
+                  }
+                }
+
+                .usersAvatar {
+                  .usersLiked,
+                  .usersCommented {
+                    p {
+                      font-size: 11px !important;
+                    }
+                  }
+                }
+              }
             }
           }
 
@@ -2604,6 +2657,7 @@ button {
             align-items: center;
             justify-content: center;
             border-radius: 20px;
+            text-align: center;
 
             h1 {
               text-transform: uppercase;
@@ -2656,22 +2710,22 @@ button {
         }
 
         .nextCta {
-            display: none;
+          display: none;
 
-            i {
-                margin: 0;
-                padding: 0;
-            }
+          i {
+            margin: 0;
+            padding: 0;
+          }
         }
 
         @media only screen and (max-width: 1000px) {
-            .nextCta {
-                display: flex;
-            }
+          .nextCta {
+            display: flex;
+          }
 
-            .firstCta {
-                display: none;
-            }
+          .firstCta {
+            display: none;
+          }
         }
       }
 
@@ -2696,7 +2750,7 @@ button {
     }
 
     @media only screen and (max-width: 1250px) {
-        width: calc(100% - 385px);
+      width: calc(100% - 385px);
     }
   }
 
@@ -3051,8 +3105,8 @@ button {
             }
 
             @media only screen and (max-width: 1250px) {
-                font-size: 15px;
-                padding: 5px;
+              font-size: 15px;
+              padding: 5px;
             }
           }
 
@@ -3224,7 +3278,7 @@ button {
     }
 
     @media only screen and (max-width: 1250px) {
-        width: 0;
+      width: 0;
     }
   }
 
@@ -3236,125 +3290,124 @@ button {
   }
 
   .mobileCta {
-      display: none;
+    display: none;
   }
 
-
   @media only screen and (max-width: 900px) {
-      position: relative;
+    position: relative;
 
-      .mobileCta {
-          display: block;
-          position: absolute;
-          top: 5px;
-          left: 5px;
+    .mobileCta {
+      display: block;
+      position: absolute;
+      top: 5px;
+      left: 5px;
 
-          .avatarProfile {
-              width: 35px;
-              height: 35px;
+      .avatarProfile {
+        width: 40px;
+        height: 40px;
 
-              img {
-                  width: 100%;
-                  border-radius: 50%;
-                  transition: 0.3s ease-in-out all;
-                  cursor: pointer;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          transition: 0.3s ease-in-out all;
+          cursor: pointer;
 
-                  &:hover {
-                      transform: scale(1.1);
-                  }
-              }
+          &:hover {
+            transform: scale(1.1);
           }
+        }
       }
+    }
 
+    .userPetProfile {
+      display: none;
+    }
+
+    .mobileUserPetProfile {
       .userPetProfile {
-          display: none;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 500;
       }
 
-      .mobileUserPetProfile {
-        .userPetProfile {
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 500;
-        }
+      .mobileOverlay {
+        cursor: pointer;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 499;
+      }
 
-        .mobileOverlay {
-            cursor: pointer;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 499;
-        }
+      .noProfileOverlay {
+        z-index: 500;
 
-        .noProfileOverlay {
-            z-index: 500;
-           
-            h1 {
-                font-size: 30px;
-            }
+        h1 {
+          font-size: 30px;
         }
       }
+    }
 
-      .main {
-          width: 100%;
-      }
+    .main {
+      width: 100%;
+    }
 
-      .userPostsTab,
-      .userPostTab {
-          width: 100%;
-      }
+    .userPostsTab,
+    .userPostTab {
+      width: 100%;
+    }
   }
 
   @media only screen and (max-width: 499px) {
-        .mobileUserPetProfile {
-        .userPetProfile {
-         width: 85vw;
-        }
+    .mobileUserPetProfile {
+      .userPetProfile {
+        width: 85vw;
+      }
 
-        .mobileOverlay {
-            cursor: pointer;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 499;
-        }
+      .mobileOverlay {
+        cursor: pointer;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 499;
+      }
 
-        .noProfileOverlay {
-            z-index: 500;
-            width: 15vw !important;
-            right: 0;
-            left: unset;
-            // display: none;
-            
-            h1 {
-                font-size: 30px;
-                display: none;
+      .noProfileOverlay {
+        z-index: 500;
+        width: 15vw !important;
+        right: 0;
+        left: unset;
+        // display: none;
 
-                span {
-                    display: none;
-                }
-            }
-        }
-        }
+        h1 {
+          font-size: 30px;
+          display: none;
 
-        .main {
-            width: 100%;
+          span {
+            display: none;
+          }
         }
-
-        .userPostsTab,
-        .userPostTab {
-            width: 100%;
-        }
+      }
     }
-}
 
+    .main {
+      width: 100%;
+    }
+
+    .userPostsTab,
+    .userPostTab {
+      width: 100%;
+    }
+  }
+}
 
 // CREATE PET PROFILE MODAL
 .createProfileModal {

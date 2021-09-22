@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import UserPetProfile from "../UserPetProfile";
 import Spinner from "../../layout/Spinner";
@@ -16,9 +16,7 @@ const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loadin
     getPosts();
   }, [getPetProfileById, getPosts, window.location.pathname]);
 
-  //   useEffect(() => {
-  //     console.log("changed");
-  //   }, [window.location.pathname]);
+  const [mobileProfile, setMobileProfile] = useState(false);
 
   return (
     <Fragment>
@@ -26,9 +24,21 @@ const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loadin
         <Spinner />
       ) : (
         <div className="userProfile">
-          <UserPetProfile user={profile && profile.user} profile={profile} editable={false} />
+          <div className={mobileProfile && "mobileUserPetProfile"}>
+            <UserPetProfile user={profile && profile.user} profile={profile} editable={false} />
+
+            <div className="mobileOverlay" onClick={() => setMobileProfile(false)}></div>
+          </div>
           <UserPosts profile={profile} auth={auth} post={post} match={match} likePost={likePost} unlikePost={unlikePost} deletePost={deletePost} sendMessage={sendMessage} setAlert={setAlert} />
           <Sidebar logout={logout} />
+
+          {profile && (
+            <div className="mobileCta">
+              <div className="avatarProfile">
+                <img src={profile.user.avatar} alt="mobileUserProfile" onClick={() => setMobileProfile(!mobileProfile)} />
+              </div>
+            </div>
+          )}
         </div>
       )}
     </Fragment>

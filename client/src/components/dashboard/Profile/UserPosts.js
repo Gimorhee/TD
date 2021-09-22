@@ -53,6 +53,7 @@ const UserPosts = ({ profile, auth, match, post, likePost, unlikePost, deletePos
                           <Link to={`/petProfile/${post.user._id}`}>
                             <img src={post.avatar} alt="user-avatar" />
                           </Link>
+
                           <div className="likeBtns">
                             <div className="like">
                               <i className="fas fa-thumbs-up" onClick={() => likePost(post._id)}></i>
