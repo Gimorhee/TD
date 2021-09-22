@@ -125,6 +125,11 @@ button {
   width: 100%;
   max-width: 450px;
 
+  @media only screen and (max-width: 950px) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .alert {
     margin: 0.5rem;
 
