@@ -34,6 +34,7 @@ const Post = ({
   const [text, setText] = useState("");
   const [open, setOpen] = useState(false);
   const [postColor, setPostColor] = useState("");
+  const [mobileSidebar, setMobileSidebar] = useState(false);
 
   useEffect(() => {
     getPost(match.params.post_id);
@@ -228,7 +229,12 @@ const Post = ({
         <div className="Post">
           <UserPetProfile user={profile && profile.user} profile={profile} editable={false} />
           <Tab panes={panes} className="userPostTab" />
-          <Sidebar logout={logout} />
+
+          <div className={mobileSidebar && "mobileSidebar"}>
+            <Sidebar logout={logout} mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
+
+            <div className="mobileOverlay" onClick={() => setMobileSidebar(false)}></div>
+          </div>
         </div>
       )}
     </Fragment>

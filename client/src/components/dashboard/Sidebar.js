@@ -10,7 +10,7 @@ import { getAllPetProfiles } from "../../actions/petProfile";
 import Leaderboard from "./Sidebar/Leaderboard";
 import UsersByLocation from "./Sidebar/UsersByLocation";
 
-const Sidebar = ({ logout, history, auth, petProfile, getAllPetProfiles }) => {
+const Sidebar = ({ logout, history, auth, petProfile, getAllPetProfiles, mobileSidebar, setMobileSidebar }) => {
   const [leaderboard, setLeaderBoard] = useState([]);
   const [type, setType] = useState("leaderboard");
 
@@ -43,7 +43,7 @@ const Sidebar = ({ logout, history, auth, petProfile, getAllPetProfiles }) => {
             <i className="fas fa-sign-out-alt logoutBtn"></i>
           </span>
           <span className="btn">
-            <i className="fas fa-envelope msgBtn"></i>
+            <i className="fas fa-list-ul sidebarBtn" onClick={() => setMobileSidebar(!mobileSidebar)}></i>
           </span>
         </div>
 
@@ -52,7 +52,7 @@ const Sidebar = ({ logout, history, auth, petProfile, getAllPetProfiles }) => {
         </div>
 
         <section className="contentContainer">
-          {type.toLowerCase() === "leaderboard" && <Leaderboard leaderboard={leaderboard} />}
+          {type.toLowerCase() === "leaderboard" && <Leaderboard leaderboard={leaderboard} mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />}
           {type.toLowerCase() === "location" && <UsersByLocation />}
         </section>
       </Card>

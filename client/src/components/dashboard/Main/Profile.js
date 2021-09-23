@@ -17,6 +17,7 @@ const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loadin
   }, [getPetProfileById, getPosts, window.location.pathname]);
 
   const [mobileProfile, setMobileProfile] = useState(false);
+  const [mobileSidebar, setMobileSidebar] = useState(false);
 
   return (
     <Fragment>
@@ -30,7 +31,12 @@ const Profile = ({ post, match, getPetProfileById, petProfile: { profile, loadin
             <div className="mobileOverlay" onClick={() => setMobileProfile(false)}></div>
           </div>
           <UserPosts profile={profile} auth={auth} post={post} match={match} likePost={likePost} unlikePost={unlikePost} deletePost={deletePost} sendMessage={sendMessage} setAlert={setAlert} />
-          <Sidebar logout={logout} />
+
+          <div className={mobileSidebar && "mobileSidebar"}>
+            <Sidebar logout={logout} mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
+
+            <div className="mobileOverlay" onClick={() => setMobileSidebar(false)}></div>
+          </div>
 
           {profile && (
             <div className="mobileCta">

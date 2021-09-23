@@ -18,6 +18,7 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
   }, [getCurrentPetProfile]);
 
   const [mobileProfile, setMobileProfile] = useState(false);
+  const [mobileSidebar, setMobileSidebar] = useState(false);
 
   useEffect(() => {
     if (!loading && profile === null) {
@@ -39,7 +40,12 @@ const Dashboard = ({ auth: { user }, petProfile: { profile, loading }, getCurren
             <div className="mobileOverlay" onClick={() => setMobileProfile(false)}></div>
           </div>
           <Main />
-          <Sidebar logout={logout} />
+
+          <div className={mobileSidebar && "mobileSidebar"}>
+            <Sidebar logout={logout} mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
+
+            <div className="mobileOverlay" onClick={() => setMobileSidebar(false)}></div>
+          </div>
 
           {profile === null && (
             <div className={mobileProfile && "mobileUserPetProfile"}>
