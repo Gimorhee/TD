@@ -8,6 +8,7 @@ import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import Profile from "./components/dashboard/Main/Profile";
 import Post from "./components/dashboard/Main/Post";
+import Footer from "./components/layout/Footer";
 // ACTIONS
 import { loadUser } from "./actions/auth";
 // UTILS
@@ -44,6 +45,8 @@ const App = () => {
               <PrivateRoute exact path="/petProfile/:id" component={Profile} />
               <PrivateRoute exact path="/user/:user_id/post/:post_id" component={Post} />
             </Switch>
+
+            <Route exact path="/" component={Footer} />
           </section>
         </Fragment>
       </Router>
