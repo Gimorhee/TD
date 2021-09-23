@@ -994,6 +994,9 @@ button {
         width: 90%;
         text-align: right;
 
+        // Removing for now - need to implement customizer with localStorage in the future
+        display: none;
+
         i {
           font-size: 22px;
           cursor: pointer;

@@ -88,11 +88,11 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
 
   const progressColor = (value) => {
     switch (value) {
-      case 25:
+      case 0:
         return "red";
-      case 50:
+      case 34:
         return "orange";
-      case 75:
+      case 68:
         return "yellow";
       case 100:
         return "green";
@@ -102,27 +102,67 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
   };
 
   // CALCULATING M/R - MIGHT NEED BETTER LOGIC
-  const checkMatchRatio = (data1, data2) => {
+  const checkMatchRatio = (data1, data2, type) => {
     let mr = 0;
+    let grade = "";
+
+    const newLocation = JSON.parse(data2.mapInfo.context);
+    let theLocation = "";
+
+    newLocation.map((location) => {
+      if (location.id.includes("place.")) {
+        theLocation = location.text;
+      }
+    });
 
     if (data1.age === data2.age || data1.age === "Any") {
-      mr += 0.25;
-    }
-
-    if (data1.breed === data2.breed || data1.breed === "Any") {
-      mr += 0.25;
+      mr += 0.34;
     }
 
     if (data1.gender === data2.gender || data1.gender === "Any") {
-      mr += 0.25;
+      mr += 0.34;
     }
 
-    if (data1.location === data2.location || data1.location === "Any") {
-      mr += 0.25;
+    if (data1.location === theLocation || data1.location === "Any") {
+      mr += 0.32;
     }
 
-    return mr;
+    if (mr === 1) {
+      grade = "Perfect";
+    } else if (mr === 0.68) {
+      grade = "Good";
+    } else if (mr === 0.34) {
+      grade = "Okay";
+    } else {
+      grade = "Bad";
+    }
+
+    if (type === "grade") {
+      return grade;
+    } else {
+      return mr;
+    }
   };
+
+  // useEffect(() => {
+  //   profiles.map((profile) => {
+  //     const data = JSON.parse(profile.mapInfo.context);
+
+  //     data.map((info) => {
+  //       info.id.includes("place.") && console.log(info.text);
+  //     });
+  //   });
+  // }, [profiles]);
+
+  //   useEffect(() => {
+  //     let data = JSON.parse(
+  //       `[{"id":"neighborhood.6923716659008760","text_en-US":"Fleetwood","text":"Fleetwood"},{"id":"postcode.12628497323799680","text_en-US":"V4N 0R5","text":"V4N 0R5"},{"id":"place.8937038287466560","wikidata":"Q390583","text_en-US":"Surrey","language_en-US":"en","text":"Surrey","language":"en"},{"id":"district.7275676332473720","wikidata":"Q1061069","text_en-US":"Metro Vancouver","language_en-US":"en","text":"Metro Vancouver","language":"en"},{"id":"region.9984400673322020","wikidata":"Q1974","short_code":"CA-BC","text_en-US":"British Columbia","language_en-US":"en","text":"British Columbia","language":"en"},{"id":"country.10278600750587150","wikidata":"Q16","short_code":"ca","text_en-US":"Canada","language_en-US":"en","text":"Canada","language":"en"}]`
+  //     );
+
+  //     data.map((info) => {
+  //       info.id.includes("place.") && console.log(info.text);
+  //     });
+  //   }, []);
 
   return (
     <Fragment>
@@ -182,8 +222,8 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
 
                     {profile && profile.lookingFor ? (
                       <div className="matchRatio">
-                        <p>Match Ratio: {checkMatchRatio(profile.lookingFor, p) * 100}%</p>
-                        <Progress percent={checkMatchRatio(profile.lookingFor, p) * 100} color={progressColor(checkMatchRatio(profile.lookingFor, p) * 100)} />
+                        <p>Match Ratio: {checkMatchRatio(profile.lookingFor, p, "grade")}</p>
+                        <Progress percent={checkMatchRatio(profile.lookingFor, p, "percent") * 100} color={progressColor(checkMatchRatio(profile.lookingFor, p) * 100)} />
                       </div>
                     ) : (
                       <div className="matchRatio">
