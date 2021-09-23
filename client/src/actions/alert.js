@@ -13,12 +13,12 @@ export const setAlert = (msg, alertType) => (dispatch) => {
     },
   });
 
-  //   setTimeout(() => {
-  //     dispatch({
-  //       type: REMOVE_ALERT,
-  //       payload: id,
-  //     });
-  //   }, 3500);
+  setTimeout(() => {
+    dispatch({
+      type: REMOVE_ALERT,
+      payload: id,
+    });
+  }, 3500);
 };
 
 export const removeAlert = (id) => (dispatch) => {
