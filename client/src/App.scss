@@ -3610,6 +3610,11 @@ footer {
   margin: 15px;
   position: relative;
 
+  @media only screen and (max-width: 499px) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
   .content {
     width: 100%;
     height: calc(100% - 100px);

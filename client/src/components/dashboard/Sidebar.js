@@ -42,9 +42,7 @@ const Sidebar = ({ logout, history, auth, petProfile, getAllPetProfiles, mobileS
           <span className="btn" onClick={() => logout(history)}>
             <i className="fas fa-sign-out-alt logoutBtn"></i>
           </span>
-          <span className="btn">
-            <i className="fas fa-list-ul sidebarBtn" onClick={() => setMobileSidebar(!mobileSidebar)}></i>
-          </span>
+          <span className="btn">{petProfile.profile !== null && <i className="fas fa-list-ul sidebarBtn" onClick={() => setMobileSidebar(!mobileSidebar)}></i>}</span>
         </div>
 
         <div className="headerContainer">
