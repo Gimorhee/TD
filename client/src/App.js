@@ -9,6 +9,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Profile from "./components/dashboard/Main/Profile";
 import Post from "./components/dashboard/Main/Post";
 import Footer from "./components/layout/Footer";
+import NotFound from "./components/layout/NotFound";
 // ACTIONS
 import { loadUser } from "./actions/auth";
 // UTILS
