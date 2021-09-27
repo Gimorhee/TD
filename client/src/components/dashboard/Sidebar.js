@@ -39,6 +39,7 @@ const Sidebar = ({ logout, history, auth, petProfile, getAllPetProfiles, mobileS
           <Link to="/" className="btn">
             <i className="fas fa-home homeBtn"></i>
           </Link>
+
           <span className="btn" onClick={() => logout(history)}>
             <i className="fas fa-sign-out-alt logoutBtn"></i>
           </span>
