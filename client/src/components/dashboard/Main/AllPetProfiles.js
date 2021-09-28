@@ -12,6 +12,9 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
     speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 3,
+    autoplay: true,
+    autoplaySpeed: 6000,
+
     responsive: [
       {
         breakpoint: 1700,
