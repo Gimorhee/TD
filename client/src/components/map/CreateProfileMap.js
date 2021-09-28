@@ -48,7 +48,7 @@ const CreateProfileMap = ({ profile, handleAddress, handleCoordinates, handleCon
     const geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl,
-      placeholder: "Search by address or city within *BC*",
+      placeholder: "Search by address within *BC*",
       marker: {
         color: "orange",
       },
