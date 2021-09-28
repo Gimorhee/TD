@@ -191,20 +191,20 @@ const AllPetProfiles = ({ auth, likePetProfile, unlikePetProfile, petProfile: { 
                         </Fragment>
                       )}
                     </div>
-                    <Link to={`/petProfile/${p.user._id}`}>
+                    <Link to={`/petProfile/${p && p.user && p.user._id}`}>
                       <h4>
-                        <i className="fas fa-user-circle"></i> {p.user.name}
+                        <i className="fas fa-user-circle"></i> {p && p.user && p.user.name}
                       </h4>
                     </Link>
 
                     <div className="avatar">
-                      <Link to={`/petProfile/${p.user._id}`}>
-                        <img src={p.user.avatar} alt="" />
+                      <Link to={`/petProfile/${p && p.user && p.user._id}`}>
+                        <img src={p && p.user && p.user.avatar} alt="userAvatar" />
                       </Link>
                     </div>
 
                     <div className="info">
-                      <Link to={`/petProfile/${p.user._id}`}>
+                      <Link to={`/petProfile/${p && p.user && p.user._id}`}>
                         <h3>
                           <i className="fas fa-paw"></i> {p.name}{" "}
                           <small>

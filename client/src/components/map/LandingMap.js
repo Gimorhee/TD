@@ -81,11 +81,11 @@ const LandingMap = ({ profiles }) => {
           id: Math.random() * 1000000,
           properties: {
             context: profile && profile.mapInfo && JSON.parse(profile.mapInfo.context),
-            userId: profile && profile.user._id,
-            name: profile && profile.user.name,
+            userId: profile && profile.user && profile.user._id,
+            name: profile && profile.user && profile.user.name,
             pet: profile && profile.name,
             date: profile && profile.date,
-            avatar: profile && profile.user.avatar,
+            avatar: profile && profile.user && profile.user.avatar,
             location: profile && profile.location,
           },
           geometry: {
