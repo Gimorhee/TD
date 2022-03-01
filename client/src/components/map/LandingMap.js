@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "mapbox-gl/dist/mapbox-gl.css";
+import iphoneImg from "../../assets/image/iphone6.png";
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZ2ltb3JoZWUiLCJhIjoiY2t0NDhzdDBoMGZqdzJ4dWNhNGVxZTdiNSJ9.5tKlTXRt5ROyhKEWQx2nYg";
 
@@ -99,6 +100,7 @@ const LandingMap = ({ profiles }) => {
 
       if (profileData.features.length > 0) {
         // ADD IMAGE ON MAP
+        // https://image.flaticon.com/icons/png/512/2064/2064863.png
         map.current.loadImage("https://image.flaticon.com/icons/png/512/2064/2064863.png", function (error, image) {
           if (error) throw error;
           map.current.addImage("avatar", image);
@@ -115,6 +117,8 @@ const LandingMap = ({ profiles }) => {
               "icon-size": 0.07,
             },
           });
+
+          console.log("DATA: ", profiles);
         });
         // profileData.features.map((profile) => {
         //   map.current.loadImage(profile.properties.avatar, function (error, image) {

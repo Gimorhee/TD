@@ -4072,7 +4072,7 @@ footer {
   #mapbox-geocoder {
     .mapboxgl-ctrl-geocoder {
       width: 100% !important;
-      z-index: 0;
+      z-index: 2000;
 
       .mapboxgl-ctrl-geocoder--icon {
         height: 29px;
